@@ -13,6 +13,10 @@
 - 该项目用于我个人学习Flutter,开源且免费
 - 有哪里出现问题或者需要新功能,欢迎打开[Issue](https://github.com/xiao-cao-x/pixiv_func_mobile/issues/new)
 
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/site.xiaocao.pixiv/)
+
 ## [获取帮助以及预览](https://pixiv.xiaocao.site/#/pixiv-func/mobile)
 
 # 如何编译?
