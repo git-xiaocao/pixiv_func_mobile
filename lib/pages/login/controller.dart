@@ -37,7 +37,7 @@ class LoginController extends GetxController {
         PlatformApi.toast(I18n.clipboardDataEmpty.tr);
         return;
       }
-      final clipboardDataString = Encrypt.decode(text);
+      final clipboardDataString = Encrypt.decode(text.trim());
       final json = jsonDecode(clipboardDataString);
       final account = Account.fromJson(json);
       Get.find<AccountService>().add(account);

@@ -16,24 +16,28 @@ import 'app/asset_manifest.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await initFlutterLocalNotificationsPlugin();
-  await initAssetManifest();
-  await Inject.init();
+  try {
+    await initFlutterLocalNotificationsPlugin();
+    await initAssetManifest();
+    await Inject.init();
 
-  initHttpOverrides();
-  final theme = Get.find<SettingsService>().theme;
-  Get.changeThemeMode(
-    -1 == theme
-        ? ThemeMode.system
-        : theme == 0
-            ? ThemeMode.dark
-            : ThemeMode.light,
-  );
+    initHttpOverrides();
+    final theme = Get.find<SettingsService>().theme;
+    Get.changeThemeMode(
+      -1 == theme
+          ? ThemeMode.system
+          : theme == 0
+              ? ThemeMode.dark
+              : ThemeMode.light,
+    );
 
-  await I18nTranslations.loadExpansions();
+    await I18nTranslations.loadExpansions();
+  } catch (e) {
+    PlatformApi.toast('初始化异常');
+    return;
+  }
 
   runApp(const App());
-
 
   Get.find<AboutController>().check();
 

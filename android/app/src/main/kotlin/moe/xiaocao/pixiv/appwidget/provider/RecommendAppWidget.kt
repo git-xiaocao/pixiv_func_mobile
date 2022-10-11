@@ -29,7 +29,7 @@ class RecommendAppWidget : AppWidgetProvider() {
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
 
         update(context, appWidgetManager, appWidgetIds)
-        AppWidgetWorker.enqueueUniquePeriodic(context)
+        AppWidgetWorker.enqueueUnique(context)
     }
 
 
@@ -108,10 +108,13 @@ class RecommendAppWidget : AppWidgetProvider() {
                 }
 
                 override fun onLoadFailed(errorDrawable: Drawable?) {
-                    views.setImageViewResource(R.id.recommend_appwidget_image, R.drawable.ic_launcher_foreground)
-                    views.setViewVisibility(R.id.recommend_appwidget_image, View.VISIBLE)
                     if (retryCount < 3)
                         updateAppWidget(context, appWidgetManager, appWidgetId, illustInfo, retryCount + 1)
+                    else {
+                        views.setImageViewResource(R.id.recommend_appwidget_image, R.drawable.ic_launcher_foreground)
+                        views.setViewVisibility(R.id.recommend_appwidget_image, View.VISIBLE)
+                        views.setViewVisibility(R.id.appwidget_progress, View.GONE)
+                    }
                 }
 
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {

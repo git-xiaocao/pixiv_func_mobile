@@ -16,7 +16,7 @@ class MainActivity : FlutterActivity() {
         super.onCreate(savedInstanceState)
         //有AppWidget才启动定时任务
         if (RecommendAppWidget.getIds(context).isNotEmpty()) {
-            AppWidgetWorker.enqueueUniquePeriodic(context)
+            AppWidgetWorker.enqueueUnique(context)
         }
     }
 

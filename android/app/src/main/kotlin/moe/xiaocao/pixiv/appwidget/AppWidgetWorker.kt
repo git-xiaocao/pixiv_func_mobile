@@ -19,6 +19,9 @@ class AppWidgetWorker(val context: Context, workerParams: WorkerParameters) : Wo
         } catch (e: Exception) {
             //异常了不处理 等待下一次任务
             Result.success()
+        } finally {
+            //开启下一次任务
+            enqueueUnique(context)
         }
     }
 
@@ -28,19 +31,20 @@ class AppWidgetWorker(val context: Context, workerParams: WorkerParameters) : Wo
 
     companion object {
 
-        fun enqueueUniquePeriodic(context: Context) {
-            //15-20分钟一次
-            val worker =
-                PeriodicWorkRequest.Builder(AppWidgetWorker::class.java, 20, TimeUnit.MINUTES, 15, TimeUnit.MINUTES).setConstraints(
+        fun enqueueUnique(context: Context) {
+            val worker = OneTimeWorkRequest.Builder(AppWidgetWorker::class.java)
+                .setConstraints(
                     Constraints.Builder().also {
                         //网络已连接
                         it.setRequiredNetworkType(NetworkType.CONNECTED)
-                        //待机状态下执行
-                        it.setRequiresDeviceIdle(true)
-
                     }.build()
-                ).build()
-            WorkManager.getInstance(context).enqueueUniquePeriodicWork("AppWidgetAutoRefresh", ExistingPeriodicWorkPolicy.KEEP, worker)
+                )
+                .setInitialDelay(10, TimeUnit.MINUTES)
+                .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, OneTimeWorkRequest.MIN_BACKOFF_MILLIS, TimeUnit.MILLISECONDS)
+                .build()
+
+
+            WorkManager.getInstance(context).enqueueUniqueWork("AppWidgetAutoRefresh", ExistingWorkPolicy.REPLACE, worker)
         }
 
         fun cancelUnique(context: Context) {

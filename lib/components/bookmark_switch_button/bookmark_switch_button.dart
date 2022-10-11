@@ -24,8 +24,10 @@ class BookmarkSwitchButton extends StatelessWidget {
     this.isButton = true,
   }) : super(key: key);
 
+  String get controllerTag => '$runtimeType-$id';
+
   void _restrictDialog() {
-    final controller = Get.find<BookmarkSwitchButtonController>(tag: '$runtimeType-$id');
+    final controller = Get.find<BookmarkSwitchButtonController>(tag: controllerTag);
     Get.bottomSheet(
       Container(
         decoration: BoxDecoration(
@@ -45,13 +47,21 @@ class BookmarkSwitchButton extends StatelessWidget {
                     Expanded(
                       child: TextWidget(I18n.bookmarkIllust.tr, fontSize: 18, isBold: true),
                     ),
-                    SelectButtonWidget(
-                      items: {
-                        I18n.restrictPublic.tr: Restrict.public,
-                        I18n.restrictPrivate: Restrict.private,
-                      },
-                      value: controller.restrict,
-                      onChanged: controller.restrictOnChanged,
+                    ObxValue<Rx<Restrict>>(
+                      (data) => SelectButtonWidget(
+                        items: {
+                          I18n.restrictPublic.tr: Restrict.public,
+                          I18n.restrictPrivate.tr: Restrict.private,
+                        },
+                        value: data.value,
+                        onChanged: (Restrict? value) {
+                          if (null != value) {
+                            data.value = value;
+                            controller.restrict = value;
+                          }
+                        },
+                      ),
+                      controller.restrict.obs,
                     ),
                   ],
                 ),
@@ -102,7 +112,7 @@ class BookmarkSwitchButton extends StatelessWidget {
                           child: TextWidget(I18n.confirm.tr, fontSize: 18, color: Colors.white, isBold: true),
                         ),
                         onPressed: () async {
-                          controller.changeBookmarkState(isChange: true, restrict: Restrict.public);
+                          controller.changeBookmarkState(isChange: true, restrict: controller.restrict);
                           Get.back();
                         },
                       ),
@@ -120,7 +130,6 @@ class BookmarkSwitchButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controllerTag = '$runtimeType-$id';
     final bool isRootController = !Get.isRegistered<BookmarkSwitchButtonController>(tag: controllerTag);
     if (isRootController) {
       Get.put(BookmarkSwitchButtonController(id, initValue: initValue, isNovel: isNovel), tag: controllerTag);

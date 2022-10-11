@@ -49,13 +49,21 @@ class FollowSwitchButton extends StatelessWidget {
                     Expanded(
                       child: TextWidget(I18n.followUser.tr, fontSize: 18, isBold: true),
                     ),
-                    SelectButtonWidget(
-                      items: {
-                        I18n.restrictPublic.tr: Restrict.public,
-                        I18n.restrictPrivate: Restrict.private,
-                      },
-                      value: controller.restrict,
-                      onChanged: controller.restrictOnChanged,
+                    ObxValue<Rx<Restrict>>(
+                      (data) => SelectButtonWidget(
+                        items: {
+                          I18n.restrictPublic.tr: Restrict.public,
+                          I18n.restrictPrivate: Restrict.private,
+                        },
+                        value: data.value,
+                        onChanged: (Restrict? value) {
+                          if (null != value) {
+                            data.value = value;
+                            controller.restrict = value;
+                          }
+                        },
+                      ),
+                      controller.restrict.obs,
                     ),
                   ],
                 ),
@@ -106,7 +114,7 @@ class FollowSwitchButton extends StatelessWidget {
                           child: TextWidget(I18n.confirm.tr, fontSize: 18, color: Colors.white, isBold: true),
                         ),
                         onPressed: () async {
-                          controller.changeFollowState(isChange: true, restrict: Restrict.public);
+                          controller.changeFollowState(isChange: true, restrict: controller.restrict);
                           Get.back();
                         },
                       ),

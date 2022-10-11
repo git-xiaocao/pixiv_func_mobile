@@ -14,10 +14,6 @@ class BookmarkSwitchButtonController extends GetxController {
     required this.isNovel,
   }) : _isBookmarked = initValue;
 
-  Restrict _restrict = Restrict.public;
-
-  Restrict get restrict => _restrict;
-
   bool _isBookmarked;
 
   bool _requesting = false;
@@ -26,12 +22,7 @@ class BookmarkSwitchButtonController extends GetxController {
 
   bool get requesting => _requesting;
 
-  void restrictOnChanged(Restrict? value) {
-    if (value != null) {
-      _restrict = value;
-      update();
-    }
-  }
+  Restrict restrict = Restrict.public;
 
   void changeBookmarkState({bool isChange = false, Restrict restrict = Restrict.public}) {
     _requesting = true;
