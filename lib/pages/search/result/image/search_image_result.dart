@@ -45,7 +45,7 @@ class SearchImageResultPage extends StatelessWidget {
       if (item.result.isPixivIllust) {
         return Column(
           children: [
-            IllustPreviewer(illust: item.illust!),
+            IllustPreviewer(illust: item.illust!, useHero: false),
             TextWidget('相似度:${item.result.similarityText}', fontSize: 20),
           ],
         );
@@ -151,7 +151,8 @@ class SearchImageResultPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: NoScrollBehaviorWidget(
                 child: WaterfallFlow.builder(
-                  gridDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
+                  gridDelegate:
+                      const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
                   itemBuilder: (BuildContext context, int index) => buildItem(context, controller.list[index]),
                   itemCount: controller.list.length,
                 ),

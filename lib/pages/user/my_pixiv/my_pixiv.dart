@@ -14,8 +14,11 @@ class UserMyPixivContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return DataContent<UserPreview>(
       sourceList: UserMyPixivListSource(id),
-      itemBuilder: (BuildContext context, UserPreview item, int index) {
-        return UserPreviewer(userPreview: item);
+      itemBuilder: (BuildContext context, UserPreview item, bool visibility, int index) {
+        return UserPreviewer(
+          userPreview: item,
+          useHero: visibility,
+        );
       },
     );
   }

@@ -84,7 +84,7 @@ class SearchNovelResultPage extends StatelessWidget {
             Expanded(
               child: DataContent<Novel>(
                 sourceList: controller.sourceList,
-                itemBuilder: (BuildContext context, Novel item, int index) => NovelPreviewer(novel: item),
+                itemBuilder: (BuildContext context, Novel item, bool visibility, int index) => NovelPreviewer(novel: item),
               ),
             ),
           ],

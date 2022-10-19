@@ -65,7 +65,10 @@ class SearchUserResultPage extends StatelessWidget {
         ],
         body: DataContent<UserPreview>(
           sourceList: SearchUserResultListSource(keyword),
-          itemBuilder: (BuildContext context, UserPreview item, int index) => UserPreviewer(userPreview: item),
+          itemBuilder: (BuildContext context, UserPreview item, bool visibility, int index) => UserPreviewer(
+            userPreview: item,
+            useHero: visibility,
+          ),
         ),
       ),
     );

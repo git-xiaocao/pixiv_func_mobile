@@ -2,10 +2,10 @@ name: pixiv_func_mobile
 description: Pixiv 第三方客户端
 
 publish_to: 'none'
-version: 1.0.0-beta44+49
+version: 1.0.0-beta45+50
 
 environment:
-  sdk: ">=2.18.0 <3.0.0"
+  sdk: ">=2.18.1 <3.0.0"
 
 dependencies:
   flutter:

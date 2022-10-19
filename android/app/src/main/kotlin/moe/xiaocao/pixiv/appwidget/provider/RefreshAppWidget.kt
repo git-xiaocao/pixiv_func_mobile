@@ -1,6 +1,5 @@
 package moe.xiaocao.pixiv.appwidget.provider
 
-import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider

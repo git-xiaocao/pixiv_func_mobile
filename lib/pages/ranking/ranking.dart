@@ -48,8 +48,12 @@ class RankingPage extends StatelessWidget {
             for (int i = 0; i < RankingMode.values.length; ++i)
               DataContent<Illust>(
                 sourceList: RankingListSource(RankingMode.values[i]),
-                extendedListDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
-                itemBuilder: (BuildContext context, Illust item, int index) => IllustPreviewer(illust: item),
+                extendedListDelegate:
+                    const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
+                itemBuilder: (BuildContext context, Illust item, bool visibility, int index) => IllustPreviewer(
+                  illust: item,
+                  useHero: visibility,
+                ),
               ),
           ],
         ),

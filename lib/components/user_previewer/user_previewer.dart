@@ -9,8 +9,13 @@ import 'package:pixiv_func_mobile/widgets/text/text.dart';
 
 class UserPreviewer extends StatelessWidget {
   final UserPreview userPreview;
+  final bool useHero;
 
-  const UserPreviewer({Key? key, required this.userPreview}) : super(key: key);
+  const UserPreviewer({
+    Key? key,
+    required this.userPreview,
+    required this.useHero,
+  }) : super(key: key);
 
   static const double padding = 3;
 
@@ -78,6 +83,7 @@ class UserPreviewer extends StatelessWidget {
                               bottomLeft: i == 0 ? const Radius.circular(12) : Radius.zero,
                               bottomRight: i == userPreview.illusts.length - 1 ? const Radius.circular(12) : Radius.zero,
                             ),
+                            useHero: useHero,
                           ),
                         )
                     ],

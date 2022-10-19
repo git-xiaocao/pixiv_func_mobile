@@ -4,6 +4,7 @@ import 'package:pixiv_func_mobile/components/loading_more_indicator/loading_more
 import 'package:pixiv_func_mobile/components/pull_to_refresh_header/pull_to_refresh_header.dart';
 import 'package:pixiv_func_mobile/widgets/no_scroll_behavior/no_scroll_behavior.dart';
 import 'package:pull_to_refresh_notification/pull_to_refresh_notification.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 import 'data_source_base.dart';
 
@@ -12,7 +13,7 @@ class DataContent<T> extends StatefulWidget {
   final EdgeInsetsGeometry padding;
   final SliverGridDelegate? gridDelegate;
   final ExtendedListDelegate? extendedListDelegate;
-  final Widget Function(BuildContext context, T item, int index) itemBuilder;
+  final Widget Function(BuildContext context, T item, bool visibility, int index) itemBuilder;
   final bool pullToRefresh;
 
   const DataContent({
@@ -32,6 +33,8 @@ class DataContent<T> extends StatefulWidget {
 class _DataContentState<T> extends State<DataContent<T>> {
   late DataSourceBase<T> sourceList = widget.sourceList;
 
+  bool _visibility = true;
+
   @override
   void didUpdateWidget(covariant DataContent<T> oldWidget) {
     if (widget.sourceList != oldWidget.sourceList) {
@@ -40,10 +43,15 @@ class _DataContentState<T> extends State<DataContent<T>> {
     super.didUpdateWidget(oldWidget);
   }
 
+  Widget buildItem(BuildContext context, T item, int index) {
+    return widget.itemBuilder(context, item, _visibility, index);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final Widget child;
     if (widget.pullToRefresh) {
-      return PullToRefreshNotification(
+      child = PullToRefreshNotification(
         onRefresh: () async => await sourceList.refresh(true),
         maxDragOffset: 100,
         child: NoScrollBehaviorWidget(
@@ -56,7 +64,7 @@ class _DataContentState<T> extends State<DataContent<T>> {
                   extendedListDelegate: widget.extendedListDelegate,
                   gridDelegate: widget.gridDelegate,
                   sourceList: sourceList,
-                  itemBuilder: widget.itemBuilder,
+                  itemBuilder: buildItem,
                   indicatorBuilder: (BuildContext context, IndicatorStatus status) => LoadingMoreIndicator(
                     status: status,
                     errorRefresh: () async => await sourceList.errorRefresh(),
@@ -70,13 +78,13 @@ class _DataContentState<T> extends State<DataContent<T>> {
         ),
       );
     } else {
-      return LoadingMoreList(
+      child = LoadingMoreList(
         ListConfig(
           padding: widget.padding,
           showGlowLeading: false,
           showGlowTrailing: false,
           primary: true,
-          itemBuilder: widget.itemBuilder,
+          itemBuilder: buildItem,
           sourceList: sourceList,
           extendedListDelegate: widget.extendedListDelegate,
           gridDelegate: widget.gridDelegate,
@@ -88,5 +96,19 @@ class _DataContentState<T> extends State<DataContent<T>> {
         ),
       );
     }
+    return VisibilityDetector(
+      key: Key('DataContent-$hashCode'),
+      child: child,
+      onVisibilityChanged: (VisibilityInfo info) {
+        bool hide = info.visibleFraction == 0.0;
+        if (hide != _visibility) {
+          if (mounted) {
+            setState(() {
+              _visibility = hide;
+            });
+          }
+        }
+      },
+    );
   }
 }

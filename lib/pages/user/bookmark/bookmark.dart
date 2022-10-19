@@ -63,12 +63,19 @@ class _UserBookmarkContentState extends State<UserBookmarkContent> {
               children: [
                 DataContent<Illust>(
                   sourceList: UserIllustBookmarkListSource(widget.id, widget.restrict),
-                  extendedListDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
-                  itemBuilder: (BuildContext context, Illust item, int index) => IllustPreviewer(illust: item),
+                  extendedListDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 5,
+                    crossAxisSpacing: 10,
+                  ),
+                  itemBuilder: (BuildContext context, Illust item, bool visibility, int index) => IllustPreviewer(
+                    illust: item,
+                    useHero: visibility,
+                  ),
                 ),
                 DataContent<Novel>(
                   sourceList: UserNovelBookmarkListSource(widget.id, widget.restrict),
-                  itemBuilder: (BuildContext context, Novel item, int index) => NovelPreviewer(novel: item),
+                  itemBuilder: (BuildContext context, Novel item, bool visibility, int index) => NovelPreviewer(novel: item),
                 ),
               ],
             ),

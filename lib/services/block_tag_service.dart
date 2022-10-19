@@ -7,7 +7,7 @@ import 'package:pixiv_dart_api/model/tag.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BlockTagService extends GetxService {
-  static const _dataKeyName = "shield_tags";
+  static const _dataKeyName = "block_tags";
   late final SharedPreferences _sharedPreferences;
 
   final List<Tag> blockTags = [];

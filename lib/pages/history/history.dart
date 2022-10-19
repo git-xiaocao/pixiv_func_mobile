@@ -104,7 +104,7 @@ class HistoryPage extends StatelessWidget {
             builder: (bool? snapshot, void Function(bool?) updater) {
               return CupertinoSwitchListTile(
                 contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 24),
-                onTap: () => updater(!(snapshot ?? false)),
+                onTap: () => updater(!snapshot),
                 title: TextWidget(I18n.browsingHistory.tr, fontSize: 18, isBold: true),
                 value: snapshot!,
               );
@@ -120,8 +120,9 @@ class HistoryPage extends StatelessWidget {
           Expanded(
             child: DataContent<Illust>(
               sourceList: source,
-              extendedListDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
-              itemBuilder: (BuildContext context, Illust item, int index) => InkWell(
+              extendedListDelegate:
+                  const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
+              itemBuilder: (BuildContext context, Illust item, bool visibility, int index) => InkWell(
                 onLongPress: () {
                   Get.bottomSheet(
                     Container(
@@ -194,7 +195,7 @@ class HistoryPage extends StatelessWidget {
                     ),
                   );
                 },
-                child: IllustPreviewer(illust: item),
+                child: IllustPreviewer(illust: item, useHero: visibility),
               ),
               pullToRefresh: false,
             ),

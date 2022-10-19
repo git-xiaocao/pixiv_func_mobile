@@ -38,7 +38,7 @@ class UgoiraViewer extends StatelessWidget with RouteAware {
             : GestureDetector(
                 onTap: () => controller.play(),
                 child: Hero(
-                  tag: 'IllustHero:$id',
+                  tag: 'IllustHero-$id',
                   child: Stack(
                     alignment: Alignment.center,
                     children: [

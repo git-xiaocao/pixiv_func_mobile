@@ -16,7 +16,7 @@ class IllustPreviewer extends StatelessWidget {
 
   final bool showUserName;
 
-  final String? heroTag;
+  final bool useHero;
 
   final BorderRadius? borderRadius;
 
@@ -25,7 +25,7 @@ class IllustPreviewer extends StatelessWidget {
     required this.illust,
     this.square = false,
     this.showUserName = true,
-    this.heroTag,
+    required this.useHero,
     this.borderRadius,
   }) : super(key: key);
 
@@ -46,9 +46,9 @@ class IllustPreviewer extends StatelessWidget {
         return Stack(
           fit: StackFit.expand,
           children: [
-            if (needHero)
+            if (needHero && useHero)
               Hero(
-                tag: heroTag ?? 'IllustHero:${illust.id}',
+                tag: 'IllustHero-${illust.id}',
                 child: imageWidget,
               )
             else

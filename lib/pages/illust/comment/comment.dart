@@ -165,7 +165,7 @@ class IllustCommentContent extends StatelessWidget {
               child: DataContent(
                 sourceList: controller.source,
                 padding: EdgeInsets.zero,
-                itemBuilder: (BuildContext context, CommentTree item, int index) {
+                itemBuilder: (BuildContext context, CommentTree item, bool visibility, int index) {
                   return buildCommentItem(item);
                 },
               ),
@@ -189,7 +189,8 @@ class CommentInputWidget extends StatefulWidget {
   final void Function(int id) onStampSend;
   final String label;
 
-  const CommentInputWidget({Key? key, required this.resetReply, required this.onSend, required this.onStampSend, required this.label}) : super(key: key);
+  const CommentInputWidget({Key? key, required this.resetReply, required this.onSend, required this.onStampSend, required this.label})
+      : super(key: key);
 
   @override
   State<CommentInputWidget> createState() => _CommentInputWidgetState();
@@ -355,7 +356,8 @@ class _CommentInputWidgetState extends State<CommentInputWidget> {
             stream: _gridBuilderController.stream,
             builder: (BuildContext b, AsyncSnapshot<void> d) {
               return SizedBox(
-                  height: showCustomKeyBoard ? _keyboardHeight - (Platform.isIOS ? mediaQueryData.padding.bottom : 0) : 0, child: buildCustomKeyBoard());
+                  height: showCustomKeyBoard ? _keyboardHeight - (Platform.isIOS ? mediaQueryData.padding.bottom : 0) : 0,
+                  child: buildCustomKeyBoard());
             },
           ),
           StreamBuilder<void>(
@@ -416,8 +418,8 @@ class _CommentInputWidgetState extends State<CommentInputWidget> {
         end = start;
       }
 
-      _textEditingController.value =
-          value.copyWith(text: newText, selection: value.selection.copyWith(baseOffset: end + text.length, extentOffset: end + text.length));
+      _textEditingController.value = value.copyWith(
+          text: newText, selection: value.selection.copyWith(baseOffset: end + text.length, extentOffset: end + text.length));
     } else {
       _textEditingController.value = TextEditingValue(text: text, selection: TextSelection.fromPosition(TextPosition(offset: text.length)));
     }

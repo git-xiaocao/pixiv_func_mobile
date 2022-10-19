@@ -1,6 +1,5 @@
 package moe.xiaocao.pixiv.appwidget
 
-import android.annotation.SuppressLint
 import android.content.Context
 import androidx.work.*
 import moe.xiaocao.pixiv.appwidget.provider.RecommendAppWidget

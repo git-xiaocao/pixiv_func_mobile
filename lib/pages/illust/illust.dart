@@ -36,7 +36,7 @@ class IllustPage extends StatelessWidget {
 
   const IllustPage({required this.illust, Key? key}) : super(key: key);
 
-  String get controllerTag => 'Illust-${illust.id}';
+  String get tag => 'Illust-${illust.id}';
 
   Widget buildImageItem({
     required int id,
@@ -44,7 +44,7 @@ class IllustPage extends StatelessWidget {
     required String previewUrl,
     required int index,
   }) {
-    final controller = Get.find<IllustController>(tag: controllerTag);
+    final controller = Get.find<IllustController>(tag: tag);
     final widget = GestureDetector(
       onTap: () => Get.to(() => ImageScalePage(illust: illust, initialPage: index)),
       onLongPress: () => controller.downloadModeChangeState(),
@@ -139,14 +139,14 @@ class IllustPage extends StatelessWidget {
         ],
       ),
     );
-    return 0 == index ? Hero(tag: 'IllustHero:$id', child: widget) : widget;
+    return 0 == index ? Hero(tag: 'IllustHero-$id', child: widget) : widget;
   }
 
   Widget buildUgoiraViewer({
     required int id,
     required String previewUrl,
   }) {
-    final controller = Get.find<IllustController>(tag: controllerTag);
+    final controller = Get.find<IllustController>(tag: tag);
     return GestureDetector(
       onLongPress: () => controller.downloadModeChangeState(),
       child: Stack(
@@ -229,7 +229,7 @@ class IllustPage extends StatelessWidget {
   }
 
   Widget buildImageDetail() {
-    final controller = Get.find<IllustController>(tag: controllerTag);
+    final controller = Get.find<IllustController>(tag: tag);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
       child: Column(
@@ -300,7 +300,8 @@ class IllustPage extends StatelessWidget {
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () {
-                  Share.share('[Pixiv Func]\n${illust.title}\n${I18n.illustId.tr}:${illust.id}\nhttps://www.pixiv.net/artworks/${illust.id}');
+                  Share.share(
+                      '[Pixiv Func]\n${illust.title}\n${I18n.illustId.tr}:${illust.id}\nhttps://www.pixiv.net/artworks/${illust.id}');
                 },
                 child: Row(
                   children: [
@@ -402,9 +403,9 @@ class IllustPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(IllustController(illust), tag: controllerTag);
+    Get.put(IllustController(illust), tag: tag);
     return GetBuilder<IllustController>(
-      tag: controllerTag,
+      tag: tag,
       assignId: true,
       builder: (controller) => DefaultTabController(
         length: 2,
@@ -416,7 +417,7 @@ class IllustPage extends StatelessWidget {
             }
           },
           child: VisibilityDetector(
-            key: Key(controllerTag),
+            key: Key(tag),
             onVisibilityChanged: (VisibilityInfo info) {
               controller.isVisibility = info.visibleFraction != 0.0;
             },
@@ -557,7 +558,8 @@ class IllustPage extends StatelessWidget {
                         sourceList: controller.illustRelatedSource,
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
                         padding: EdgeInsets.zero,
-                        itemBuilder: (BuildContext context, Illust item, int index) => IllustPreviewer(illust: item, square: true),
+                        itemBuilder: (BuildContext context, Illust item, bool visibility, int index) =>
+                            IllustPreviewer(illust: item, square: true, useHero: visibility),
                       ),
                       IllustCommentContent(id: illust.id),
                     ],

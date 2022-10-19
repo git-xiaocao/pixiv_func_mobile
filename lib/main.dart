@@ -11,6 +11,7 @@ import 'package:pixiv_func_mobile/app/theme/theme.dart';
 import 'package:pixiv_func_mobile/global_controllers/about_controller.dart';
 import 'package:pixiv_func_mobile/pages/index.dart';
 import 'package:pixiv_func_mobile/services/settings_service.dart';
+
 import 'app/asset_manifest.dart';
 
 Future<void> main() async {
@@ -22,14 +23,6 @@ Future<void> main() async {
     await Inject.init();
 
     initHttpOverrides();
-    final theme = Get.find<SettingsService>().theme;
-    Get.changeThemeMode(
-      -1 == theme
-          ? ThemeMode.system
-          : theme == 0
-              ? ThemeMode.dark
-              : ThemeMode.light,
-    );
 
     await I18nTranslations.loadExpansions();
   } catch (e) {
@@ -56,7 +49,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final localeCodes = Get.find<SettingsService>().language.split('_');
-
+    final theme = Get.find<SettingsService>().theme;
     return GetMaterialApp(
       defaultTransition: Transition.leftToRight,
       translations: I18nTranslations(),
@@ -90,6 +83,11 @@ class App extends StatelessWidget {
       ),
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
+      themeMode: -1 == theme
+          ? ThemeMode.system
+          : theme == 0
+              ? ThemeMode.dark
+              : ThemeMode.light,
       enableLog: false,
     );
   }

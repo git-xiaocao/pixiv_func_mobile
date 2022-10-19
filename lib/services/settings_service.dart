@@ -22,7 +22,7 @@ class SettingsService extends GetxService {
     _sharedPreferences.setInt('theme', value);
   }
 
-  String get imageSource => _sharedPreferences.getString('image_source') ?? 'i.pixiv.re';
+  String get imageSource => _sharedPreferences.getString('image_source') ?? '210.140.92.148';
 
   set imageSource(String value) {
     _sharedPreferences.setString('image_source', value);

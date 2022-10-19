@@ -51,29 +51,41 @@ class RecommendedPage extends StatelessWidget {
           children: [
             DataContent<Illust>(
               sourceList: RecommendedIllustListSource(IllustType.illust),
-              extendedListDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
-              itemBuilder: (BuildContext context, Illust item, int index) => IllustPreviewer(illust: item),
+              extendedListDelegate:
+                  const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
+              itemBuilder: (BuildContext context, Illust item, bool visibility, int index) => IllustPreviewer(
+                illust: item,
+                useHero: visibility,
+              ),
             ),
             DataContent<Illust>(
               sourceList: RecommendedIllustListSource(IllustType.manga),
-              extendedListDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
-              itemBuilder: (BuildContext context, Illust item, int index) => IllustPreviewer(illust: item),
+              extendedListDelegate:
+                  const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
+              itemBuilder: (BuildContext context, Illust item, bool visibility, int index) => IllustPreviewer(
+                illust: item,
+                useHero: visibility,
+              ),
             ),
             DataContent<Novel>(
               sourceList: RecommendedNovelListSource(),
-              itemBuilder: (BuildContext context, Novel item, int index) => NovelPreviewer(novel: item),
+              itemBuilder: (BuildContext context, Novel item, bool visibility, int index) => NovelPreviewer(novel: item),
             ),
             DataContent<UserPreview>(
               sourceList: RecommendedUserListSource(),
-              itemBuilder: (BuildContext context, UserPreview item, int index) => Padding(
+              itemBuilder: (BuildContext context, UserPreview item, bool visibility, int index) => Padding(
                 padding: const EdgeInsets.only(bottom: 10),
-                child: UserPreviewer(userPreview: item),
+                child: UserPreviewer(
+                  userPreview: item,
+                  useHero: visibility,
+                ),
               ),
             ),
             DataContent<Live>(
               sourceList: RecommendedLiveListSource(),
-              extendedListDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
-              itemBuilder: (BuildContext context, Live item, int index) => Padding(
+              extendedListDelegate:
+                  const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
+              itemBuilder: (BuildContext context, Live item, bool visibility, int index) => Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: LivePreviewer(live: item),
               ),

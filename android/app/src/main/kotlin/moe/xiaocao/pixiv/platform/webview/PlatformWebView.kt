@@ -13,7 +13,6 @@ import androidx.webkit.ProxyController
 import androidx.webkit.WebViewFeature
 import io.flutter.plugin.common.*
 import io.flutter.plugin.platform.PlatformView
-import moe.xiaocao.pixiv.util.newThreadFunc
 import kotlin.collections.HashMap
 
 @SuppressLint("SetJavaScriptEnabled")

@@ -8,13 +8,13 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import moe.xiaocao.IllustType
-import moe.xiaocao.PixivApi
-import moe.xiaocao.model.Illust
+import api.moe.xiaocao.IllustType
+import api.moe.xiaocao.PixivApi
+import api.moe.xiaocao.model.Illust
 import moe.xiaocao.pixiv.util.getStringList
 import moe.xiaocao.pixiv.util.setStringList
 
-import moe.xiaocao.vo.UserAccount
+import api.moe.xiaocao.vo.UserAccount
 
 
 class ApiClient(val context: Context) {
@@ -86,7 +86,7 @@ class ApiClient(val context: Context) {
     }
 
     fun toCurrentImageSource(url: String): String {
-        return url.replace("i.pximg.net", sharedPreferences.getString("imageSource", null) ?: "i.pixiv.re")
+        return url.replace("i.pximg.net", sharedPreferences.getString("imageSource", null) ?: "210.140.92.148")
     }
 
     @Serializable

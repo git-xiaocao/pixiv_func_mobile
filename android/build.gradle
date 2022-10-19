@@ -1,8 +1,9 @@
 buildscript {
-    ext.kotlin_version = '1.7.10'
+    ext.kotlin_version = '1.7.20'
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 
     dependencies {
@@ -15,17 +16,8 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven {
-            name 'pixiv-kotlin-api'
-            url 'https://maven.pkg.github.com/git-xiaocao/pixiv-kotlin-api'
-            credentials {
-                username 'git-xiaocao'
-                password System.getenv("GITHUB_TOKEN")
-            }
-        }
-
+        maven { url 'https://jitpack.io' }
     }
-
 }
 
 rootProject.buildDir = '../build'

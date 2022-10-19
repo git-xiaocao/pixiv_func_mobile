@@ -59,17 +59,34 @@ class _UserWorkContentState extends State<UserWorkContent> {
               children: [
                 DataContent<Illust>(
                   sourceList: UserIllustListSource(widget.id, IllustType.illust),
-                  extendedListDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
-                  itemBuilder: (BuildContext context, Illust item, int index) => IllustPreviewer(illust: item, showUserName: false),
+                  extendedListDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 5,
+                    crossAxisSpacing: 10,
+                  ),
+                  itemBuilder: (BuildContext context, Illust item, bool visibility, int index) => IllustPreviewer(
+                    illust: item,
+                    showUserName: false,
+                    useHero: visibility,
+                  ),
                 ),
                 DataContent<Illust>(
                   sourceList: UserIllustListSource(widget.id, IllustType.manga),
-                  extendedListDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
-                  itemBuilder: (BuildContext context, Illust item, int index) => IllustPreviewer(illust: item, showUserName: false),
+                  extendedListDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 5,
+                    crossAxisSpacing: 10,
+                  ),
+                  itemBuilder: (BuildContext context, Illust item, bool visibility, int index) => IllustPreviewer(
+                    illust: item,
+                    showUserName: false,
+                    useHero: visibility,
+                  ),
                 ),
                 DataContent<Novel>(
                   sourceList: UserNovelListSource(widget.id),
-                  itemBuilder: (BuildContext context, Novel item, int index) => NovelPreviewer(novel: item, showUserName: false),
+                  itemBuilder: (BuildContext context, Novel item, bool visibility, int index) =>
+                      NovelPreviewer(novel: item, showUserName: false),
                 ),
               ],
             ),

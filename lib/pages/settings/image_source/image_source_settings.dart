@@ -16,7 +16,6 @@ class ImageSourceSettingsPage extends StatelessWidget {
     const List<MapEntry<String, String>> items = [
       MapEntry('IP(210.140.92.148)', '210.140.92.148'),
       MapEntry('Original(i.pximg.net)', 'i.pximg.net'),
-      MapEntry('MirroImage(i.pixiv.re)', 'i.pixiv.re'),
     ];
     return ScaffoldWidget(
       title: I18n.imageSourceSettingsPageTitle.tr,

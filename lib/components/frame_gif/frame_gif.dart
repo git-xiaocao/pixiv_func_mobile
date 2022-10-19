@@ -11,7 +11,6 @@ class FrameGifWidget extends StatelessWidget {
   final String previewUrl;
   final List<ui.Image> images;
   final List<int> delays;
-  final String? heroTag;
   final Size size;
 
   const FrameGifWidget({
@@ -20,7 +19,6 @@ class FrameGifWidget extends StatelessWidget {
     required this.previewUrl,
     required this.images,
     required this.delays,
-    this.heroTag,
     required this.size,
   }) : super(key: key);
 
@@ -45,7 +43,7 @@ class FrameGifWidget extends StatelessWidget {
             }
           },
           child: Hero(
-            tag: heroTag ?? 'IllustHero:$id',
+            tag: 'IllustHero-$id',
             child: GestureDetector(
               onTap: () => controller.pauseStateChange(),
               child: SizedBox(

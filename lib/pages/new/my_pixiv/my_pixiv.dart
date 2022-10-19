@@ -45,7 +45,7 @@ class _MyPixivNewContentState extends State<MyPixivNewContent> {
             collapsed: const SizedBox(),
             expanded: Padding(
               padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05, vertical: 9),
-              child:SelectGroup<WorkType>(
+              child: SelectGroup<WorkType>(
                 items: {I18n.illustAndManga.tr: WorkType.illust, I18n.novel.tr: WorkType.novel},
                 value: controller.workType,
                 onChanged: controller.workTypeOnChanged,
@@ -58,12 +58,16 @@ class _MyPixivNewContentState extends State<MyPixivNewContent> {
               children: [
                 DataContent<Illust>(
                   sourceList: MyPixivNewIllustListSource(),
-                  extendedListDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
-                  itemBuilder: (BuildContext context, Illust item, int index) => IllustPreviewer(illust: item),
+                  extendedListDelegate:
+                      const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
+                  itemBuilder: (BuildContext context, Illust item, bool visibility, int index) => IllustPreviewer(
+                    illust: item,
+                    useHero: visibility,
+                  ),
                 ),
                 DataContent<Novel>(
                   sourceList: MyPixivNewNovelListSource(),
-                  itemBuilder: (BuildContext context, Novel item, int index) => NovelPreviewer(novel: item),
+                  itemBuilder: (BuildContext context, Novel item, bool visibility, int index) => NovelPreviewer(novel: item),
                 ),
               ],
             ),

@@ -71,7 +71,7 @@ class SearchGuidePage extends StatelessWidget {
         sourceList: SearchTrendingIllustList(),
         extendedListDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 7.5),
         padding: const EdgeInsets.symmetric(horizontal: 18),
-        itemBuilder: (BuildContext context, TrendTag item, int index) {
+        itemBuilder: (BuildContext context, TrendTag item, bool visibility, int index) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
