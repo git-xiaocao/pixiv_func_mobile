@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart' hide Image;
 import 'package:get/get.dart';
-import 'package:image/image.dart' hide BlendMode;
+import 'package:image_editor/image_editor.dart' hide ImageSource;
 import 'package:image_picker/image_picker.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/models/image_info.dart';
@@ -81,11 +81,12 @@ class _ImageSelectorPageState extends State<ImageSelectorPage> {
               extendedImageEditorKey: editorKey,
               initEditorConfigHandler: (state) {
                 return EditorConfig(
-                    maxScale: 8.0,
-                    cropRectPadding: const EdgeInsets.all(20.0),
-                    hitTestSize: 20.0,
-                    cropAspectRatio: widget.ratio,
-                    cropLayerPainter: CustomEditorCropLayerPainter());
+                  maxScale: 8.0,
+                  cropRectPadding: const EdgeInsets.all(20.0),
+                  hitTestSize: 20.0,
+                  cropAspectRatio: widget.ratio,
+                  cropLayerPainter: CustomEditorCropLayerPainter(),
+                );
               },
             ),
       bottomNavigationBar: BottomAppBar(
@@ -95,21 +96,18 @@ class _ImageSelectorPageState extends State<ImageSelectorPage> {
               child: buildActionButton(
                 onTap: () async {
                   final state = editorKey.currentState;
+
                   final Rect? cropRect = state?.getCropRect();
                   Uint8List? data = state?.rawImageData;
                   if (null == cropRect || null == data) {
                     return;
                   }
 
-                  final image = copyCrop(
-                    decodeImage(data)!,
-                    cropRect.left.toInt(),
-                    cropRect.top.toInt(),
-                    cropRect.width.toInt(),
-                    cropRect.height.toInt(),
-                  );
+                  ImageEditorOption option = ImageEditorOption();
 
-                  widget.onChanged(PickedImageInfo(Uint8List.fromList(encodePng(image)), _filename!));
+                  option.addOption(ClipOption.fromRect(cropRect));
+                  final bytes = (await ImageEditor.editImage(image: data, imageEditorOption: option))!;
+                  widget.onChanged(PickedImageInfo(bytes, _filename!));
                   Get.back();
                 },
                 iconData: Icons.check,
