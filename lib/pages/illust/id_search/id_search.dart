@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/state/page_state.dart';
 import 'package:pixiv_func_mobile/pages/illust/illust.dart';
-import 'package:pixiv_func_mobile/services/account_service.dart';
+import 'package:pixiv_func_mobile/app/services/account_service.dart';
 import 'package:pixiv_func_mobile/widgets/scaffold/scaffold.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
 

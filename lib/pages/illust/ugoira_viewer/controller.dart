@@ -7,7 +7,7 @@ import 'package:pixiv_func_mobile/app/api/api_client.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/platform/api/platform_api.dart';
 import 'package:pixiv_func_mobile/pages/illust/controller.dart';
-import 'package:pixiv_func_mobile/services/settings_service.dart';
+import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 import 'package:pixiv_func_mobile/utils/log.dart';
 
 import 'state.dart';
@@ -68,6 +68,7 @@ class UgoiraViewerController extends GetxController {
       try {
         state.gifZipResponse = await _httpClient.get<Uint8List>(
           Get.find<SettingsService>().toCurrentImageSource(state.ugoiraMetadata!.ugoiraMetadata.zipUrls.medium),
+          options: Options(receiveTimeout: 60 * 1000),
         );
       } catch (e) {
         Log.e('下载动图压缩包失败', e);
@@ -132,8 +133,8 @@ class UgoiraViewerController extends GetxController {
         PlatformApi.toast(I18n.startCompositeImage.trArgs([state.imageFiles.length.toString()]));
         final saveResult = await PlatformApi.saveGifImage(id, state.imageFiles, state.delays);
 
-        if (Get.isRegistered<IllustController>(tag: 'IllustPage-$id')) {
-          Get.find<IllustController>(tag: 'IllustPage-$id').downloadComplete(0, saveResult);
+        if (Get.isRegistered<IllustController>(tag: 'Illust-$id')) {
+          Get.find<IllustController>(tag: 'Illust-$id').downloadComplete(0, saveResult);
         } else {
           if (saveResult) {
             PlatformApi.toast(I18n.illustIdSaveSuccess.trArgs([id.toString()]));

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/platform/webview/platform_webview.dart';
-import 'package:pixiv_func_mobile/app/theme/theme.dart';
+import 'package:pixiv_func_mobile/app/theme.dart';
 import 'package:pixiv_func_mobile/widgets/scaffold/scaffold.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
 
@@ -38,7 +38,7 @@ class LoginWebViewPage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 30),
                             child: Row(
                               children: [
-                                TextWidget(I18n.clipboard.tr, fontSize: 18, color: AppTheme.lightTheme.colorScheme.onSurface, isBold: true),
+                                TextWidget(I18n.clipboard.tr, fontSize: 18, color: lightTheme.colorScheme.onSurface, isBold: true),
                               ],
                             ),
                           ),
@@ -47,7 +47,7 @@ class LoginWebViewPage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 30),
                             child: Row(
                               children: [
-                                TextWidget(I18n.account.tr, fontSize: 16, color: AppTheme.lightTheme.colorScheme.onSurface, isBold: true),
+                                TextWidget(I18n.account.tr, fontSize: 16, color: lightTheme.colorScheme.onSurface, isBold: true),
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: TextField(
@@ -75,7 +75,7 @@ class LoginWebViewPage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 30),
                             child: Row(
                               children: [
-                                TextWidget(I18n.password.tr, fontSize: 16, color: AppTheme.lightTheme.colorScheme.onSurface, isBold: true),
+                                TextWidget(I18n.password.tr, fontSize: 16, color: lightTheme.colorScheme.onSurface, isBold: true),
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: TextField(

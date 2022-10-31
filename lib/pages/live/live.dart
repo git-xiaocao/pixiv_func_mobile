@@ -6,7 +6,7 @@ import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/state/page_state.dart';
 import 'package:pixiv_func_mobile/components/follow_switch_button/follow_switch_button.dart';
 import 'package:pixiv_func_mobile/components/pixiv_avatar/pixiv_avatar.dart';
-import 'package:pixiv_func_mobile/components/select_button/select_button.dart';
+import 'package:pixiv_func_mobile/widgets/select_button/select_button.dart';
 import 'package:pixiv_func_mobile/pages/live/controller.dart';
 import 'package:pixiv_func_mobile/pages/user/user.dart';
 import 'package:pixiv_func_mobile/widgets/scaffold/scaffold.dart';
@@ -21,10 +21,10 @@ class LivePage extends StatelessWidget {
     required this.live,
   }) : super(key: key);
 
-  String get controllerTag => '$runtimeType-${live.id}';
+  String get tag => '$runtimeType-${live.id}';
 
   Widget buildPlayerWidget(double heightRatio) {
-    final controller = Get.find<LiveController>(tag: controllerTag);
+    final controller = Get.find<LiveController>(tag: tag);
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
@@ -112,9 +112,9 @@ class LivePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(LiveController(live.id), tag: controllerTag);
+    Get.put(LiveController(live.id), tag: tag);
     return GetBuilder<LiveController>(
-      tag: controllerTag,
+      tag: tag,
       builder: (controller) => WillPopScope(
         child: () {
           if (!controller.isFullScreen) {

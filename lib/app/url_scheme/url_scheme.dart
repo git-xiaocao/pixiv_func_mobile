@@ -6,8 +6,8 @@ import 'package:pixiv_func_mobile/models/account.dart';
 import 'package:pixiv_func_mobile/pages/home/home.dart';
 import 'package:pixiv_func_mobile/pages/illust/id_search/id_search.dart';
 import 'package:pixiv_func_mobile/pages/user/user.dart';
-import 'package:pixiv_func_mobile/services/account_service.dart';
-import 'package:pixiv_func_mobile/services/settings_service.dart';
+import 'package:pixiv_func_mobile/app/services/account_service.dart';
+import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 import 'package:pixiv_func_mobile/utils/log.dart';
 
 class UrlScheme {

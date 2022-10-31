@@ -1,7 +1,7 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pixiv_func_mobile/services/settings_service.dart';
+import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 
 class PixivImageWidget extends StatelessWidget {
   final String url;

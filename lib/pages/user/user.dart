@@ -33,10 +33,10 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> with TickerProviderStateMixin {
-  String get controllerTag => '$runtimeType-${widget.id}';
+  String get tag => '$runtimeType-${widget.id}';
 
   Widget buildAppBar() {
-    final controller = Get.find<UserController>(tag: controllerTag);
+    final controller = Get.find<UserController>(tag: tag);
     final userDetail = controller.userDetailResult!;
     final String? backgroundImageUrl = userDetail.profile.backgroundImageUrl;
     final UserInfo user = userDetail.user;
@@ -140,9 +140,9 @@ class _UserPageState extends State<UserPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(UserController(widget.id, this), tag: controllerTag);
+    Get.put(UserController(widget.id, this), tag: tag);
     return GetBuilder<UserController>(
-      tag: controllerTag,
+      tag: tag,
       builder: (controller) => ScaffoldWidget(
         emptyAppBar: controller.userDetailResult != null,
         title: I18n.userIdPageTitle.trArgs([widget.id.toString()]),

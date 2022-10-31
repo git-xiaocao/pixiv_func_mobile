@@ -1,5 +1,6 @@
 import 'package:expandable/expandable.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
+import 'package:extra_hittest_area/extra_hittest_area.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,7 @@ import 'package:pixiv_func_mobile/data_content/data_content.dart';
 import 'package:pixiv_func_mobile/models/illust_save_state.dart';
 import 'package:pixiv_func_mobile/pages/search/result/illust/search_illust_result.dart';
 import 'package:pixiv_func_mobile/pages/user/user.dart';
-import 'package:pixiv_func_mobile/services/settings_service.dart';
+import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 import 'package:pixiv_func_mobile/utils/utils.dart';
 import 'package:pixiv_func_mobile/widgets/html_rich_text/html_rich_text.dart';
 import 'package:pixiv_func_mobile/widgets/no_scroll_behavior/no_scroll_behavior.dart';
@@ -431,13 +432,10 @@ class IllustPage extends StatelessWidget {
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
-                        GestureDetector(
-                          behavior: HitTestBehavior.opaque,
+                        GestureDetectorHitTestWithoutSizeLimit(
+                          extraHitTestArea: const EdgeInsets.all(16),
                           onTap: () => controller.downloadAll(),
-                          child: const Padding(
-                            padding: EdgeInsets.all(8),
-                            child: Icon(Icons.file_download_outlined),
-                          ),
+                          child: const Icon(Icons.file_download_outlined),
                         ),
                         Positioned(
                           bottom: 30,

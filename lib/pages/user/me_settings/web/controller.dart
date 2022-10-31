@@ -3,7 +3,7 @@ import 'package:pixiv_dart_api/vo/user_detail_result.dart';
 import 'package:pixiv_func_mobile/app/api/web_api_client.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/platform/api/platform_api.dart';
-import 'package:pixiv_func_mobile/services/account_service.dart';
+import 'package:pixiv_func_mobile/app/services/account_service.dart';
 
 class MeWebSettingsController extends GetxController {
   final UserDetailResult currentDetail;

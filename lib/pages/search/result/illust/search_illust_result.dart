@@ -18,14 +18,14 @@ class SearchIllustResultPage extends StatelessWidget {
 
   const SearchIllustResultPage({Key? key, required this.keyword}) : super(key: key);
 
-  String get controllerTag => '$runtimeType-$keyword';
+  String get tag => '$runtimeType-$keyword';
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(SearchIllustResultController(keyword), tag: controllerTag);
+    final controller = Get.put(SearchIllustResultController(keyword), tag: tag);
 
     return GetBuilder<SearchIllustResultController>(
-      tag: controllerTag,
+      tag: tag,
       initState: (state) {
         Get.put(SearchIllustFilterEditorController(controller.onFilterChanged), tag: 'SearchIllustFilterEditor-$keyword');
       },

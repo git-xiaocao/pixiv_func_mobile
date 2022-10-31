@@ -4,7 +4,7 @@ import 'package:loading_more_list/loading_more_list.dart';
 import 'package:pixiv_dart_api/model/illust.dart';
 import 'package:pixiv_func_mobile/app/platform/api/platform_api.dart';
 import 'package:pixiv_func_mobile/data_content/data_source_base.dart';
-import 'package:pixiv_func_mobile/services/history_service.dart';
+import 'package:pixiv_func_mobile/app/db/history_db.dart';
 import 'package:pixiv_func_mobile/utils/log.dart';
 
 class HistoryListSource extends DataSourceBase<Illust> {
@@ -16,10 +16,10 @@ class HistoryListSource extends DataSourceBase<Illust> {
   @override
   bool get hasMore => offset < total || !initData;
 
-  final HistoryService historyService = Get.find<HistoryService>();
+
 
   Future<void> removeItem(int illustId) async {
-    await historyService.delete(illustId).then((column) {
+    await HistoryDB.delete(illustId).then((column) {
       if (column > 0) {
         removeWhere((illust) => illustId == illust.id);
         --total;
@@ -36,7 +36,7 @@ class HistoryListSource extends DataSourceBase<Illust> {
   }
 
   Future<void> clearItem() async {
-    await historyService.clear();
+    await HistoryDB.clear();
 
     total = 0;
     clear();
@@ -46,16 +46,16 @@ class HistoryListSource extends DataSourceBase<Illust> {
 
   @override
   Future<List<Illust>> init(CancelToken cancelToken) async {
-    total = await historyService.count();
+    total = await HistoryDB.count();
 
-    final result = await historyService.query(offset, _limit);
+    final result = await HistoryDB.query(offset, _limit);
     offset += result.length;
     return result;
   }
 
   @override
   Future<List<Illust>> next(CancelToken cancelToken) async {
-    final result = await historyService.query(offset, _limit);
+    final result = await HistoryDB.query(offset, _limit);
     offset += result.length;
     return result;
   }

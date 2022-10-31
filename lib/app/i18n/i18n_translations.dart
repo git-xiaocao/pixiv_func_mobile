@@ -300,7 +300,8 @@ class I18nTranslations extends Translations {
       I18n.register: 'Register',
       I18n.login: 'Log in',
       I18n.localReverseProxy: 'Local reverse proxy',
-      I18n.reverseProxyHint: 'When the official page of Pixiv cannot be registered or logged in, it is recommended to open a local reverse proxy.',
+      I18n.reverseProxyHint:
+          'When the official page of Pixiv cannot be registered or logged in, it is recommended to open a local reverse proxy.',
       I18n.getMoreHelp: 'Get more help >>',
       I18n.useLoginWithClipboardHint: 'Or use\nlong press on the avatar to copy account data',
       I18n.useLoginWithClipboard: 'Login with clipboard data',
@@ -732,9 +733,11 @@ class I18nTranslations extends Translations {
       I18n.register: 'Регистрация',
       I18n.login: 'Вход',
       I18n.localReverseProxy: 'Локальный прокси',
-      I18n.reverseProxyHint: 'Если официальная страница Pixiv не может быть зарегистрирована или авторизована, рекомендуется включить прокси.',
+      I18n.reverseProxyHint:
+          'Если официальная страница Pixiv не может быть зарегистрирована или авторизована, рекомендуется включить прокси.',
       I18n.getMoreHelp: 'Получить дополнительную помощь >>',
-      I18n.useLoginWithClipboardHint: 'Или используйте длинное нажатие на аватаре,\n чтобы скопировать данные аккаунта скопировать данные учетной записи',
+      I18n.useLoginWithClipboardHint:
+          'Или используйте длинное нажатие на аватаре,\n чтобы скопировать данные аккаунта скопировать данные учетной записи',
       I18n.useLoginWithClipboard: 'Войти с данными из буфера обмена',
       I18n.loginAgree: 'Входя в систему, вы принимаете',
       I18n.userAgreement: '《Пользовательское соглашение Pixiv Func》',
@@ -879,10 +882,10 @@ class I18nTranslations extends Translations {
   };
 
   @override
-  Map<String, Map<String, String>> get keys => _keys
-    ..addEntries([
-      for (final item in expansions) MapEntry(item.locale, item.data),
-    ]);
+  Map<String, Map<String, String>> get keys => {
+        ..._keys,
+        for (final item in expansions) item.locale: item.data,
+      };
 
   static Future<void> loadExpansions() async {
     final directory = await getApplicationSupportDirectory();

@@ -13,13 +13,13 @@ class NovelPage extends StatelessWidget {
 
   const NovelPage({Key? key, required this.novel}) : super(key: key);
 
-  String get controllerTag => '$runtimeType-${novel.id}';
+  String get tag => '$runtimeType-${novel.id}';
 
   @override
   Widget build(BuildContext context) {
-    Get.put(NovelController(novel.id), tag: controllerTag);
+    Get.put(NovelController(novel.id), tag: tag);
     return GetBuilder<NovelController>(
-      tag: controllerTag,
+      tag: tag,
       builder: (controller) => ScaffoldWidget(
         title: novel.title,
         child: () {

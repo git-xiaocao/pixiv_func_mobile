@@ -7,7 +7,7 @@ import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n_expansion.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n_translations.dart';
 import 'package:pixiv_func_mobile/app/platform/api/platform_api.dart';
-import 'package:pixiv_func_mobile/services/settings_service.dart';
+import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 
 class LanguageController extends GetxController {
   String _language = Get.find<SettingsService>().language;

@@ -7,8 +7,8 @@ import 'package:pixiv_dart_api/vo/user_detail_result.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/state/page_state.dart';
 import 'package:pixiv_func_mobile/components/pixiv_avatar/pixiv_avatar.dart';
-import 'package:pixiv_func_mobile/components/select_button/select_button.dart';
-import 'package:pixiv_func_mobile/components/single_picker/single_picker.dart';
+import 'package:pixiv_func_mobile/widgets/select_button/select_button.dart';
+import 'package:pixiv_func_mobile/widgets/single_picker/single_picker.dart';
 import 'package:pixiv_func_mobile/pages/user/me_settings/profile/controller.dart';
 import 'package:pixiv_func_mobile/widgets/no_scroll_behavior/no_scroll_behavior.dart';
 import 'package:pixiv_func_mobile/widgets/scaffold/scaffold.dart';
@@ -87,7 +87,8 @@ class MeProfileSettingsPage extends StatelessWidget {
                                   children: [
                                     if (null == controller.newProfileImage)
                                       PixivAvatarWidget(
-                                        controller.profileImageUrl ?? controller.presetsResult!.profilePresets.defaultProfileImageUrls.medium,
+                                        controller.profileImageUrl ??
+                                            controller.presetsResult!.profilePresets.defaultProfileImageUrls.medium,
                                         radius: 60,
                                       )
                                     else
@@ -259,8 +260,9 @@ class MeProfileSettingsPage extends StatelessWidget {
                               Get.bottomSheet(
                                 SinglePicker<int>(
                                   title: I18n.address.tr,
-                                  items: {}..addEntries(controller.presetsResult!.profilePresets.addresses.map((item) => MapEntry(item.name, item.id))),
-                                  initialValue: controller.addressId,
+                                  items: {
+                                    for (final item in controller.presetsResult!.profilePresets.addresses) item.name: item.id,
+                                  }, initialValue: controller.addressId,
                                   onChanged: controller.addressIdOnChanged,
                                 ),
                               );
@@ -291,7 +293,9 @@ class MeProfileSettingsPage extends StatelessWidget {
                                 Get.bottomSheet(
                                   SinglePicker<String>(
                                     title: I18n.country.tr,
-                                    items: {}..addEntries(controller.presetsResult!.profilePresets.countries.map((item) => MapEntry(item.name, item.code))),
+                                    items: {
+                                      for (final item in controller.presetsResult!.profilePresets.countries) item.name: item.code,
+                                    },
                                     initialValue: controller.countryCode,
                                     onChanged: controller.countryCodeOnChanged,
                                   ),
@@ -371,8 +375,9 @@ class MeProfileSettingsPage extends StatelessWidget {
                               Get.bottomSheet(
                                 SinglePicker<int>(
                                   title: I18n.job.tr,
-                                  items: {}..addEntries(controller.presetsResult!.profilePresets.jobs.map((item) => MapEntry(item.name, item.id))),
-                                  initialValue: controller.jobId,
+                                  items: {
+                                    for (final item in controller.presetsResult!.profilePresets.jobs) item.name: item.id,
+                                  }, initialValue: controller.jobId,
                                   onChanged: controller.jobIdOnChanged,
                                 ),
                               );

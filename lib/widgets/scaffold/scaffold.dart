@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
@@ -77,7 +79,10 @@ class ScaffoldWidget extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: appBar,
-      body: child,
+      body: Padding(
+        padding: Platform.isIOS ? EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom) : EdgeInsets.zero,
+        child: child,
+      ),
       floatingActionButton: floatingActionButton,
       floatingActionButtonLocation: floatingActionButton != null
           ? _CustomFloatingActionButtonLocation(

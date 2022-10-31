@@ -20,11 +20,11 @@ class UgoiraViewer extends StatelessWidget with RouteAware {
 
   @override
   Widget build(BuildContext context) {
-    final controllerTag = '$runtimeType-$id';
-    Get.put(UgoiraViewerController(id), tag: controllerTag);
+    final tag = '$runtimeType-$id';
+    Get.put(UgoiraViewerController(id), tag: tag);
 
     return GetBuilder<UgoiraViewerController>(
-      tag: controllerTag,
+      tag: tag,
       builder: (UgoiraViewerController controller) {
         final state = controller.state;
         return state.init

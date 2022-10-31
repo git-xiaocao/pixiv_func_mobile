@@ -17,7 +17,7 @@ import 'package:pixiv_func_mobile/pages/settings/preview_quality/preview_quality
 import 'package:pixiv_func_mobile/pages/settings/scale_quality/sacle_quality_settings.dart';
 import 'package:pixiv_func_mobile/pages/settings/theme/theme_settings.dart';
 import 'package:pixiv_func_mobile/pages/user/me.dart';
-import 'package:pixiv_func_mobile/services/account_service.dart';
+import 'package:pixiv_func_mobile/app/services/account_service.dart';
 import 'package:pixiv_func_mobile/utils/utils.dart';
 import 'package:pixiv_func_mobile/widgets/no_scroll_behavior/no_scroll_behavior.dart';
 import 'package:pixiv_func_mobile/widgets/scaffold/scaffold.dart';
@@ -94,6 +94,7 @@ class SettingsPage extends StatelessWidget {
             const Divider(),
             buildItem(onTap: () => Get.to(() => const ThemeSettingsPage()), title: I18n.themeSettingsPageTitle.tr),
             buildItem(onTap: () => Get.to(() => const LanguageSettingsPage()), title: I18n.languageSettingsPageTitle.tr),
+            buildItem(onTap: () => Get.to(() => const LanguageSettingsPage()), title: '翻译设置'),
             const Divider(),
             buildItem(onTap: () => Get.to(() => const ImageSourceSettingsPage()), title: I18n.imageSourceSettingsPageTitle.tr),
             buildItem(onTap: () => Get.to(() => const PreviewQualitySettingsPage()), title: I18n.previewQualitySettingsPageTitle.tr),

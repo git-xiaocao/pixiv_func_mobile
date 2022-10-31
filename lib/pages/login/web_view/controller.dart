@@ -10,8 +10,8 @@ import 'package:pixiv_func_mobile/app/platform/api/platform_api.dart';
 import 'package:pixiv_func_mobile/app/platform/webview/controller.dart';
 import 'package:pixiv_func_mobile/models/account.dart';
 import 'package:pixiv_func_mobile/pages/home/home.dart';
-import 'package:pixiv_func_mobile/services/account_service.dart';
-import 'package:pixiv_func_mobile/services/settings_service.dart';
+import 'package:pixiv_func_mobile/app/services/account_service.dart';
+import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 import 'package:pixiv_func_mobile/utils/log.dart';
 
 class LoginWebViewController extends GetxController {

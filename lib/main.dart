@@ -1,18 +1,20 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pixiv_func_mobile/app/http.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n_translations.dart';
-import 'package:pixiv_func_mobile/app/inject/inject.dart';
+import 'package:pixiv_func_mobile/app/inject.dart';
 import 'package:pixiv_func_mobile/app/notification.dart';
 import 'package:pixiv_func_mobile/app/platform/api/platform_api.dart';
-import 'package:pixiv_func_mobile/app/theme/theme.dart';
+import 'package:pixiv_func_mobile/app/theme.dart';
 import 'package:pixiv_func_mobile/global_controllers/about_controller.dart';
 import 'package:pixiv_func_mobile/pages/index.dart';
-import 'package:pixiv_func_mobile/services/settings_service.dart';
+import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 
-import 'app/asset_manifest.dart';
+import 'app/asset_manifest/asset_manifest.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +22,7 @@ Future<void> main() async {
   try {
     await initFlutterLocalNotificationsPlugin();
     await initAssetManifest();
-    await Inject.init();
+    await initInject();
 
     initHttpOverrides();
 
@@ -35,9 +37,14 @@ Future<void> main() async {
   Get.find<AboutController>().check();
 
   const storageStatus = Permission.storage;
+  const photosStatus = Permission.photos;
 
   if (!await storageStatus.isGranted) {
     Permission.storage.request();
+  }
+
+  if (Platform.isIOS && !await photosStatus.isGranted) {
+    Permission.photos.request();
   }
 }
 
@@ -51,7 +58,7 @@ class App extends StatelessWidget {
     final localeCodes = Get.find<SettingsService>().language.split('_');
     final theme = Get.find<SettingsService>().theme;
     return GetMaterialApp(
-      defaultTransition: Transition.leftToRight,
+      defaultTransition: Transition.rightToLeft,
       translations: I18nTranslations(),
       locale: Locale(localeCodes.first, localeCodes.last),
       localizationsDelegates: const [
@@ -81,8 +88,8 @@ class App extends StatelessWidget {
         },
         child: const IndexWidget(),
       ),
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
+      theme: lightTheme,
+      darkTheme: darkTheme,
       themeMode: -1 == theme
           ? ThemeMode.system
           : theme == 0

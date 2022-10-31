@@ -6,7 +6,7 @@ import 'package:pixiv_func_mobile/app/platform/api/platform_api.dart';
 import 'package:pixiv_func_mobile/components/bookmark_switch_button/bookmark_switch_button.dart';
 import 'package:pixiv_func_mobile/components/pixiv_image/pixiv_image.dart';
 import 'package:pixiv_func_mobile/pages/illust/illust.dart';
-import 'package:pixiv_func_mobile/services/settings_service.dart';
+import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
 
 class IllustPreviewer extends StatelessWidget {
@@ -100,7 +100,7 @@ class IllustPreviewer extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       onTap: () {
         if (illust.restrict == 0) {
-          Get.to(() => IllustPage(illust: illust), routeName: 'IllustPage-${illust.id}', preventDuplicates: false);
+          Get.to(() => IllustPage(illust: illust), routeName: 'Illust-${illust.id}', preventDuplicates: false);
         } else {
           PlatformApi.toast(I18n.setToPrivate.tr);
         }

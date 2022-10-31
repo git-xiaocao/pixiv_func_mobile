@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:pixiv_dart_api/model/tag.dart';
-import 'package:pixiv_func_mobile/services/block_tag_service.dart';
+import 'package:pixiv_func_mobile/app/services/block_tag_service.dart';
 
 class BlockTagController extends GetxController {
   final List<Tag> list = [];

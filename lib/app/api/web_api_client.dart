@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:pixiv_dart_api/pixiv_web_api.dart';
-import 'package:pixiv_func_mobile/services/account_service.dart';
+import 'package:pixiv_func_mobile/app/services/account_service.dart';
 
 class WebApiClient extends GetxService with PixivWebApi {
   Future<WebApiClient> initSuper() async {

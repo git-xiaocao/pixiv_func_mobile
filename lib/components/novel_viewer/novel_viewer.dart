@@ -10,15 +10,15 @@ class NovelViewer extends StatelessWidget {
 
   const NovelViewer({Key? key, required this.text, required this.id}) : super(key: key);
 
-  String get controllerTag => '$runtimeType-$id';
+  String get tag => '$runtimeType-$id';
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        Get.put(NovelViewerController(text, constraints.maxWidth - 32, constraints.maxHeight - 20), tag: controllerTag);
+        Get.put(NovelViewerController(text, constraints.maxWidth - 32, constraints.maxHeight - 20), tag: tag);
         return GetBuilder<NovelViewerController>(
-          tag: controllerTag,
+          tag: tag,
           builder: (controller) => GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTapUp: (TapUpDetails details) {

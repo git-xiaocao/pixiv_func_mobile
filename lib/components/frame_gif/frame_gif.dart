@@ -22,13 +22,13 @@ class FrameGifWidget extends StatelessWidget {
     required this.size,
   }) : super(key: key);
 
-  String get controllerTag => '$runtimeType-$id';
+  String get tag => '$runtimeType-$id';
 
   @override
   Widget build(BuildContext context) {
-    Get.put(FrameGifController(images, delays), tag: controllerTag);
+    Get.put(FrameGifController(images, delays), tag: tag);
     return GetBuilder<FrameGifController>(
-      tag: controllerTag,
+      tag: tag,
       builder: (controller) {
         return VisibilityDetector(
           key: Key('GIF-$id'),

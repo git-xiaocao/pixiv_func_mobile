@@ -7,9 +7,9 @@ import 'package:pixiv_dart_api/model/illust.dart';
 import 'package:pixiv_dart_api/model/novel.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/components/illust_previewer/illust_previewer.dart';
-import 'package:pixiv_func_mobile/components/lazy_indexed_stack/lazy_indexed_stack.dart';
+import 'package:pixiv_func_mobile/widgets/lazy_indexed_stack/lazy_indexed_stack.dart';
 import 'package:pixiv_func_mobile/components/novel_previewer/novel_previewer.dart';
-import 'package:pixiv_func_mobile/components/select_button/select_button.dart';
+import 'package:pixiv_func_mobile/widgets/select_button/select_button.dart';
 import 'package:pixiv_func_mobile/data_content/data_content.dart';
 import 'package:pixiv_func_mobile/widgets/select_group/select_group.dart';
 

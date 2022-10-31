@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pixiv_func_mobile/app/icon/icon.dart';
-import 'package:pixiv_func_mobile/components/lazy_indexed_stack/lazy_indexed_stack.dart';
+import 'package:pixiv_func_mobile/widgets/lazy_indexed_stack/lazy_indexed_stack.dart';
 import 'package:pixiv_func_mobile/pages/new/new.dart';
 import 'package:pixiv_func_mobile/pages/ranking/ranking.dart';
 import 'package:pixiv_func_mobile/pages/recommended/recommended.dart';

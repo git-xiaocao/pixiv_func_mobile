@@ -102,6 +102,7 @@ class AboutController extends GetxController implements GetxService {
   }
 
   Future<AboutController> init() async {
+
     _appVersionName = await PlatformApi.appVersionName;
     _appVersionCode = await PlatformApi.appVersionCode;
     return this;

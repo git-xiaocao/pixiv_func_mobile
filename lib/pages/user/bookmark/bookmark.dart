@@ -7,7 +7,7 @@ import 'package:pixiv_dart_api/model/illust.dart';
 import 'package:pixiv_dart_api/model/novel.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/components/illust_previewer/illust_previewer.dart';
-import 'package:pixiv_func_mobile/components/lazy_indexed_stack/lazy_indexed_stack.dart';
+import 'package:pixiv_func_mobile/widgets/lazy_indexed_stack/lazy_indexed_stack.dart';
 import 'package:pixiv_func_mobile/components/novel_previewer/novel_previewer.dart';
 import 'package:pixiv_func_mobile/data_content/data_content.dart';
 import 'package:pixiv_func_mobile/widgets/select_group/select_group.dart';
@@ -28,21 +28,21 @@ class UserBookmarkContent extends StatefulWidget {
 }
 
 class _UserBookmarkContentState extends State<UserBookmarkContent> {
-  String get controllerTag => '$runtimeType-${widget.id}';
+  String get tag => '$runtimeType-${widget.id}';
 
   @override
   void didUpdateWidget(covariant UserBookmarkContent oldWidget) {
     if (widget.expandTypeSelector != oldWidget.expandTypeSelector) {
-      Get.find<UserBookmarkController>(tag: controllerTag).expandableController.expanded = widget.expandTypeSelector;
+      Get.find<UserBookmarkController>(tag: tag).expandableController.expanded = widget.expandTypeSelector;
     }
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   Widget build(BuildContext context) {
-    Get.put(UserBookmarkController(), tag: controllerTag);
+    Get.put(UserBookmarkController(), tag: tag);
     return GetBuilder<UserBookmarkController>(
-      tag: controllerTag,
+      tag: tag,
       builder: (controller) => Column(
         children: [
           ExpandablePanel(

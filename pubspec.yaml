@@ -5,7 +5,7 @@ publish_to: 'none'
 version: 1.0.0-beta45+50
 
 environment:
-  sdk: ">=2.18.1 <3.0.0"
+  sdk: ">=2.18.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -55,6 +55,9 @@ dependencies:
 #    path: ../pixiv_dart_api
   quick_actions: ^1.0.0
   share_handler: ^0.0.16
+  synchronized: ^3.0.0+3
+  # 增大点击范围
+  extra_hittest_area: ^0.1.0
 dev_dependencies:
   flutter_lints: ^2.0.1
   json_serializable: ^6.2.0

@@ -2,11 +2,10 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:pixiv_dart_api/vo/comment_page_result.dart';
+import 'package:pixiv_dart_api/model/comment.dart';
 import 'package:pixiv_func_mobile/app/api/api_client.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/platform/api/platform_api.dart';
-import 'package:pixiv_func_mobile/models/comment_tree.dart';
 import 'package:pixiv_func_mobile/utils/log.dart';
 
 import 'source.dart';
@@ -20,61 +19,31 @@ class IllustCommentController extends GetxController {
 
   final CancelToken cancelToken = CancelToken();
 
-  CommentTree? _repliesCommentTree;
+  Comment? _repliesComment;
 
-  CommentTree? get repliesCommentTree => _repliesCommentTree;
+  Comment? get repliesComment => _repliesComment;
 
-  set repliesCommentTree(CommentTree? value) {
-    _repliesCommentTree = value;
+  set repliesComment(Comment? value) {
+    _repliesComment = value;
     update();
   }
 
-  bool get isReplies => null != _repliesCommentTree;
+  bool get isReplies => null != _repliesComment;
 
-  String get commentInputLabel => isReplies ? I18n.replyComment.trArgs([repliesCommentTree!.data.user.name]) : I18n.commentIllust.tr;
-
-  void loadFirstReplies(CommentTree commentTree) {
-    commentTree.loading = true;
-    source.setState();
-    if (commentTree.data.hasReplies) {
-      Get.find<ApiClient>().getCommentReplyPage(commentTree.data.id, cancelToken: cancelToken).then((result) {
-        commentTree.children.addAll(result.comments.map((e) => CommentTree(data: e, parent: commentTree)));
-        commentTree.nextUrl = result.nextUrl;
-      }).catchError((e) {
-        Log.e('加载回复异常', e);
-      }).whenComplete(() {
-        commentTree.loading = false;
-        source.setState();
-      });
-    }
-  }
-
-  void loadNextReplies(CommentTree commentTree) {
-    if (commentTree.hasNext) {
-      commentTree.loading = true;
-      source.setState();
-      Get.find<ApiClient>().getNextPage<CommentPageResult>(commentTree.nextUrl!, cancelToken: cancelToken).then((result) {
-        commentTree.children.addAll(result.comments.map((e) => CommentTree(data: e, parent: commentTree)));
-        commentTree.nextUrl = result.nextUrl;
-      }).catchError((e) {
-        Log.e('加载下一条回复异常', e);
-      }).whenComplete(() {
-        commentTree.loading = false;
-        source.setState();
-      });
-    }
-  }
+  String get commentInputLabel => isReplies ? I18n.replyComment.trArgs([_repliesComment!.user.name]) : I18n.commentIllust.tr;
 
   void onCommentAdd({String? text, int? stampId}) {
-    final commentTree = repliesCommentTree;
-
-    Get.find<ApiClient>().postCommentAdd(id, comment: text, parentCommentId: commentTree?.data.id, stampId: stampId).then((result) {
-      if (null != commentTree) {
-        commentTree.children.insert(0, CommentTree(data: result.comment, parent: commentTree));
+    Get.find<ApiClient>().postCommentAdd(id, comment: text, parentCommentId: repliesComment?.id, stampId: stampId).then((result) {
+      if (null != repliesComment) {
+        for (int i = 0; i < source.length; i++) {
+          if (source[i].id == result.comment.id) {
+            source[i] = result.comment;
+          }
+        }
         source.setState();
         PlatformApi.toast(I18n.replySuccessHint.tr);
       } else {
-        source.insert(0, CommentTree(data: result.comment, parent: null));
+        source.insert(0, result.comment);
         source.setState();
         PlatformApi.toast(I18n.commentSuccessHint.tr);
       }
@@ -89,16 +58,11 @@ class IllustCommentController extends GetxController {
   }
 
   void onCommentDelete(
-    CommentTree commentTree,
+    Comment comment,
   ) {
-    Get.find<ApiClient>().postCommentDelete(commentTree.data.id).then((value) {
-      if (null == commentTree.parent) {
-        source.removeWhere((element) => commentTree.data.id == element.data.id);
-        source.setState();
-      } else {
-        commentTree.parent!.children.removeWhere((element) => commentTree.data.id == element.data.id);
-        source.setState();
-      }
+    Get.find<ApiClient>().postCommentDelete(comment.id).then((value) {
+      source.removeWhere((element) => comment.id == element.id);
+      source.setState();
       PlatformApi.toast(I18n.deleteCommentSuccessHint.tr);
     }).catchError((e) {
       Log.e('删除评论失败', e);
@@ -108,7 +72,6 @@ class IllustCommentController extends GetxController {
 
   @override
   void onClose() {
-    source.dispose();
     cancelToken.cancel();
     super.onClose();
   }

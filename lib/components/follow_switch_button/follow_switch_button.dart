@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pixiv_dart_api/enums.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
-import 'package:pixiv_func_mobile/components/select_button/select_button.dart';
+import 'package:pixiv_func_mobile/widgets/select_button/select_button.dart';
 import 'package:pixiv_func_mobile/utils/utils.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
 
@@ -25,10 +25,10 @@ class FollowSwitchButton extends StatelessWidget {
     required this.initValue,
   }) : super(key: key);
 
-  String get controllerTag => '$runtimeType-$id';
+  String get tag => '$runtimeType-$id';
 
   void _restrictDialog() {
-    final controller = Get.find<FollowSwitchButtonController>(tag: controllerTag);
+    final controller = Get.find<FollowSwitchButtonController>(tag: tag);
 
     Get.bottomSheet(
       Container(
@@ -132,16 +132,16 @@ class FollowSwitchButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isRootController = !Get.isRegistered<FollowSwitchButtonController>(tag: controllerTag);
+    final bool isRootController = !Get.isRegistered<FollowSwitchButtonController>(tag: tag);
     if (isRootController) {
-      Get.put(FollowSwitchButtonController(id, initValue: initValue), tag: controllerTag);
+      Get.put(FollowSwitchButtonController(id, initValue: initValue), tag: tag);
     }
 
     return GetBuilder<FollowSwitchButtonController>(
-      tag: controllerTag,
+      tag: tag,
       dispose: (state) {
         if (isRootController) {
-          Get.delete<FollowSwitchButtonController>(tag: controllerTag);
+          Get.delete<FollowSwitchButtonController>(tag: tag);
         }
       },
       builder: (controller) {

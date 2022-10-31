@@ -17,13 +17,13 @@ class SearchNovelResultPage extends StatelessWidget {
 
   const SearchNovelResultPage({Key? key, required this.keyword}) : super(key: key);
 
-  String get controllerTag => '$runtimeType-$keyword';
+  String get tag => '$runtimeType-$keyword';
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(SearchNovelResultController(keyword), tag: controllerTag);
+    final controller = Get.put(SearchNovelResultController(keyword), tag: tag);
     return GetBuilder<SearchNovelResultController>(
-      tag: controllerTag,
+      tag: tag,
       initState: (state) {
         Get.put(SearchNovelFilterEditorController(controller.onFilterChanged), tag: 'SearchNovelFilterEditor-$keyword');
       },

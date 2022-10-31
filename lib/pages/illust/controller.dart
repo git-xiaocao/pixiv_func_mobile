@@ -14,9 +14,9 @@ import 'package:pixiv_func_mobile/models/illust_save_state.dart';
 import 'package:pixiv_func_mobile/pages/illust/comment/source.dart';
 import 'package:pixiv_func_mobile/pages/illust/related/source.dart';
 import 'package:pixiv_func_mobile/pages/illust/ugoira_viewer/controller.dart';
-import 'package:pixiv_func_mobile/services/block_tag_service.dart';
-import 'package:pixiv_func_mobile/services/history_service.dart';
-import 'package:pixiv_func_mobile/services/settings_service.dart';
+import 'package:pixiv_func_mobile/app/services/block_tag_service.dart';
+import 'package:pixiv_func_mobile/app/db/history_db.dart';
+import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 
 class IllustController extends GetxController {
   Illust illust;
@@ -170,10 +170,10 @@ class IllustController extends GetxController {
     initIllustStates();
 
     if (Get.find<SettingsService>().enableHistory) {
-      Get.find<HistoryService>().exist(illust.id).then(
+      HistoryDB.exist(illust.id).then(
         (exist) {
           if (!exist) {
-            Get.find<HistoryService>().insert(illust);
+            HistoryDB.insert(illust);
           }
         },
       );

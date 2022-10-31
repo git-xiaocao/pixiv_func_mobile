@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:loading_more_list/loading_more_list.dart';
-import 'package:pixiv_func_mobile/services/block_tag_service.dart';
+import 'package:pixiv_func_mobile/app/services/block_tag_service.dart';
 
 abstract class DataSourceBase<T> extends LoadingMoreBase<T> {
   final BlockTagService blockTagService = Get.find();

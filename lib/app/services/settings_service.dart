@@ -43,7 +43,6 @@ class SettingsService extends GetxService {
   }
 
   bool get scaleQuality => _sharedPreferences.getBool('scale_quality') ?? true;
-
   set scaleQuality(bool value) {
     _sharedPreferences.setBool('scale_quality', value);
   }
