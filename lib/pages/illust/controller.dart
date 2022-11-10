@@ -7,16 +7,16 @@ import 'package:get/get.dart';
 import 'package:pixiv_dart_api/model/illust.dart';
 import 'package:pixiv_dart_api/model/tag.dart';
 import 'package:pixiv_func_mobile/app/api/api_client.dart';
+import 'package:pixiv_func_mobile/app/db/history_db.dart';
 import 'package:pixiv_func_mobile/app/downloader/downloader.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/platform/api/platform_api.dart';
+import 'package:pixiv_func_mobile/app/services/block_tag_service.dart';
+import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 import 'package:pixiv_func_mobile/models/illust_save_state.dart';
 import 'package:pixiv_func_mobile/pages/illust/comment/source.dart';
 import 'package:pixiv_func_mobile/pages/illust/related/source.dart';
 import 'package:pixiv_func_mobile/pages/illust/ugoira_viewer/controller.dart';
-import 'package:pixiv_func_mobile/app/services/block_tag_service.dart';
-import 'package:pixiv_func_mobile/app/db/history_db.dart';
-import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 
 class IllustController extends GetxController {
   Illust illust;
@@ -107,7 +107,7 @@ class IllustController extends GetxController {
 
   void downloadGif() {
     downloaded = true;
-    Get.find<UgoiraViewerController>(tag: 'UgoiraViewer-${illust.id}').save();
+    Get.find<UgoiraViewerController>(tag: '${illust.id}').save();
     illustStates[0] = IllustSaveState.downloading;
     update();
   }

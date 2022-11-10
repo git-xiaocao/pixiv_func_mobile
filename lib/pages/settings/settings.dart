@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:pixiv_func_mobile/app/encrypt/encrypt.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/platform/api/platform_api.dart';
+import 'package:pixiv_func_mobile/app/services/account_service.dart';
 import 'package:pixiv_func_mobile/components/pixiv_avatar/pixiv_avatar.dart';
 import 'package:pixiv_func_mobile/pages/about/about.dart';
 import 'package:pixiv_func_mobile/pages/account/account.dart';
@@ -16,8 +17,8 @@ import 'package:pixiv_func_mobile/pages/settings/language/language_settings.dart
 import 'package:pixiv_func_mobile/pages/settings/preview_quality/preview_quality_settings.dart';
 import 'package:pixiv_func_mobile/pages/settings/scale_quality/sacle_quality_settings.dart';
 import 'package:pixiv_func_mobile/pages/settings/theme/theme_settings.dart';
+import 'package:pixiv_func_mobile/pages/settings/translate/translate.dart';
 import 'package:pixiv_func_mobile/pages/user/me.dart';
-import 'package:pixiv_func_mobile/app/services/account_service.dart';
 import 'package:pixiv_func_mobile/utils/utils.dart';
 import 'package:pixiv_func_mobile/widgets/no_scroll_behavior/no_scroll_behavior.dart';
 import 'package:pixiv_func_mobile/widgets/scaffold/scaffold.dart';
@@ -94,7 +95,7 @@ class SettingsPage extends StatelessWidget {
             const Divider(),
             buildItem(onTap: () => Get.to(() => const ThemeSettingsPage()), title: I18n.themeSettingsPageTitle.tr),
             buildItem(onTap: () => Get.to(() => const LanguageSettingsPage()), title: I18n.languageSettingsPageTitle.tr),
-            buildItem(onTap: () => Get.to(() => const LanguageSettingsPage()), title: '翻译设置'),
+            buildItem(onTap: () => Get.to(() => const TranslateSettingsPage()), title: '翻译设置'),
             const Divider(),
             buildItem(onTap: () => Get.to(() => const ImageSourceSettingsPage()), title: I18n.imageSourceSettingsPageTitle.tr),
             buildItem(onTap: () => Get.to(() => const PreviewQualitySettingsPage()), title: I18n.previewQualitySettingsPageTitle.tr),

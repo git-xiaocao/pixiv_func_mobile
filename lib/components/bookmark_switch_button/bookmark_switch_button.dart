@@ -24,7 +24,7 @@ class BookmarkSwitchButton extends StatelessWidget {
     this.isButton = true,
   }) : super(key: key);
 
-  String get tag => '$runtimeType-$id';
+  String get tag => '$id';
 
   void _restrictDialog() {
     final controller = Get.find<BookmarkSwitchButtonController>(tag: tag);

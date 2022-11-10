@@ -17,7 +17,7 @@ class SearchNovelResultListSource extends DataSourceBase<Novel> {
 
   @override
   Future<List<Novel>> init(CancelToken cancelToken) {
-    final SearchNovelFilter filter = Get.find<SearchNovelFilterEditorController>(tag: 'SearchNovelFilterEditor-$word').filter;
+    final SearchNovelFilter filter = Get.find<SearchNovelFilterEditorController>(tag: '$word').filter;
     return api
         .getSearchNovelPage(
       word,

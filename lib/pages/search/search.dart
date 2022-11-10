@@ -112,13 +112,15 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                             if (controller.inputIsNumber)
                               ListTile(
                                 onTap: () => Get.to(() => IllustIdSearchPage(id: controller.inputAsNumber)),
-                                title: TextWidget(I18n.searchItem.trArgs([controller.inputAsNumber.toString()]), fontSize: 16, isBold: true),
+                                title:
+                                    TextWidget(I18n.searchItem.trArgs([controller.inputAsNumber.toString()]), fontSize: 16, isBold: true),
                                 subtitle: TextWidget(I18n.illustId.tr, fontSize: 12),
                               )
                             else
                               ListTile(
                                 onTap: () => controller.toSearchResultPage(controller.inputAsString),
-                                title: TextWidget(I18n.searchItem.trArgs([controller.inputAsString.toString()]), fontSize: 16, isBold: true),
+                                title:
+                                    TextWidget(I18n.searchItem.trArgs([controller.inputAsString.toString()]), fontSize: 16, isBold: true),
                                 subtitle: TextWidget(I18n.keyword.tr, fontSize: 14),
                               ),
                           for (final tag in controller.autocompleteTags)
@@ -137,13 +139,15 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                             if (controller.inputIsNumber)
                               ListTile(
                                 onTap: () => controller.toSearchResultPage(controller.inputAsString),
-                                title: TextWidget(I18n.searchItem.trArgs([controller.inputAsNumber.toString()]), fontSize: 16, isBold: true),
+                                title:
+                                    TextWidget(I18n.searchItem.trArgs([controller.inputAsNumber.toString()]), fontSize: 16, isBold: true),
                                 subtitle: TextWidget(I18n.novelId.tr, fontSize: 12),
                               )
                             else
                               ListTile(
                                 onTap: () => controller.toSearchResultPage(controller.inputAsString),
-                                title: TextWidget(I18n.searchItem.trArgs([controller.inputAsString.toString()]), fontSize: 16, isBold: true),
+                                title:
+                                    TextWidget(I18n.searchItem.trArgs([controller.inputAsString.toString()]), fontSize: 16, isBold: true),
                                 subtitle: TextWidget(I18n.keyword.tr, fontSize: 14),
                               ),
                           for (final tag in controller.autocompleteTags)
@@ -162,13 +166,15 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                             if (controller.inputIsNumber)
                               ListTile(
                                 onTap: () => Get.to(() => UserPage(id: controller.inputAsNumber)),
-                                title: TextWidget(I18n.searchItem.trArgs([controller.inputAsNumber.toString()]), fontSize: 16, isBold: true),
+                                title:
+                                    TextWidget(I18n.searchItem.trArgs([controller.inputAsNumber.toString()]), fontSize: 16, isBold: true),
                                 subtitle: TextWidget(I18n.keyword.tr, fontSize: 12),
                               )
                             else
                               ListTile(
                                 onTap: () => controller.toSearchResultPage(controller.inputAsString),
-                                title: TextWidget(I18n.searchItem.trArgs([controller.inputAsString.toString()]), fontSize: 16, isBold: true),
+                                title:
+                                    TextWidget(I18n.searchItem.trArgs([controller.inputAsString.toString()]), fontSize: 16, isBold: true),
                                 subtitle: TextWidget(I18n.keyword.tr, fontSize: 14),
                               ),
                         ],

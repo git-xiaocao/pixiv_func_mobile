@@ -16,8 +16,6 @@ class SelectButtonWidget<V> extends StatelessWidget {
     required this.onChanged,
   }) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
     final textSizes = items.keys.map((key) => Utils.getTextSize(text: key)).toList()..sort((a, b) => a.width > b.width ? -1 : 1);

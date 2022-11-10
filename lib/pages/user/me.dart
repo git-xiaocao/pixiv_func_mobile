@@ -6,15 +6,15 @@ import 'package:pixiv_dart_api/enums.dart';
 import 'package:pixiv_dart_api/vo/user_detail_result.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/icon/icon.dart';
+import 'package:pixiv_func_mobile/app/services/account_service.dart';
 import 'package:pixiv_func_mobile/app/state/page_state.dart';
 import 'package:pixiv_func_mobile/components/pixiv_avatar/pixiv_avatar.dart';
 import 'package:pixiv_func_mobile/components/pixiv_image/pixiv_image.dart';
-import 'package:pixiv_func_mobile/widgets/select_button/select_button.dart';
 import 'package:pixiv_func_mobile/pages/user/me_settings/me_settings.dart';
-import 'package:pixiv_func_mobile/app/services/account_service.dart';
 import 'package:pixiv_func_mobile/widgets/auto_keep/auto_keep.dart';
 import 'package:pixiv_func_mobile/widgets/no_scroll_behavior/no_scroll_behavior.dart';
 import 'package:pixiv_func_mobile/widgets/scaffold/scaffold.dart';
+import 'package:pixiv_func_mobile/widgets/select_button/select_button.dart';
 import 'package:pixiv_func_mobile/widgets/sliver_headerr/sliver_tab_bar.dart';
 import 'package:pixiv_func_mobile/widgets/tab_bar/tab_bar.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
@@ -266,8 +266,8 @@ class _MePageState extends State<MePage> with TickerProviderStateMixin {
                                   text: I18n.work.tr,
                                   icon: controller.tabController.index == 4
                                       ? controller.expandTypeSelector
-                                      ? const Icon(Icons.keyboard_arrow_up, size: 12)
-                                      : const Icon(Icons.keyboard_arrow_down, size: 12)
+                                          ? const Icon(Icons.keyboard_arrow_up, size: 12)
+                                          : const Icon(Icons.keyboard_arrow_down, size: 12)
                                       : null,
                                   iconSize: 12,
                                   inScrolls: true,

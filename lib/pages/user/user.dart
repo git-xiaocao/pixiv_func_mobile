@@ -33,7 +33,7 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> with TickerProviderStateMixin {
-  String get tag => '$runtimeType-${widget.id}';
+  String get tag => '${widget.id}';
 
   Widget buildAppBar() {
     final controller = Get.find<UserController>(tag: tag);
@@ -244,7 +244,8 @@ class _UserPageState extends State<UserPage> with TickerProviderStateMixin {
                       child: UserWorkContent(id: widget.id, expandTypeSelector: controller.expandTypeSelector),
                     ),
                     AutomaticKeepWidget(
-                      child: UserBookmarkContent(id: widget.id, restrict: controller.restrict, expandTypeSelector: controller.expandTypeSelector),
+                      child: UserBookmarkContent(
+                          id: widget.id, restrict: controller.restrict, expandTypeSelector: controller.expandTypeSelector),
                     ),
                     AutomaticKeepWidget(
                       child: UserFollowingContent(id: widget.id, restrict: controller.restrict),

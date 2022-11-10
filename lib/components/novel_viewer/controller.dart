@@ -72,8 +72,6 @@ class NovelViewerController extends GetxController {
     }
     return NovelData(startIndex, renderTextLines);
   }
-
-
 }
 
 class NovelData {

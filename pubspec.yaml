@@ -2,7 +2,7 @@ name: pixiv_func_mobile
 description: Pixiv 第三方客户端
 
 publish_to: 'none'
-version: 1.0.0-beta45+50
+version: 1.0.0-beta47+58
 
 environment:
   sdk: ">=2.18.2 <3.0.0"

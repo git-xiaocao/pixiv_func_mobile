@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pixiv_dart_api/enums.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
-import 'package:pixiv_func_mobile/widgets/select_button/select_button.dart';
 import 'package:pixiv_func_mobile/utils/utils.dart';
+import 'package:pixiv_func_mobile/widgets/select_button/select_button.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
 
 import 'controller.dart';
@@ -25,7 +25,7 @@ class FollowSwitchButton extends StatelessWidget {
     required this.initValue,
   }) : super(key: key);
 
-  String get tag => '$runtimeType-$id';
+  String get tag => '$id';
 
   void _restrictDialog() {
     final controller = Get.find<FollowSwitchButtonController>(tag: tag);

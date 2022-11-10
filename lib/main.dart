@@ -3,16 +3,18 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pixiv_func_mobile/app/http.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n_translations.dart';
 import 'package:pixiv_func_mobile/app/inject.dart';
 import 'package:pixiv_func_mobile/app/notification.dart';
 import 'package:pixiv_func_mobile/app/platform/api/platform_api.dart';
+import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 import 'package:pixiv_func_mobile/app/theme.dart';
 import 'package:pixiv_func_mobile/global_controllers/about_controller.dart';
 import 'package:pixiv_func_mobile/pages/index.dart';
-import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 
 import 'app/asset_manifest/asset_manifest.dart';
 
@@ -28,7 +30,16 @@ Future<void> main() async {
 
     await I18nTranslations.loadExpansions();
   } catch (e) {
-    PlatformApi.toast('初始化异常');
+    const fileName = 'error_init.txt';
+    final String savePath;
+    if (Platform.isAndroid) {
+      savePath = (await getExternalStorageDirectory())!.path;
+    } else {
+      savePath = (await getApplicationDocumentsDirectory()).path;
+    }
+    final file = File(join(savePath, fileName));
+    await file.writeAsString(e.toString());
+    PlatformApi.toast('初始化异常,请查看日志文件${Platform.isAndroid ? savePath : fileName}');
     return;
   }
 
@@ -40,11 +51,11 @@ Future<void> main() async {
   const photosStatus = Permission.photos;
 
   if (!await storageStatus.isGranted) {
-    Permission.storage.request();
+    storageStatus.request();
   }
 
   if (Platform.isIOS && !await photosStatus.isGranted) {
-    Permission.photos.request();
+    photosStatus.request();
   }
 }
 

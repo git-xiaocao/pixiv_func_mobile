@@ -134,7 +134,8 @@ class UserAboutContent extends StatelessWidget {
           buildNameValueItem(I18n.account.tr, user.account),
           //profile
           if (profile.birth.isNotEmpty) buildNameValueItem(I18n.birthday.tr, profile.birth),
-          if (profile.gender.isNotEmpty) buildNameValueItem(I18n.gender.tr, profile.gender == 'male' ? I18n.genderMale.tr : I18n.genderFemale.tr),
+          if (profile.gender.isNotEmpty)
+            buildNameValueItem(I18n.gender.tr, profile.gender == 'male' ? I18n.genderMale.tr : I18n.genderFemale.tr),
           if (profile.region.isNotEmpty) buildNameValueItem(I18n.address.tr, profile.region),
           if (profile.job.isNotEmpty) buildNameValueItem(I18n.job.tr, profile.job),
 

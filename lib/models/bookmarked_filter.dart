@@ -21,7 +21,8 @@ class BookmarkedFilter {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) || other is BookmarkedFilter && runtimeType == other.runtimeType && restrict == other.restrict && tag == other.tag;
+      identical(this, other) ||
+      other is BookmarkedFilter && runtimeType == other.runtimeType && restrict == other.restrict && tag == other.tag;
 
   @override
   int get hashCode => restrict.hashCode ^ tag.hashCode;

@@ -1124,7 +1124,8 @@ class _DropdownButtonWidgetState<T> extends State<DropdownButtonWidget<T>> with 
   void _updateSelectedIndex() {
     if (widget.items == null ||
         widget.items!.isEmpty ||
-        (widget.value == null && widget.items!.where((DropdownMenuItemWidget<T> item) => item.enabled && item.value == widget.value).isEmpty)) {
+        (widget.value == null &&
+            widget.items!.where((DropdownMenuItemWidget<T> item) => item.enabled && item.value == widget.value).isEmpty)) {
       _selectedIndex = null;
       return;
     }
@@ -1416,7 +1417,8 @@ class DropdownButtonWidgetFormField<T> extends FormField<T> {
               Theme.of(field.context).inputDecorationTheme,
             );
 
-            final bool showSelectedItem = items != null && items.where((DropdownMenuItemWidget<T> item) => item.value == state.value).isNotEmpty;
+            final bool showSelectedItem =
+                items != null && items.where((DropdownMenuItemWidget<T> item) => item.value == state.value).isNotEmpty;
             bool isHintOrDisabledHintAvailable() {
               final bool isDropdownDisabled = onChanged == null || (items == null || items.isEmpty);
               if (isDropdownDisabled) {

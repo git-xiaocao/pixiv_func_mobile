@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
-import 'package:pixiv_func_mobile/pages/settings/language/language_controller.dart';
 import 'package:pixiv_func_mobile/widgets/scaffold/scaffold.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
 
+import 'controller.dart';
 import 'expansion/language_expansion.dart';
 
 class LanguageSettingsPage extends StatelessWidget {
@@ -43,7 +43,7 @@ class LanguageSettingsPage extends StatelessWidget {
             ListTile(
               contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 24),
               onTap: () => Get.to(const LanguageExpansionPage()),
-              title:  TextWidget(I18n.languageExpansion.tr, fontSize: 18, isBold: true, locale: defaultLocale),
+              title: TextWidget(I18n.languageExpansion.tr, fontSize: 18, isBold: true, locale: defaultLocale),
             )
           ],
         ),

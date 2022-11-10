@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:pixiv_dart_api/model/comment.dart';
 import 'package:pixiv_func_mobile/components/comment_input/comment_input.dart';
 import 'package:pixiv_func_mobile/components/comment_item/comment_item.dart';
-
 import 'package:pixiv_func_mobile/data_content/data_content.dart';
 
 import 'controller.dart';
@@ -13,7 +12,7 @@ class IllustCommentContent extends StatelessWidget {
 
   const IllustCommentContent({Key? key, required this.id}) : super(key: key);
 
-  String get tag => '$runtimeType-$id';
+  String get tag => '$id';
 
   @override
   Widget build(BuildContext context) {
@@ -46,4 +45,3 @@ class IllustCommentContent extends StatelessWidget {
     );
   }
 }
-

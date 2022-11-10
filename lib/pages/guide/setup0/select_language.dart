@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
-import 'package:pixiv_func_mobile/pages/guide/setup1/select_theme.dart';
 import 'package:pixiv_func_mobile/app/services/settings_service.dart';
+import 'package:pixiv_func_mobile/pages/guide/setup1/select_theme.dart';
 import 'package:pixiv_func_mobile/widgets/cupertino_switch_list_tile/cupertino_switch_list_tile.dart';
 import 'package:pixiv_func_mobile/widgets/scaffold/scaffold.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
@@ -65,7 +65,8 @@ class GuideSelectLanguagePage extends StatelessWidget {
                   minWidth: double.infinity,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20),
-                    child: TextWidget(I18n.next.tr, fontSize: 18, color: Colors.white, isBold: true, locale: defaultLocale, forceStrutHeight: true),
+                    child: TextWidget(I18n.next.tr,
+                        fontSize: 18, color: Colors.white, isBold: true, locale: defaultLocale, forceStrutHeight: true),
                   ),
                   onPressed: () => Get.to(() => const GuideSelectThemePage()),
                 ),

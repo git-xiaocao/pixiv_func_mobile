@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pixiv_dart_api/enums.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
-import 'package:pixiv_func_mobile/widgets/select_button/select_button.dart';
 import 'package:pixiv_func_mobile/widgets/no_scroll_behavior/no_scroll_behavior.dart';
+import 'package:pixiv_func_mobile/widgets/select_button/select_button.dart';
 import 'package:pixiv_func_mobile/widgets/select_group/select_group.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
 
@@ -15,9 +15,10 @@ class SearchNovelFilterEditorWidget extends StatelessWidget {
   final VoidCallback onFilterChanged;
   final ExpandableController expandableController;
 
-  const SearchNovelFilterEditorWidget({Key? key, required this.keyword, required this.onFilterChanged, required this.expandableController}) : super(key: key);
+  const SearchNovelFilterEditorWidget({Key? key, required this.keyword, required this.onFilterChanged, required this.expandableController})
+      : super(key: key);
 
-  String get tag => 'SearchNovelFilterEditor-$keyword';
+  String get tag => '$keyword';
 
   void openStartDatePicker() {
     final controller = Get.find<SearchNovelFilterEditorController>(tag: tag);

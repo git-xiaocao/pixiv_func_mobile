@@ -8,8 +8,8 @@ import 'package:get/get.dart';
 import 'package:pixiv_dart_api/model/illust.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/platform/api/platform_api.dart';
-import 'package:pixiv_func_mobile/models/download_task.dart';
 import 'package:pixiv_func_mobile/app/services/settings_service.dart';
+import 'package:pixiv_func_mobile/models/download_task.dart';
 
 class Downloader extends GetxController implements GetxService {
   final List<DownloadTask> _tasks = [];
@@ -35,7 +35,8 @@ class Downloader extends GetxController implements GetxService {
         connectTimeout: 6000,
       ),
     );
-    (httpClient.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) => client..badCertificateCallback = (cert, host, port) => true;
+    (httpClient.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+        (client) => client..badCertificateCallback = (cert, host, port) => true;
 
     final task = DownloadTask.create(
       index: props.index,

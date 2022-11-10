@@ -22,7 +22,7 @@ class FrameGifWidget extends StatelessWidget {
     required this.size,
   }) : super(key: key);
 
-  String get tag => '$runtimeType-$id';
+  String get tag => '$id';
 
   @override
   Widget build(BuildContext context) {

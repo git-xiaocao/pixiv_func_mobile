@@ -19,15 +19,18 @@ class MeProfileSettingsController extends GetxController {
         webpageInput = TextEditingController(text: currentDetail.profile.webpage),
         twitterInput = TextEditingController(text: currentDetail.profile.twitterAccount),
         commentInput = TextEditingController(text: currentDetail.user.comment),
-        gender = Gender.values.firstWhereOrNull(((item) => item.toPixivStringParameter() == currentDetail.profile.gender)) ?? Gender.unknown,
+        gender =
+            Gender.values.firstWhereOrNull(((item) => item.toPixivStringParameter() == currentDetail.profile.gender)) ?? Gender.unknown,
         addressId = currentDetail.profile.addressId,
         countryCode = currentDetail.profile.countryCode,
         birthday = currentDetail.profile.birth.isNotEmpty ? DateTime.parse(currentDetail.profile.birth) : DateTime.now(),
         jobId = currentDetail.profile.jobId,
         genderPublicity = Publicity.values.singleWhere((item) => item.toPixivStringParameter() == currentDetail.profilePublicity.gender),
         addressPublicity = Publicity.values.singleWhere((item) => item.toPixivStringParameter() == currentDetail.profilePublicity.region),
-        birthYearPublicity = Publicity.values.singleWhere((item) => item.toPixivStringParameter() == currentDetail.profilePublicity.birthYear),
-        birthMonthDayPublicity = Publicity.values.singleWhere((item) => item.toPixivStringParameter() == currentDetail.profilePublicity.birthDay),
+        birthYearPublicity =
+            Publicity.values.singleWhere((item) => item.toPixivStringParameter() == currentDetail.profilePublicity.birthYear),
+        birthMonthDayPublicity =
+            Publicity.values.singleWhere((item) => item.toPixivStringParameter() == currentDetail.profilePublicity.birthDay),
         jobPublicity = Publicity.values.singleWhere((item) => item.toPixivStringParameter() == currentDetail.profilePublicity.job);
 
   String? profileImageUrl;

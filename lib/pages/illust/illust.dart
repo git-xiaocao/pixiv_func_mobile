@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:pixiv_dart_api/model/illust.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/icon/icon.dart';
+import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 import 'package:pixiv_func_mobile/components/bookmark_switch_button/bookmark_switch_button.dart';
 import 'package:pixiv_func_mobile/components/follow_switch_button/follow_switch_button.dart';
 import 'package:pixiv_func_mobile/components/illust_previewer/illust_previewer.dart';
@@ -16,7 +17,6 @@ import 'package:pixiv_func_mobile/data_content/data_content.dart';
 import 'package:pixiv_func_mobile/models/illust_save_state.dart';
 import 'package:pixiv_func_mobile/pages/search/result/illust/search_illust_result.dart';
 import 'package:pixiv_func_mobile/pages/user/user.dart';
-import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 import 'package:pixiv_func_mobile/utils/utils.dart';
 import 'package:pixiv_func_mobile/widgets/html_rich_text/html_rich_text.dart';
 import 'package:pixiv_func_mobile/widgets/no_scroll_behavior/no_scroll_behavior.dart';
@@ -37,7 +37,7 @@ class IllustPage extends StatelessWidget {
 
   const IllustPage({required this.illust, Key? key}) : super(key: key);
 
-  String get tag => 'Illust-${illust.id}';
+  String get tag => '${illust.id}';
 
   Widget buildImageItem({
     required int id,

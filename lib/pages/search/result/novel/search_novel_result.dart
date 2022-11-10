@@ -17,7 +17,7 @@ class SearchNovelResultPage extends StatelessWidget {
 
   const SearchNovelResultPage({Key? key, required this.keyword}) : super(key: key);
 
-  String get tag => '$runtimeType-$keyword';
+  String get tag => '$keyword';
 
   @override
   Widget build(BuildContext context) {

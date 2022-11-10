@@ -10,7 +10,7 @@ class NovelViewer extends StatelessWidget {
 
   const NovelViewer({Key? key, required this.text, required this.id}) : super(key: key);
 
-  String get tag => '$runtimeType-$id';
+  String get tag => '$id';
 
   @override
   Widget build(BuildContext context) {

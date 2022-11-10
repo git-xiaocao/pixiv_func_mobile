@@ -82,6 +82,14 @@ class CommentItemWidget extends StatelessWidget {
                           ),
                         ),
                       ),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(vertical: 5),
+                    //   child: ExtendedText(
+                    //     comment.comment,
+                    //     style: const TextStyle(fontSize: 14),
+                    //     specialTextSpanBuilder: EmojisSpecialTextSpanBuilder(multiple: 1.3),
+                    //   ),
+                    // ),
                     if (onReply != null && onDelete != null)
                       Row(
                         children: [
@@ -133,5 +141,4 @@ class CommentItemWidget extends StatelessWidget {
       ],
     );
   }
-
 }

@@ -45,8 +45,8 @@ class I18nExpansion {
         'data': data,
       };
 
-  Locale get flutterLocale{
+  Locale get flutterLocale {
     final list = locale.split('_');
-    return Locale(list.first,list.last);
+    return Locale(list.first, list.last);
   }
 }

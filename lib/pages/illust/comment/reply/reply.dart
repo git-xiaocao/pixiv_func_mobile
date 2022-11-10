@@ -14,7 +14,7 @@ class IllustCommentReplyPage extends StatelessWidget {
 
   const IllustCommentReplyPage({Key? key, required this.parentComment}) : super(key: key);
 
-  String get tag => '$runtimeType-${parentComment.id}';
+  String get tag => '${parentComment.id}';
 
   @override
   Widget build(BuildContext context) {

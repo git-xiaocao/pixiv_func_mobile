@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n_translations.dart';
-import 'package:pixiv_func_mobile/pages/settings/language/language_controller.dart';
+import 'package:pixiv_func_mobile/pages/settings/language/controller.dart';
 import 'package:pixiv_func_mobile/widgets/scaffold/scaffold.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
 

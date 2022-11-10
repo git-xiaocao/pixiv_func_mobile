@@ -56,7 +56,7 @@ class TabWidget extends StatelessWidget implements PreferredSizeWidget {
 
   Widget buildLabelText() {
     return Padding(
-      padding: null == iconSize ? EdgeInsets.zero : EdgeInsets.symmetric(horizontal: iconSize!*1.5),
+      padding: null == iconSize ? EdgeInsets.zero : EdgeInsets.symmetric(horizontal: iconSize! * 1.5),
       child: child ?? Text(text!, softWrap: false, overflow: TextOverflow.fade),
     );
   }
@@ -138,14 +138,17 @@ class _TabStyle extends AnimatedWidget {
     // the same value of inherit. Force that to be inherit=true here.
     final TextStyle defaultStyle = (labelStyle ?? tabBarTheme.labelStyle ?? themeData.primaryTextTheme.bodyText1!).copyWith(inherit: true);
     final TextStyle defaultUnselectedStyle =
-        (unselectedLabelStyle ?? tabBarTheme.unselectedLabelStyle ?? labelStyle ?? themeData.primaryTextTheme.bodyText1!).copyWith(inherit: true);
+        (unselectedLabelStyle ?? tabBarTheme.unselectedLabelStyle ?? labelStyle ?? themeData.primaryTextTheme.bodyText1!)
+            .copyWith(inherit: true);
     final TextStyle textStyle = selected
         ? TextStyle.lerp(defaultStyle, defaultUnselectedStyle, animation.value)!
         : TextStyle.lerp(defaultUnselectedStyle, defaultStyle, animation.value)!;
 
     final Color selectedColor = labelColor ?? tabBarTheme.labelColor ?? themeData.primaryTextTheme.bodyText1!.color!;
     final Color unselectedColor = unselectedLabelColor ?? tabBarTheme.unselectedLabelColor ?? selectedColor.withAlpha(0xB2); // 70% alpha
-    final Color color = selected ? Color.lerp(selectedColor, unselectedColor, animation.value)! : Color.lerp(unselectedColor, selectedColor, animation.value)!;
+    final Color color = selected
+        ? Color.lerp(selectedColor, unselectedColor, animation.value)!
+        : Color.lerp(unselectedColor, selectedColor, animation.value)!;
 
     return DefaultTextStyle(
       style: textStyle.copyWith(color: color),
@@ -1031,7 +1034,8 @@ class _TabBarWidgetState extends State<TabBarWidget> {
         final PreferredSizeWidget tab = widget.tabs[index] as PreferredSizeWidget;
         if (widget.tabHasTextAndIcon && tab.preferredSize.height == _kTabHeight) {
           if (widget.labelPadding != null || tabBarTheme.labelPadding != null) {
-            adjustedPadding = (widget.labelPadding ?? tabBarTheme.labelPadding!).add(const EdgeInsets.symmetric(vertical: verticalAdjustment));
+            adjustedPadding =
+                (widget.labelPadding ?? tabBarTheme.labelPadding!).add(const EdgeInsets.symmetric(vertical: verticalAdjustment));
           } else {
             adjustedPadding = const EdgeInsets.symmetric(vertical: verticalAdjustment, horizontal: 16.0);
           }

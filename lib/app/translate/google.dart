@@ -16,7 +16,7 @@ class GoogleTranslate extends TranslateBase {
     required String? source,
     required String target,
   }) async {
-    return text;
+    // return text;
     return Dio().get<String>(
       'https://translate.googleapis.com/translate_a/single',
       options: Options(),
@@ -29,7 +29,9 @@ class GoogleTranslate extends TranslateBase {
       },
     ).then((response) {
       print(response.data!);
-      return '';
+      return text;
+    }).catchError((e) {
+      print(e);
     });
   }
 }

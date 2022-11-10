@@ -106,9 +106,11 @@ class LoginPage extends StatelessWidget {
                               minWidth: double.infinity,
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(vertical: 20),
-                                child: TextWidget(I18n.register.tr, fontSize: 18, color: Theme.of(context).colorScheme.primary, isBold: true),
+                                child:
+                                    TextWidget(I18n.register.tr, fontSize: 18, color: Theme.of(context).colorScheme.primary, isBold: true),
                               ),
-                              onPressed: () => Get.to(() => LoginWebViewPage(useLocalReverseProxy: controller.useLocalReverseProxy, create: true)),
+                              onPressed: () =>
+                                  Get.to(() => LoginWebViewPage(useLocalReverseProxy: controller.useLocalReverseProxy, create: true)),
                             ),
                           ),
                           const SizedBox(width: 20),
@@ -124,7 +126,8 @@ class LoginPage extends StatelessWidget {
                                 padding: const EdgeInsets.symmetric(vertical: 20),
                                 child: TextWidget(I18n.login.tr, fontSize: 18, color: Colors.white, isBold: true),
                               ),
-                              onPressed: () => Get.to(() => LoginWebViewPage(useLocalReverseProxy: controller.useLocalReverseProxy, create: false)),
+                              onPressed: () =>
+                                  Get.to(() => LoginWebViewPage(useLocalReverseProxy: controller.useLocalReverseProxy, create: false)),
                             ),
                           ),
                         ],

@@ -14,7 +14,7 @@ class ApiClient extends GetxService with PixivApi {
       final info = await deviceInfo.iosInfo;
       model = info.model ?? 'CAO';
     } else {
-      final info = await deviceInfo.iosInfo;
+      final info = await deviceInfo.androidInfo;
       model = info.model ?? 'CAO';
     }
 

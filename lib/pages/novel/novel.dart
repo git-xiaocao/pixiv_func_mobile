@@ -13,7 +13,7 @@ class NovelPage extends StatelessWidget {
 
   const NovelPage({Key? key, required this.novel}) : super(key: key);
 
-  String get tag => '$runtimeType-${novel.id}';
+  String get tag => '${novel.id}';
 
   @override
   Widget build(BuildContext context) {

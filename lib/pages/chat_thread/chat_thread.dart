@@ -15,7 +15,7 @@
 //
 //   const ChatThreadPage({Key? key, required this.name, required this.threadId, required this.receiveId}) : super(key: key);
 //
-//   String get tag => '$runtimeType-$threadId';
+//   String get tag => '$threadId';
 //
 //   Widget buildItem(MessageThreadContent message) {
 //     final controller = Get.find<ChatThreadController>(tag: tag);

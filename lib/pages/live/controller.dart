@@ -146,7 +146,9 @@ class LiveController extends GetxController {
     _proxyServer = PixivLiveProxyServer(url: url, port: 55555, serverIp: '210.140.92.212');
     _proxyServer!.listen();
 
-    final m3u8String = await Dio().get<String>(url.replaceFirst('${uri.scheme}://${uri.host}', 'http://127.0.0.1:55555')).then((response) => response.data!);
+    final m3u8String = await Dio()
+        .get<String>(url.replaceFirst('${uri.scheme}://${uri.host}', 'http://127.0.0.1:55555'))
+        .then((response) => response.data!);
 
     list.addAll(M3u8.parse(m3u8String));
     await _startPlay();

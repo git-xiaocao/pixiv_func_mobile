@@ -6,10 +6,10 @@ import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/state/page_state.dart';
 import 'package:pixiv_func_mobile/components/follow_switch_button/follow_switch_button.dart';
 import 'package:pixiv_func_mobile/components/pixiv_avatar/pixiv_avatar.dart';
-import 'package:pixiv_func_mobile/widgets/select_button/select_button.dart';
 import 'package:pixiv_func_mobile/pages/live/controller.dart';
 import 'package:pixiv_func_mobile/pages/user/user.dart';
 import 'package:pixiv_func_mobile/widgets/scaffold/scaffold.dart';
+import 'package:pixiv_func_mobile/widgets/select_button/select_button.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
 import 'package:video_player/video_player.dart';
 
@@ -21,7 +21,7 @@ class LivePage extends StatelessWidget {
     required this.live,
   }) : super(key: key);
 
-  String get tag => '$runtimeType-${live.id}';
+  String get tag => '${live.id}';
 
   Widget buildPlayerWidget(double heightRatio) {
     final controller = Get.find<LiveController>(tag: tag);
@@ -89,7 +89,8 @@ class LivePage extends StatelessWidget {
                         children: [
                           const SizedBox(width: 20),
                           ObxValue<Rx<Duration>>(
-                            (data) => TextWidget('${I18n.playDuration.tr}: ${controller.formatPlayDuration(data.value)}', color: Colors.white),
+                            (data) =>
+                                TextWidget('${I18n.playDuration.tr}: ${controller.formatPlayDuration(data.value)}', color: Colors.white),
                             controller.playDuration,
                           ),
                           const Spacer(),

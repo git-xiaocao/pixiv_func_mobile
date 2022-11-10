@@ -20,7 +20,10 @@ class ImageScalePage extends StatelessWidget {
       );
     } else {
       urls.addAll(
-        [for (final metaPage in illust.metaPages) Get.find<SettingsService>().scaleQuality ? metaPage.imageUrls.original! : metaPage.imageUrls.large],
+        [
+          for (final metaPage in illust.metaPages)
+            Get.find<SettingsService>().scaleQuality ? metaPage.imageUrls.original! : metaPage.imageUrls.large
+        ],
       );
     }
     return ObxValue<RxInt>(

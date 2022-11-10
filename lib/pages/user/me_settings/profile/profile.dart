@@ -7,11 +7,11 @@ import 'package:pixiv_dart_api/vo/user_detail_result.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/state/page_state.dart';
 import 'package:pixiv_func_mobile/components/pixiv_avatar/pixiv_avatar.dart';
-import 'package:pixiv_func_mobile/widgets/select_button/select_button.dart';
-import 'package:pixiv_func_mobile/widgets/single_picker/single_picker.dart';
 import 'package:pixiv_func_mobile/pages/user/me_settings/profile/controller.dart';
 import 'package:pixiv_func_mobile/widgets/no_scroll_behavior/no_scroll_behavior.dart';
 import 'package:pixiv_func_mobile/widgets/scaffold/scaffold.dart';
+import 'package:pixiv_func_mobile/widgets/select_button/select_button.dart';
+import 'package:pixiv_func_mobile/widgets/single_picker/single_picker.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
 
 class MeProfileSettingsPage extends StatelessWidget {
@@ -262,7 +262,8 @@ class MeProfileSettingsPage extends StatelessWidget {
                                   title: I18n.address.tr,
                                   items: {
                                     for (final item in controller.presetsResult!.profilePresets.addresses) item.name: item.id,
-                                  }, initialValue: controller.addressId,
+                                  },
+                                  initialValue: controller.addressId,
                                   onChanged: controller.addressIdOnChanged,
                                 ),
                               );
@@ -377,7 +378,8 @@ class MeProfileSettingsPage extends StatelessWidget {
                                   title: I18n.job.tr,
                                   items: {
                                     for (final item in controller.presetsResult!.profilePresets.jobs) item.name: item.id,
-                                  }, initialValue: controller.jobId,
+                                  },
+                                  initialValue: controller.jobId,
                                   onChanged: controller.jobIdOnChanged,
                                 ),
                               );

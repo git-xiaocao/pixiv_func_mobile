@@ -6,7 +6,6 @@ import 'package:pixiv_func_mobile/app/api/api_client.dart';
 import 'package:pixiv_func_mobile/data_content/data_source_base.dart';
 
 class MyPixivNewNovelListSource extends DataSourceBase<Novel> {
-
   MyPixivNewNovelListSource();
 
   final api = Get.find<ApiClient>();

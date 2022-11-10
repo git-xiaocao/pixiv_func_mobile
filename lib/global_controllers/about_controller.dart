@@ -102,7 +102,6 @@ class AboutController extends GetxController implements GetxService {
   }
 
   Future<AboutController> init() async {
-
     _appVersionName = await PlatformApi.appVersionName;
     _appVersionCode = await PlatformApi.appVersionCode;
     return this;
@@ -114,7 +113,7 @@ class AboutController extends GetxController implements GetxService {
         if (_first) {
           Get.snackbar(
             I18n.versionUpdate.tr,
-            I18n.versionUpdateHint.trArgs([appVersion!,releaseInfo!.name]),
+            I18n.versionUpdateHint.trArgs([appVersion!, releaseInfo!.name]),
             duration: const Duration(seconds: 6),
             onTap: (snack) => Get.to(() => const AboutPage()),
           );

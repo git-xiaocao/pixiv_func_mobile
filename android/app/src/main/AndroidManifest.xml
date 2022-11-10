@@ -76,59 +76,41 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
+                <data android:scheme="http"/>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="www.pixiv.net"
-                    android:scheme="http" />
-                <data
-                    android:host="pixiv.net"
-                    android:scheme="http" />
+                <data android:host="www.pixiv.net"/>
+                <data android:host="pixiv.net"/>
             </intent-filter>
             <intent-filter>
+                <data android:scheme="https"/>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="www.pixiv.net"
-                    android:scheme="https" />
-                <data
-                    android:host="pixiv.net"
-                    android:scheme="https" />
+                <data android:host="www.pixiv.net"/>
+                <data android:host="pixiv.net"/>
             </intent-filter>
             <intent-filter>
+                <data android:scheme="pixiv"/>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="users"
-                    android:scheme="pixiv" />
-                <data
-                    android:host="illusts"
-                    android:scheme="pixiv" />
-                <data
-                    android:host="account"
-                    android:scheme="pixiv" />
+                <data android:host="users"/>
+                <data android:host="illusts"/>
+                <data android:host="account"/>
             </intent-filter>
             <intent-filter>
+                <data android:scheme="pixivfunc"/>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="illusts"
-                    android:scheme="pixivfunc" />
-                <data
-                    android:host="users"
-                    android:scheme="pixivfunc" />
+                <data android:host="illusts"/>
+                <data android:host="users"/>
             </intent-filter>
         </activity>
 
