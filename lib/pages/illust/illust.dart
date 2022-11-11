@@ -298,8 +298,8 @@ class IllustPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
+              GestureDetectorHitTestWithoutSizeLimit(
+                extraHitTestArea: const EdgeInsets.all(20),
                 onTap: () {
                   Share.share(
                       '[Pixiv Func]\n${illust.title}\n${I18n.illustId.tr}:${illust.id}\nhttps://www.pixiv.net/artworks/${illust.id}');
@@ -318,9 +318,9 @@ class IllustPage extends StatelessWidget {
                 ),
               ),
               if (controller.illust.caption.isNotEmpty)
-                GestureDetector(
+                GestureDetectorHitTestWithoutSizeLimit(
+                  extraHitTestArea: const EdgeInsets.all(16),
                   onTap: () => controller.showCommentChangeState(),
-                  behavior: HitTestBehavior.opaque,
                   child: Row(
                     children: [
                       const SizedBox(width: 15),

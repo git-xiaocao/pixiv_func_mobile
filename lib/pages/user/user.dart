@@ -240,17 +240,17 @@ class _UserPageState extends State<UserPage> with TickerProviderStateMixin {
                 body: TabBarView(
                   controller: controller.tabController,
                   children: [
-                    AutomaticKeepWidget(
+                    AutoKeepWidget(
                       child: UserWorkContent(id: widget.id, expandTypeSelector: controller.expandTypeSelector),
                     ),
-                    AutomaticKeepWidget(
+                    AutoKeepWidget(
                       child: UserBookmarkContent(
                           id: widget.id, restrict: controller.restrict, expandTypeSelector: controller.expandTypeSelector),
                     ),
-                    AutomaticKeepWidget(
+                    AutoKeepWidget(
                       child: UserFollowingContent(id: widget.id, restrict: controller.restrict),
                     ),
-                    AutomaticKeepWidget(
+                    AutoKeepWidget(
                       child: UserAboutContent(userDetail: controller.userDetailResult!),
                     ),
                   ],

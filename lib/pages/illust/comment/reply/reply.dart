@@ -50,6 +50,7 @@ class IllustCommentReplyPage extends StatelessWidget {
               ),
               CommentInputWidget(
                 resetReply: () => controller.repliesComment = null,
+                hasReply: controller.repliesComment != null,
                 onSend: (text) => controller.onCommentAdd(text: text),
                 onStampSend: (int id) => controller.onCommentAdd(stampId: id),
                 label: controller.commentInputLabel,

@@ -70,13 +70,13 @@ class _NewPageState extends State<NewPage> with TickerProviderStateMixin {
         child: TabBarView(
           controller: controller.tabController,
           children: [
-            AutomaticKeepWidget(
+            AutoKeepWidget(
               child: FollowNewContent(expandTypeSelector: controller.expandTypeSelector),
             ),
-            AutomaticKeepWidget(
+            AutoKeepWidget(
               child: EveryoneNewContent(expandTypeSelector: controller.expandTypeSelector),
             ),
-            AutomaticKeepWidget(
+            AutoKeepWidget(
               child: MyPixivNewContent(expandTypeSelector: controller.expandTypeSelector),
             ),
           ],

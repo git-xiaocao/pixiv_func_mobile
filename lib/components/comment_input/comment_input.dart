@@ -15,12 +15,19 @@ import 'package:pixiv_func_mobile/widgets/text/text.dart';
 
 class CommentInputWidget extends StatefulWidget {
   final VoidCallback resetReply;
+  final bool hasReply;
   final void Function(String text) onSend;
   final void Function(int id) onStampSend;
   final String label;
 
-  const CommentInputWidget({Key? key, required this.resetReply, required this.onSend, required this.onStampSend, required this.label})
-      : super(key: key);
+  const CommentInputWidget({
+    Key? key,
+    required this.resetReply,
+    required this.hasReply,
+    required this.onSend,
+    required this.onStampSend,
+    required this.label,
+  }) : super(key: key);
 
   @override
   State<CommentInputWidget> createState() => _CommentInputWidgetState();
@@ -55,8 +62,6 @@ class _CommentInputWidgetState extends State<CommentInputWidget> {
   bool activeEmojiGird = false;
   bool activeStampGrid = false;
 
-  bool isEmpty = true;
-
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
@@ -83,122 +88,126 @@ class _CommentInputWidgetState extends State<CommentInputWidget> {
         }
         return true;
       },
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              GestureDetectorHitTestWithoutSizeLimit(
-                behavior: HitTestBehavior.opaque,
-                onTap: widget.resetReply,
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 4),
-                  child: Icon(
-                    Icons.reply_sharp,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: ExtendedTextField(
-                    onTap: () {
-                      final primaryScrollController = PrimaryScrollController.of(context)!;
-                      primaryScrollController.position.jumpTo(primaryScrollController.offset);
-                    },
-                    key: _key,
-                    controller: _textEditingController,
-                    minLines: 1,
-                    maxLines: 5,
-                    focusNode: _focusNode,
-                    specialTextSpanBuilder: EmojisSpecialTextSpanBuilder(),
-                    onSubmitted: (v) {
-                      _textEditingController.text += '\n';
-                    },
-                    onChanged: (value) {
-                      if (value.isEmpty != isEmpty) {
-                        isEmpty = value.isEmpty;
-                        _gridBuilderController.add(null);
-                      }
-                    },
-                    keyboardType: TextInputType.multiline,
-                    decoration: InputDecoration(
-                      hintText: widget.label,
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                      isDense: true,
-                      prefix: const SizedBox(width: 5),
-                      constraints: const BoxConstraints(maxHeight: 125, minHeight: 25),
-                      border: OutlineInputBorder(
-                        gapPadding: 0,
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide.none,
+      child: Padding(
+        padding: EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
+        child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                if (widget.hasReply)
+                  GestureDetectorHitTestWithoutSizeLimit(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: widget.resetReply,
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 4),
+                      child: Icon(
+                        Icons.replay,
                       ),
-                      fillColor: Theme.of(context).colorScheme.surface,
-                      filled: true,
+                    ),
+                  ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: ExtendedTextField(
+                      onTap: () {
+                        final primaryScrollController = PrimaryScrollController.of(context)!;
+                        primaryScrollController.position.jumpTo(primaryScrollController.offset);
+                      },
+                      key: _key,
+                      controller: _textEditingController,
+                      minLines: 1,
+                      maxLines: 5,
+                      focusNode: _focusNode,
+                      specialTextSpanBuilder: EmojisSpecialTextSpanBuilder(),
+                      onSubmitted: (v) {
+                        _textEditingController.text += '\n';
+                      },
+                      onChanged: (value) {
+                        _gridBuilderController.add(null);
+                      },
+                      keyboardType: TextInputType.multiline,
+                      decoration: InputDecoration(
+                        hintText: widget.label,
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        isDense: true,
+                        prefix: const SizedBox(width: 5),
+                        constraints: const BoxConstraints(maxHeight: 125, minHeight: 25),
+                        border: OutlineInputBorder(
+                          gapPadding: 0,
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide.none,
+                        ),
+                        fillColor: Theme.of(context).colorScheme.surface,
+                        filled: true,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              StreamBuilder<void>(
-                stream: _gridBuilderController.stream,
-                builder: (b, d) => Row(
-                  children: [
-                    if (keyboardHeight > 0 || showCustomKeyBoard)
-                      GestureDetector(
-                        onTap: () => onToolbarButtonActiveChanged(keyboardHeight, () {
-                          activeEmojiGird = !activeEmojiGird;
-                        }),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
-                          child: Icon(
-                            Icons.emoji_emotions,
-                            color: activeEmojiGird ? Theme.of(context).colorScheme.primary : null,
+                StreamBuilder<void>(
+                  stream: _gridBuilderController.stream,
+                  builder: (b, d) => Row(
+                    children: [
+                      if (keyboardHeight > 0 || showCustomKeyBoard)
+                        GestureDetector(
+                          onTap: () => onToolbarButtonActiveChanged(keyboardHeight, () {
+                            activeEmojiGird = !activeEmojiGird;
+                          }),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
+                            child: Icon(
+                              Icons.emoji_emotions,
+                              color: activeEmojiGird ? Theme.of(context).colorScheme.primary : null,
+                            ),
                           ),
                         ),
-                      ),
-                    if (isEmpty && _preKeyboardHeight > 0 || showCustomKeyBoard)
-                      GestureDetector(
-                        onTap: () => onToolbarButtonActiveChanged(keyboardHeight, () {
-                          activeStampGrid = !activeStampGrid;
-                        }),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
-                          child: Icon(
-                            Icons.image,
-                            color: activeStampGrid ? Theme.of(context).colorScheme.primary : null,
+                      if (_textEditingController.text.isEmpty && (_preKeyboardHeight > 0 || showCustomKeyBoard))
+                        GestureDetector(
+                          onTap: () => onToolbarButtonActiveChanged(keyboardHeight, () {
+                            activeStampGrid = !activeStampGrid;
+                          }),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
+                            child: Icon(
+                              Icons.image,
+                              color: activeStampGrid ? Theme.of(context).colorScheme.primary : null,
+                            ),
                           ),
                         ),
-                      ),
-                    if (!isEmpty)
-                      ElevatedButton(
-                        onPressed: () {
-                          widget.onSend(_textEditingController.text);
-                          _textEditingController.clear();
-                        },
-                        child: TextWidget(I18n.send.tr),
-                      ),
-                  ],
+                      if (_textEditingController.text.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              widget.onSend(_textEditingController.text);
+                              _textEditingController.clear();
+                            },
+                            child: TextWidget(I18n.send.tr),
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-          StreamBuilder<void>(
-            stream: _gridBuilderController.stream,
-            builder: (BuildContext b, AsyncSnapshot<void> d) {
-              return SizedBox(
-                  height: showCustomKeyBoard ? _keyboardHeight - (Platform.isIOS ? mediaQueryData.padding.bottom : 0) : 0,
-                  child: buildCustomKeyBoard());
-            },
-          ),
-          StreamBuilder<void>(
-            stream: _gridBuilderController.stream,
-            builder: (BuildContext b, AsyncSnapshot<void> d) {
-              return Container(
-                height: showCustomKeyBoard ? 0 : keyboardHeight,
-              );
-            },
-          ),
-        ],
+              ],
+            ),
+            StreamBuilder<void>(
+              stream: _gridBuilderController.stream,
+              builder: (BuildContext b, AsyncSnapshot<void> d) {
+                return SizedBox(
+                    height: showCustomKeyBoard ? _keyboardHeight - (Platform.isIOS ? mediaQueryData.padding.bottom : 0) : 0,
+                    child: buildCustomKeyBoard());
+              },
+            ),
+            StreamBuilder<void>(
+              stream: _gridBuilderController.stream,
+              builder: (BuildContext b, AsyncSnapshot<void> d) {
+                return Container(
+                  height: showCustomKeyBoard ? 0 : keyboardHeight,
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -257,7 +266,6 @@ class _CommentInputWidgetState extends State<CommentInputWidget> {
     SchedulerBinding.instance.addPostFrameCallback((Duration timeStamp) {
       _key.currentState?.bringIntoView(_textEditingController.selection.base);
     });
-    isEmpty = false;
     _gridBuilderController.add(null);
   }
 

@@ -286,23 +286,23 @@ class _MePageState extends State<MePage> with TickerProviderStateMixin {
                 body: TabBarView(
                   controller: controller.tabController,
                   children: [
-                    AutomaticKeepWidget(
+                    AutoKeepWidget(
                       child: UserBookmarkContent(
                         id: controller.currentUserId,
                         restrict: controller.restrict,
                         expandTypeSelector: controller.expandTypeSelector,
                       ),
                     ),
-                    AutomaticKeepWidget(
+                    AutoKeepWidget(
                       child: UserFollowingContent(id: controller.currentUserId, restrict: controller.restrict),
                     ),
-                    AutomaticKeepWidget(
+                    AutoKeepWidget(
                       child: UserFansContent(id: controller.currentUserId),
                     ),
-                    AutomaticKeepWidget(
+                    AutoKeepWidget(
                       child: UserMyPixivContent(id: controller.currentUserId),
                     ),
-                    AutomaticKeepWidget(
+                    AutoKeepWidget(
                       child: UserWorkContent(id: controller.currentUserId, expandTypeSelector: controller.expandTypeSelector),
                     )
                   ],

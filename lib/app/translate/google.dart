@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:pixiv_func_mobile/app/translate/translate_base.dart';
 
@@ -23,15 +25,14 @@ class GoogleTranslate extends TranslateBase {
       queryParameters: {
         'client': 'gtx',
         'dt': 't',
-        'sl': source,
+        'sl': source ?? 'auto',
         'tl': target,
         'q': text,
       },
     ).then((response) {
-      print(response.data!);
-      return text;
-    }).catchError((e) {
-      print(e);
+      final json = jsonDecode(response.data!);
+      // print(json);
+      return json.first.first.first as String;
     });
   }
 }

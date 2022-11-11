@@ -1,8 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pixiv_func_mobile/app/platform/api/platform_api.dart';
+import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 import 'package:pixiv_func_mobile/app/services/translate_service.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
 
@@ -30,13 +30,18 @@ class _TranslateWidgetState extends State<TranslateWidget> {
     setState(() {
       loading = true;
     });
-    Get.find<TranslateService>().current.translationText(text: text, source: 'en', target: 'zh').then((result) {
-      print(result);
-      Future.delayed(const Duration(seconds: 2)).then((value) {
-        setState(() {
-          translateText = result;
-          loading = false;
-        });
+    Get.find<TranslateService>()
+        .current
+        .translationText(text: text, source: null, target: Get.find<SettingsService>().language)
+        .then((result) {
+      setState(() {
+        translateText = result;
+        loading = false;
+      });
+    }).catchError((e) {
+      PlatformApi.toast('Translate failed');
+      setState(() {
+        loading = false;
       });
     });
   }

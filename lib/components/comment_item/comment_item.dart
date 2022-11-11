@@ -10,6 +10,7 @@ import 'package:pixiv_func_mobile/components/translate/translate.dart';
 import 'package:pixiv_func_mobile/pages/illust/comment/reply/reply.dart';
 import 'package:pixiv_func_mobile/pages/user/user.dart';
 import 'package:pixiv_func_mobile/utils/utils.dart';
+import 'package:pixiv_func_mobile/widgets/auto_keep/auto_keep.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
 
 class CommentItemWidget extends StatelessWidget {
@@ -73,23 +74,17 @@ class CommentItemWidget extends StatelessWidget {
                     else if (comment.comment.isNotEmpty)
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: TranslateWidget(
-                          text: comment.comment,
-                          child: ExtendedText(
-                            comment.comment,
-                            style: const TextStyle(fontSize: 14),
-                            specialTextSpanBuilder: EmojisSpecialTextSpanBuilder(multiple: 1.3),
+                        child: AutoKeepWidget(
+                          child: TranslateWidget(
+                            text: comment.comment,
+                            child: ExtendedText(
+                              comment.comment,
+                              style: const TextStyle(fontSize: 14),
+                              specialTextSpanBuilder: EmojisSpecialTextSpanBuilder(multiple: 1.3),
+                            ),
                           ),
                         ),
                       ),
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(vertical: 5),
-                    //   child: ExtendedText(
-                    //     comment.comment,
-                    //     style: const TextStyle(fontSize: 14),
-                    //     specialTextSpanBuilder: EmojisSpecialTextSpanBuilder(multiple: 1.3),
-                    //   ),
-                    // ),
                     if (onReply != null && onDelete != null)
                       Row(
                         children: [
