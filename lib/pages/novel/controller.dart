@@ -28,14 +28,24 @@ class NovelController extends GetxController {
 
   NovelJSData decodeNovelHtml(html.Document document) {
     Map<String, dynamic>? json;
+    const isOriginalFalse = '"isOriginal":false}';
+    const isOriginalTrue = '"isOriginal":true}';
+    bool isOriginal = false;
     final scriptTags = document.querySelectorAll('script');
     for (final scriptTag in scriptTags) {
       final text = scriptTag.text;
       if (text.contains('Object.defineProperty(window, \'pixiv\'')) {
         //novel : { "id":"123123", ...... []}
         final jsonStartIndex = text.indexOf('{', text.indexOf('novel'));
-        final jsonEndIndex = text.indexOf(']}', jsonStartIndex);
-        final jsonString = text.substring(jsonStartIndex, jsonEndIndex + 2);
+
+        int jsonEndIndex = text.indexOf(isOriginalFalse, jsonStartIndex);
+
+        if (jsonEndIndex == -1) {
+          jsonEndIndex = text.indexOf(isOriginalTrue, jsonStartIndex);
+          isOriginal = true;
+        }
+
+        final jsonString = text.substring(jsonStartIndex, jsonEndIndex + (isOriginal ? isOriginalTrue.length : isOriginalFalse.length));
 
         json = jsonDecode(jsonString);
 
@@ -53,6 +63,8 @@ class NovelController extends GetxController {
       novelJSData = decodeNovelHtml(html.parse(result));
       state = PageState.complete;
     }).catchError((e, s) {
+      print(e);
+      print(s);
       if (e is DioError && HttpStatus.notFound == e.response?.statusCode) {
         state = PageState.notFound;
       } else {

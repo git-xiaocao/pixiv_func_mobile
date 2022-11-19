@@ -22,30 +22,33 @@ class NovelPage extends StatelessWidget {
       tag: tag,
       builder: (controller) => ScaffoldWidget(
         title: novel.title,
-        child: () {
-          if (PageState.loading == controller.state) {
-            return Container(
-              alignment: Alignment.center,
-              child: const CircularProgressIndicator(),
-            );
-          } else if (PageState.error == controller.state) {
-            return GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: () => controller.loadData(),
-              child: Container(
+        child: Padding(
+          padding: MediaQuery.of(context).padding.copyWith(left: 0, right: 0, top: 0),
+          child: () {
+            if (PageState.loading == controller.state) {
+              return Container(
                 alignment: Alignment.center,
-                child: const TextWidget('加载失败,点击重试', fontSize: 16),
-              ),
-            );
-          } else if (PageState.notFound == controller.state) {
-            return Container(
-              alignment: Alignment.center,
-              child: TextWidget('小说ID${novel.id}不存在', fontSize: 16),
-            );
-          } else {
-            return NovelViewer(text: controller.novelJSData!.text, id: novel.id);
-          }
-        }(),
+                child: const CircularProgressIndicator(),
+              );
+            } else if (PageState.error == controller.state) {
+              return GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () => controller.loadData(),
+                child: Container(
+                  alignment: Alignment.center,
+                  child: const TextWidget('加载失败,点击重试', fontSize: 16),
+                ),
+              );
+            } else if (PageState.notFound == controller.state) {
+              return Container(
+                alignment: Alignment.center,
+                child: TextWidget('小说ID${novel.id}不存在', fontSize: 16),
+              );
+            } else {
+              return NovelViewer(text: controller.novelJSData!.text, id: novel.id);
+            }
+          }(),
+        ),
       ),
     );
   }
