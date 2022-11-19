@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:pixiv_dart_api/model/illust.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/platform/api/platform_api.dart';
+import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 import 'package:pixiv_func_mobile/components/bookmark_switch_button/bookmark_switch_button.dart';
 import 'package:pixiv_func_mobile/components/pixiv_image/pixiv_image.dart';
 import 'package:pixiv_func_mobile/pages/illust/illust.dart';
-import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
 
 class IllustPreviewer extends StatelessWidget {
@@ -33,7 +33,6 @@ class IllustPreviewer extends StatelessWidget {
     required String url,
     required double width,
     required double height,
-    required int pageCount,
     BorderRadius? borderRadius,
     bool needHero = false,
   }) {
@@ -54,18 +53,20 @@ class IllustPreviewer extends StatelessWidget {
             else
               imageWidget,
             if (illust.isR18)
+              //左上
               Positioned(
                 left: 7,
                 top: 7,
                 child: Card(
                   color: Get.theme.colorScheme.primary,
                   child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 1),
                     child: TextWidget('R-18', color: Colors.white),
                   ),
                 ),
               ),
             if (illust.isUgoira)
+              //左下
               Positioned(
                 left: 7,
                 bottom: 7,
@@ -77,7 +78,8 @@ class IllustPreviewer extends StatelessWidget {
                   child: const Icon(Icons.gif_box_outlined, color: Colors.white, size: 30),
                 ),
               ),
-            if (pageCount > 1)
+            if (illust.pageCount > 1)
+              //右上
               Positioned(
                 right: 7,
                 top: 7,
@@ -88,7 +90,20 @@ class IllustPreviewer extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    child: TextWidget('$pageCount', color: Colors.white),
+                    child: TextWidget('${illust.pageCount}', color: Colors.white),
+                  ),
+                ),
+              ),
+            if (illust.isAi)
+              //右下
+              Positioned(
+                right: 7,
+                bottom: 7,
+                child: Card(
+                  color: Get.theme.colorScheme.error,
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+                    child: TextWidget('AI', color: Colors.white),
                   ),
                 ),
               ),
@@ -123,7 +138,6 @@ class IllustPreviewer extends StatelessWidget {
             url: illust.imageUrls.squareMedium,
             width: constraints.maxWidth,
             height: constraints.maxWidth,
-            pageCount: illust.pageCount,
             borderRadius: borderRadius,
           );
         },
@@ -138,7 +152,6 @@ class IllustPreviewer extends StatelessWidget {
                 url: Get.find<SettingsService>().getPreviewUrl(illust.imageUrls),
                 width: constraints.maxWidth,
                 height: previewHeight,
-                pageCount: illust.pageCount,
                 borderRadius: const BorderRadius.all(Radius.circular(12)),
                 needHero: true,
               );
