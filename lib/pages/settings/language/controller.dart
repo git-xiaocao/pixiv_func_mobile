@@ -30,14 +30,13 @@ class LanguageController extends GetxController {
 
   void getExpansionFromGithub() async {
     Dio()
-        .get<String>('https://raw.githubusercontent.com/git-xiaocao/pixiv_func_i18n_expansion/main/i18n_expansion/expansions.json')
+        .get<String>('https://cdn.jsdelivr.net/gh/git-xiaocao/pixiv_func_i18n_expansion@main/i18n_expansion/expansions.json')
         .then((response) async {
       final list = jsonDecode(response.data!) as List<dynamic>;
       int count = 0;
       for (final item in list) {
         final jsonString =
-            (await Dio().get<String>('https://raw.githubusercontent.com/git-xiaocao/pixiv_func_i18n_expansion/main/i18n_expansion/$item'))
-                .data!;
+            (await Dio().get<String>('https://cdn.jsdelivr.net/gh/git-xiaocao/pixiv_func_i18n_expansion@main/i18n_expansion/$item')).data!;
 
         final expansion = I18nExpansion.fromJson(jsonDecode(jsonString));
         final index = I18nTranslations.expansions.indexWhere((e) => e.locale == expansion.locale);
