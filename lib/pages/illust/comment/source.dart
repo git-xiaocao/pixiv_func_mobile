@@ -4,7 +4,6 @@ import 'package:pixiv_dart_api/model/comment.dart';
 import 'package:pixiv_dart_api/vo/comment_page_result.dart';
 import 'package:pixiv_func_mobile/app/api/api_client.dart';
 import 'package:pixiv_func_mobile/data_content/data_source_base.dart';
-import 'package:pixiv_func_mobile/models/comment_tree.dart';
 
 class IllustCommentListSource extends DataSourceBase<Comment> {
   final int id;

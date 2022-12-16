@@ -178,23 +178,24 @@ class IllustController extends GetxController {
         },
       );
     }
-
-    _addToHistoryTimer = Timer.periodic(
-      const Duration(seconds: 1),
-      (timer) {
-        //下载了 或者 浏览时长大于10秒
-        if (downloaded || browsingDuration > const Duration(seconds: 10)) {
-          Get.find<ApiClient>().postBrowserHistoryAdd(illustIds: [illust.id]);
-          _addToHistoryTimer?.cancel();
-          _addToHistoryTimer = null;
-        } else {
-          //如果还在这个插画页面就加一秒
-          if (isVisibility) {
-            browsingDuration += const Duration(seconds: 1);
+    if (Get.find<SettingsService>().enablePixivHistory) {
+      _addToHistoryTimer = Timer.periodic(
+        const Duration(seconds: 1),
+        (timer) {
+          //下载了 或者 浏览时长大于10秒
+          if (downloaded || browsingDuration > const Duration(seconds: 10)) {
+            Get.find<ApiClient>().postBrowserHistoryAdd(illustIds: [illust.id]);
+            _addToHistoryTimer?.cancel();
+            _addToHistoryTimer = null;
+          } else {
+            //如果还在这个插画页面就加一秒
+            if (isVisibility) {
+              browsingDuration += const Duration(seconds: 1);
+            }
           }
-        }
-      },
-    );
+        },
+      );
+    }
 
     super.onInit();
   }

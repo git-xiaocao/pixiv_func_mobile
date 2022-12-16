@@ -25,7 +25,7 @@ class IllustCommentContent extends StatelessWidget {
             Flexible(
               child: DataContent(
                 sourceList: controller.source,
-                padding: EdgeInsets.zero,
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 itemBuilder: (BuildContext context, Comment item, bool visibility, int index) => CommentItemWidget(
                   comment: item,
                   onReply: () => controller.repliesComment = item,

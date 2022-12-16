@@ -17,7 +17,7 @@ class SearchNovelResultPage extends StatelessWidget {
 
   const SearchNovelResultPage({Key? key, required this.keyword}) : super(key: key);
 
-  String get tag => '$keyword';
+  String get tag => keyword;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +25,10 @@ class SearchNovelResultPage extends StatelessWidget {
     return GetBuilder<SearchNovelResultController>(
       tag: tag,
       initState: (state) {
-        Get.put(SearchNovelFilterEditorController(controller.onFilterChanged), tag: 'SearchNovelFilterEditor-$keyword');
+        Get.put(SearchNovelFilterEditorController(controller.onFilterChanged), tag: keyword);
       },
       dispose: (state) {
-        Get.delete<SearchNovelFilterEditorController>(tag: 'SearchNovelFilterEditor-$keyword');
+        Get.delete<SearchNovelFilterEditorController>(tag: keyword);
       },
       builder: (controller) => ScaffoldWidget(
         automaticallyImplyLeading: false,

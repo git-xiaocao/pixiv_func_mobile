@@ -7,11 +7,13 @@ import 'package:pixiv_func_mobile/app/services/translate_service.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
 
 class TranslateWidget extends StatefulWidget {
+  final int id;
   final String text;
   final Widget child;
 
   const TranslateWidget({
     Key? key,
+    required this.id,
     required this.text,
     required this.child,
   }) : super(key: key);

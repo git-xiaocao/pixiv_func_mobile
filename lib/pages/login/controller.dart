@@ -5,12 +5,12 @@ import 'package:get/get.dart';
 import 'package:pixiv_func_mobile/app/encrypt/encrypt.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/platform/api/platform_api.dart';
+import 'package:pixiv_func_mobile/app/services/account_service.dart';
 import 'package:pixiv_func_mobile/models/account.dart';
 import 'package:pixiv_func_mobile/pages/home/home.dart';
-import 'package:pixiv_func_mobile/app/services/account_service.dart';
 
 class LoginController extends GetxController {
-  bool _useLocalReverseProxy = true;
+  bool _useLocalReverseProxy = false;
   bool _help = false;
 
   bool get useLocalReverseProxy => _useLocalReverseProxy;

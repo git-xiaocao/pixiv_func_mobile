@@ -12,10 +12,8 @@ import 'package:pixiv_func_mobile/pages/account/account.dart';
 import 'package:pixiv_func_mobile/pages/block_tag/block_tag.dart';
 import 'package:pixiv_func_mobile/pages/downloader/downloader.dart';
 import 'package:pixiv_func_mobile/pages/history/history.dart';
-import 'package:pixiv_func_mobile/pages/settings/image_source/image_source_settings.dart';
+import 'package:pixiv_func_mobile/pages/settings/browse/browse.dart';
 import 'package:pixiv_func_mobile/pages/settings/language/language_settings.dart';
-import 'package:pixiv_func_mobile/pages/settings/preview_quality/preview_quality_settings.dart';
-import 'package:pixiv_func_mobile/pages/settings/scale_quality/sacle_quality_settings.dart';
 import 'package:pixiv_func_mobile/pages/settings/theme/theme_settings.dart';
 import 'package:pixiv_func_mobile/pages/settings/translate/translate.dart';
 import 'package:pixiv_func_mobile/pages/user/me.dart';
@@ -97,15 +95,11 @@ class SettingsPage extends StatelessWidget {
             buildItem(onTap: () => Get.to(() => const LanguageSettingsPage()), title: I18n.languageSettingsPageTitle.tr),
             buildItem(onTap: () => Get.to(() => const TranslateSettingsPage()), title: '翻译设置'),
             const Divider(),
-            buildItem(onTap: () => Get.to(() => const ImageSourceSettingsPage()), title: I18n.imageSourceSettingsPageTitle.tr),
-            buildItem(onTap: () => Get.to(() => const PreviewQualitySettingsPage()), title: I18n.previewQualitySettingsPageTitle.tr),
-            buildItem(onTap: () => Get.to(() => const ScaleQualitySettingsPage()), title: I18n.scaleQualitySettingsPageTitle.tr),
-            const Divider(),
+            buildItem(onTap: () => Get.to(() => const BrowseSettingsPage()), title: '浏览设置'),
+            buildItem(onTap: () => Get.to(() => const HistoryPage()), title: I18n.historyPageTitle.tr),
             buildItem(onTap: () => Get.to(() => const BlockTagPage()), title: I18n.blockTagPageTitle.tr),
             const Divider(),
             buildItem(onTap: () => Get.to(() => const DownloaderPage()), title: I18n.downloaderPageTitle.tr),
-            const Divider(),
-            buildItem(onTap: () => Get.to(() => const HistoryPage()), title: I18n.historyPageTitle.tr),
             const Divider(),
             buildItem(onTap: () => Get.to(() => const AboutPage()), title: I18n.aboutPageTitle.tr),
             const Divider(),

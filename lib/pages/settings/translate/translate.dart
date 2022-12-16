@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 import 'package:pixiv_func_mobile/app/services/translate_service.dart';
 import 'package:pixiv_func_mobile/widgets/no_scroll_behavior/no_scroll_behavior.dart';
 import 'package:pixiv_func_mobile/widgets/scaffold/scaffold.dart';
@@ -16,7 +17,7 @@ class TranslateSettingsPage extends StatelessWidget {
         (data) {
           final translates = Get.find<TranslateService>().translates;
           void updater(int value) {
-            Get.find<TranslateService>().index = value;
+            Get.find<SettingsService>().translateIndex = value;
             data.value = value;
           }
 
@@ -40,7 +41,7 @@ class TranslateSettingsPage extends StatelessWidget {
             ),
           );
         },
-        Get.find<TranslateService>().index.obs,
+        Get.find<SettingsService>().translateIndex.obs,
       ),
     );
   }
