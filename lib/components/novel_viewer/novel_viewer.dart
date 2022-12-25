@@ -72,6 +72,7 @@ class NovelViewer extends StatelessWidget {
                   ),
                 ),
                 TextWidget('进度:${controller.progress.toStringAsFixed(2)}%', fontSize: 16),
+                const SizedBox(height: 20),
               ],
             ),
           ),

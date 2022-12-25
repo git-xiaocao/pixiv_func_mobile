@@ -45,7 +45,7 @@ class BookmarkSwitchButton extends StatelessWidget {
                 child: Row(
                   children: [
                     Expanded(
-                      child: TextWidget(I18n.bookmarkIllust.tr, fontSize: 18, isBold: true),
+                      child: TextWidget(isNovel ? I18n.bookmarkNovel.tr : I18n.bookmarkIllust.tr, fontSize: 18, isBold: true),
                     ),
                     ObxValue<Rx<Restrict>>(
                       (data) => SelectButtonWidget(

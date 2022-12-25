@@ -376,7 +376,7 @@ class IllustPage extends StatelessWidget {
                             color: Get.theme.colorScheme.surface,
                           ),
                           child: TextWidget(
-                            '#${tag.name} ${tag.translatedName != null ? ' ${tag.translatedName}' : ''}',
+                            '#${tag.name}${tag.translatedName != null ? ' ${tag.translatedName}' : ''}',
                             fontSize: 14,
                             forceStrutHeight: true,
                           ),

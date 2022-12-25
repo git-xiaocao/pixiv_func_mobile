@@ -96,13 +96,16 @@ class _CommentInputWidgetState extends State<CommentInputWidget> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 if (widget.hasReply)
-                  GestureDetectorHitTestWithoutSizeLimit(
-                    behavior: HitTestBehavior.opaque,
-                    onTap: widget.resetReply,
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 4),
-                      child: Icon(
-                        Icons.replay,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: GestureDetectorHitTestWithoutSizeLimit(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: widget.resetReply,
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 4),
+                        child: Icon(
+                          Icons.replay,
+                        ),
                       ),
                     ),
                   ),

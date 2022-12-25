@@ -22,14 +22,11 @@ class I18n {
   ///语言
   static const String languageSettingsPageTitle = 'languageSettingsPageTitle';
 
-  ///图片源
-  static const String imageSourceSettingsPageTitle = 'imageSourceSettingsPageTitle';
+  /// 浏览设置
+  static const String browseSettingsPageTitle = 'browseSettingsPageTitle';
 
-  ///预览质量
-  static const String previewQualitySettingsPageTitle = 'previewQualitySettingsPageTitle';
-
-  ///缩放质量
-  static const String scaleQualitySettingsPageTitle = 'scaleQualitySettingsPageTitle';
+  /// 翻译设置
+  static const String translateSettingsPageTitle = 'translateSettingsPageTitle';
 
   ///账号设置
   static const String meSettingsPageTitle = 'meSettingsPageTitle';
@@ -45,6 +42,22 @@ class I18n {
 
   ///注册 或 登录
   static const String loginPageTitle = 'loginPageTitle';
+
+  /***********************************************************************************************/
+  //浏览设置
+  /***********************************************************************************************/
+
+  ///图片源
+  static const String imageSource = 'imageSourceSettingsPageTitle';
+
+  ///预览质量
+  static const String previewQuality = 'previewQualitySettingsPageTitle';
+
+  ///缩放质量
+  static const String scaleQuality = 'scaleQualitySettingsPageTitle';
+
+  /// 启用Pixiv历史记录
+  static const String enablePixivHistory = 'enablePixivHistory';
 
   /***********************************************************************************************/
   //Common
@@ -645,6 +658,9 @@ class I18n {
 
   ///收藏插画
   static const String bookmarkIllust = 'bookmarkIllust';
+
+  ///收藏小说
+  static const String bookmarkNovel = 'bookmarkNovel';
 
   /***********************************************************************************************/
   //PlatformApi.toast

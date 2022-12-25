@@ -12,17 +12,19 @@ class BrowseSettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController customImageSourceInput = TextEditingController();
-
     const List<MapEntry<String, String>> imageSourceItems = [
       MapEntry('IP(210.140.92.148)', '210.140.92.148'),
       MapEntry('Original(i.pximg.net)', 'i.pximg.net'),
+      MapEntry('MirrorImage(i.pixiv.re)', 'i.pixiv.re'),
     ];
 
     final settingsService = Get.find<SettingsService>();
 
+    final TextEditingController customImageSourceInput = TextEditingController(
+        text: imageSourceItems.any((item) => item.value == settingsService.imageSource) ? '' : settingsService.imageSource);
+
     return ScaffoldWidget(
-      title: '浏览设置',
+      title: I18n.browseSettingsPageTitle.tr,
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -99,7 +101,7 @@ class BrowseSettingsPage extends StatelessWidget {
                 return CupertinoSwitchListTile(
                   contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 24),
                   onTap: () => updater(!(true == data.value)),
-                  title: const TextWidget('预览图片质量(大图)', fontSize: 18, isBold: true),
+                  title: TextWidget('${I18n.previewQuality.tr}(${I18n.largeImage.tr})', fontSize: 18, isBold: true),
                   value: data.value,
                 );
               },
@@ -117,7 +119,7 @@ class BrowseSettingsPage extends StatelessWidget {
                 return CupertinoSwitchListTile(
                   contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 24),
                   onTap: () => updater(!(true == data.value)),
-                  title: const TextWidget('缩放图片质量(原图)', fontSize: 18, isBold: true),
+                  title: TextWidget('${I18n.scaleQuality.tr}(${I18n.originalImage.tr})', fontSize: 18, isBold: true),
                   value: data.value,
                 );
               },
@@ -136,7 +138,7 @@ class BrowseSettingsPage extends StatelessWidget {
                 return CupertinoSwitchListTile(
                   contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 24),
                   onTap: () => updater(!(true == data.value)),
-                  title: const TextWidget('启用Pixiv历史记录', fontSize: 18, isBold: true),
+                  title: TextWidget(I18n.enablePixivHistory.tr, fontSize: 18, isBold: true),
                   value: data.value,
                 );
               },
