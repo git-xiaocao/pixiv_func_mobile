@@ -424,7 +424,7 @@ class MeProfileSettingsPage extends StatelessWidget {
                                       hintText: I18n.introductionHint.tr,
                                       hintStyle: const TextStyle(fontSize: 14),
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(24),
+                                        borderRadius: BorderRadius.circular(12),
                                         borderSide: BorderSide.none,
                                       ),
                                       filled: true,

@@ -13,6 +13,7 @@ import 'package:pixiv_func_mobile/pages/block_tag/block_tag.dart';
 import 'package:pixiv_func_mobile/pages/downloader/downloader.dart';
 import 'package:pixiv_func_mobile/pages/history/history.dart';
 import 'package:pixiv_func_mobile/pages/settings/browse/browse.dart';
+import 'package:pixiv_func_mobile/pages/settings/download/download.dart';
 import 'package:pixiv_func_mobile/pages/settings/language/language_settings.dart';
 import 'package:pixiv_func_mobile/pages/settings/theme/theme_settings.dart';
 import 'package:pixiv_func_mobile/pages/settings/translate/translate.dart';
@@ -96,6 +97,7 @@ class SettingsPage extends StatelessWidget {
             buildItem(onTap: () => Get.to(() => const TranslateSettingsPage()), title: I18n.translateSettingsPageTitle.tr),
             const Divider(),
             buildItem(onTap: () => Get.to(() => const BrowseSettingsPage()), title: I18n.browseSettingsPageTitle.tr),
+            buildItem(onTap: () => Get.to(() => const DownloadSettingsPage()), title: I18n.downloadSettingsPageTitle.tr),
             buildItem(onTap: () => Get.to(() => const HistoryPage()), title: I18n.historyPageTitle.tr),
             buildItem(onTap: () => Get.to(() => const BlockTagPage()), title: I18n.blockTagPageTitle.tr),
             const Divider(),

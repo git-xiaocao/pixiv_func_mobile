@@ -21,6 +21,14 @@ class Settings {
 
   Map<String, String> translateAuthData;
 
+  int maxDownloadCount;
+
+  String? savePath;
+
+  String? saveFolder;
+
+  String? namingRule;
+
   Settings({
     required this.guideInit,
     required this.theme,
@@ -32,6 +40,10 @@ class Settings {
     required this.language,
     required this.translateIndex,
     required this.translateAuthData,
+    required this.maxDownloadCount,
+    required this.savePath,
+    required this.saveFolder,
+    required this.namingRule,
   });
 
   factory Settings.fromJson(Map<String, dynamic> json) {
@@ -46,6 +58,10 @@ class Settings {
       language: json['language'] as String,
       translateIndex: json['translateIndex'] as int,
       translateAuthData: (json['translateAuthData'] as Map<String, dynamic>).map((key, value) => MapEntry(key, value as String)),
+      maxDownloadCount: json['maxDownloadCount'] as int,
+      savePath: json['savePath'] as String,
+      saveFolder: json['saveFolder'] as String,
+      namingRule: json['namingRule'] as String,
     );
   }
 
@@ -61,6 +77,10 @@ class Settings {
       'language': language,
       'translateIndex': translateIndex,
       'translateAuthData': translateAuthData,
+      'maxDownloadCount': maxDownloadCount,
+      'savePath': savePath,
+      'saveFolder': saveFolder,
+      'namingRule': namingRule,
     };
   }
 
@@ -75,5 +95,9 @@ class Settings {
         language: window.locale.toLanguageTag(),
         translateIndex: 0,
         translateAuthData: {},
+        maxDownloadCount: 3,
+        savePath: null,
+        saveFolder: null,
+        namingRule: null,
       );
 }

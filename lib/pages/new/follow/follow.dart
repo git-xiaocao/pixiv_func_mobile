@@ -7,10 +7,10 @@ import 'package:pixiv_dart_api/model/illust.dart';
 import 'package:pixiv_dart_api/model/novel.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/components/illust_previewer/illust_previewer.dart';
-import 'package:pixiv_func_mobile/widgets/lazy_indexed_stack/lazy_indexed_stack.dart';
 import 'package:pixiv_func_mobile/components/novel_previewer/novel_previewer.dart';
-import 'package:pixiv_func_mobile/widgets/select_button/select_button.dart';
 import 'package:pixiv_func_mobile/data_content/data_content.dart';
+import 'package:pixiv_func_mobile/widgets/lazy_indexed_stack/lazy_indexed_stack.dart';
+import 'package:pixiv_func_mobile/widgets/select_button/select_button.dart';
 import 'package:pixiv_func_mobile/widgets/select_group/select_group.dart';
 
 import 'controller.dart';
@@ -75,6 +75,7 @@ class _FollowNewContentState extends State<FollowNewContent> {
               index: controller.workType == WorkType.illust ? 0 : 1,
               children: [
                 DataContent<Illust>(
+                  key: Key('FloolowNewIllust-${controller.restrict}'),
                   sourceList: FollowNewIllustListSource(controller.restrict),
                   extendedListDelegate:
                       const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 10),
@@ -84,6 +85,7 @@ class _FollowNewContentState extends State<FollowNewContent> {
                   ),
                 ),
                 DataContent<Novel>(
+                  key: Key('FloolowNewNovel-${controller.restrict}'),
                   sourceList: FollowNewNovelListSource(controller.restrict),
                   itemBuilder: (BuildContext context, Novel item, bool visibility, int index) => NovelPreviewer(novel: item),
                 ),

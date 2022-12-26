@@ -11,6 +11,7 @@ class ScaffoldWidget extends StatelessWidget {
   final bool centerTitle;
 
   final bool emptyAppBar;
+  final bool? resizeToAvoidBottomInset;
   final bool automaticallyImplyLeading;
   final Widget? child;
   final Widget? floatingActionButton;
@@ -23,6 +24,7 @@ class ScaffoldWidget extends StatelessWidget {
     this.actions,
     this.centerTitle = true,
     this.emptyAppBar = false,
+    this.resizeToAvoidBottomInset,
     this.automaticallyImplyLeading = true,
     this.child,
     this.floatingActionButton,
@@ -77,7 +79,7 @@ class ScaffoldWidget extends StatelessWidget {
       );
     }
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       appBar: appBar,
       body: Padding(
         padding: Platform.isIOS ? EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom) : EdgeInsets.zero,

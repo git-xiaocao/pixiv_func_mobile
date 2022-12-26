@@ -101,6 +101,13 @@ class SettingsService extends GetxService {
     save();
   }
 
+  int get maxDownloadCount => _settings.maxDownloadCount;
+
+  set maxDownloadCount(int value) {
+    _settings.maxDownloadCount = value;
+    save();
+  }
+
   String toCurrentImageSource(String url, [String host = 'i.pximg.net']) {
     return url.replaceFirst(host, imageSource);
   }

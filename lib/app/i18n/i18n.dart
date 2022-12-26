@@ -25,6 +25,9 @@ class I18n {
   /// 浏览设置
   static const String browseSettingsPageTitle = 'browseSettingsPageTitle';
 
+  /// 下载设置
+  static const String downloadSettingsPageTitle = 'downloadSettingsPageTitle';
+
   /// 翻译设置
   static const String translateSettingsPageTitle = 'translateSettingsPageTitle';
 
@@ -448,6 +451,9 @@ class I18n {
   /***********************************************************************************************/
   //Settings
   /***********************************************************************************************/
+
+  ///最大下载任务数量
+  static const String maxDownloadTaskCount = 'maxDownloadTaskCount';
 
   ///使用自定义图片源
   static const String useCustomImageSource = 'useCustomImageSource';

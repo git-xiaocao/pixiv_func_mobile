@@ -1,10 +1,10 @@
 import 'dart:isolate';
-import 'dart:typed_data';
 
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:mutex/mutex.dart';
 import 'package:pixiv_dart_api/model/illust.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/platform/api/platform_api.dart';
@@ -15,6 +15,10 @@ class Downloader extends GetxController implements GetxService {
   final List<DownloadTask> _tasks = [];
 
   List<DownloadTask> get tasks => _tasks;
+
+  int currentRunningCount = 0;
+
+  final downloadMutex = Mutex();
 
   DownloadTask _taskByFilename(String filename) {
     return _tasks.singleWhere((task) => task.filename == filename);
@@ -38,18 +42,12 @@ class Downloader extends GetxController implements GetxService {
     (httpClient.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (client) => client..badCertificateCallback = (cert, host, port) => true;
 
-    final task = DownloadTask.create(
-      index: props.index,
-      illust: props.illust,
-      originalUrl: props.originalUrl,
-      url: props.url,
-      filename: props.filename,
-    );
+    final task = props.task;
     task.state = DownloadState.downloading;
     props.hostSendPort.send(task);
     try {
       final result = await httpClient.get<Uint8List>(
-        props.url,
+        task.url,
         onReceiveProgress: (int count, int total) {
           task.progress = count / total;
           props.hostSendPort.send(task);
@@ -70,7 +68,9 @@ class Downloader extends GetxController implements GetxService {
     required String url,
     required int index,
     required void Function(int index, bool success)? onComplete,
-  }) {
+  }) async {
+    final maxDownloadCount = Get.find<SettingsService>().maxDownloadCount;
+
     final filename = url.substring(url.lastIndexOf('/') + 1);
     final imageUrl = Get.find<SettingsService>().toCurrentImageSource(url);
 
@@ -81,17 +81,34 @@ class Downloader extends GetxController implements GetxService {
     }
 
     PlatformApi.toast(I18n.illustIdDownloadTaskStart.trArgs(['${illust.id}[${index + 1}]']));
+
+    //提前创建任务添加到UI列表里不然在互斥锁下面显示不出
+    final task = DownloadTask.create(
+      index: index,
+      illust: illust,
+      originalUrl: url,
+      url: imageUrl,
+      filename: filename,
+    );
+
+    await _eventHandler(task);
+
+    //当前下载数量 大于 最大数量的时候 请求锁
+    if (++currentRunningCount >= maxDownloadCount) {
+      await downloadMutex.acquire();
+      //每次释放只通过一个锁
+    }
+
     compute(
       _task,
       _DownloadStartProps(
         hostSendPort: _progressReceivePort.sendPort,
-        illust: illust,
-        originalUrl: url,
-        url: imageUrl,
-        filename: filename,
-        index: index,
+        task: task,
       ),
     ).then((result) async {
+      --currentRunningCount;
+      //每完成一个任务 释放一次锁
+      downloadMutex.release();
       if (result is _DownloadComplete) {
         final saveResult = await PlatformApi.saveImage(result.imageBytes, filename);
 
@@ -109,9 +126,9 @@ class Downloader extends GetxController implements GetxService {
     });
   }
 
-  late final ReceivePort _progressReceivePort = ReceivePort()..listen(_hostReceive);
+  late final ReceivePort _progressReceivePort = ReceivePort()..listen(_eventHandler);
 
-  Future<void> _hostReceive(dynamic message) async {
+  Future<void> _eventHandler(dynamic message) async {
     if (message is DownloadTask) {
       if (_taskIsExist(message.filename)) {
         final task = _taskByFilename(message.filename);
@@ -129,19 +146,11 @@ class Downloader extends GetxController implements GetxService {
 
 class _DownloadStartProps {
   final SendPort hostSendPort;
-  final Illust illust;
-  final String originalUrl;
-  final String url;
-  final String filename;
-  final int index;
+  final DownloadTask task;
 
   _DownloadStartProps({
     required this.hostSendPort,
-    required this.illust,
-    required this.originalUrl,
-    required this.url,
-    required this.filename,
-    required this.index,
+    required this.task,
   });
 }
 

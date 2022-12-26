@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
@@ -15,10 +17,10 @@ class GuideSelectLanguagePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const List<MapEntry<String, String>> items = [
-      MapEntry('简体中文', 'zh_CN'),
-      MapEntry('English', 'en_US'),
-      MapEntry('日本語', 'ja_JP'),
-      MapEntry('Русский', 'ru_RU'),
+      MapEntry('简体中文', 'zh-CN'),
+      MapEntry('English', 'en-US'),
+      MapEntry('日本語', 'ja-JP'),
+      MapEntry('Русский', 'ru-RU'),
     ];
     return ObxValue<Rx<String?>>(
       (data) {

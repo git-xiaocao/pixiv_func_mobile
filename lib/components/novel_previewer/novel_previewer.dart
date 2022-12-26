@@ -90,7 +90,7 @@ class NovelPreviewer extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        padding: EdgeInsets.only(left: Get.width * 0.05, right: Get.width * 0.05, bottom: 30),
                         child: MaterialButton(
                           elevation: 0,
                           color: Theme.of(context).colorScheme.primary,

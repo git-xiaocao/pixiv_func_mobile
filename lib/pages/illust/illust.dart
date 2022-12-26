@@ -424,6 +424,7 @@ class IllustPage extends StatelessWidget {
             },
             child: ScaffoldWidget(
               titleWidget: TextWidget(illust.title, isBold: true),
+              resizeToAvoidBottomInset: false,
               actions: [
                 if (controller.downloadMode)
                   SizedBox(
