@@ -17,7 +17,9 @@ class SettingsService extends GetxService {
       //升级兼容
       try {
         _settings = Settings.fromJson(jsonDecode(jsonString));
-      } catch (e) {
+      } catch (e, s) {
+        print(e);
+        print(s);
         await _sharedPreferences.remove('settings');
         _settings = Settings.defaultValue();
       }

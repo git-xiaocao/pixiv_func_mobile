@@ -59,9 +59,9 @@ class Settings {
       translateIndex: json['translateIndex'] as int,
       translateAuthData: (json['translateAuthData'] as Map<String, dynamic>).map((key, value) => MapEntry(key, value as String)),
       maxDownloadCount: json['maxDownloadCount'] as int,
-      savePath: json['savePath'] as String,
-      saveFolder: json['saveFolder'] as String,
-      namingRule: json['namingRule'] as String,
+      savePath: json['savePath'] as String?,
+      saveFolder: json['saveFolder'] as String?,
+      namingRule: json['namingRule'] as String?,
     );
   }
 
