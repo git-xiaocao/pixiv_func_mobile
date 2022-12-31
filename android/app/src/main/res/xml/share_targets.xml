@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <share-target
+        android:targetClass="moe.xiaocao.pixiv.MainActivity">
+        <data android:mimeType="image/*" />
+        <category android:name="moe.xiaocao.pixiv.search_image_share_target" />
+    </share-target>
+</shortcuts>

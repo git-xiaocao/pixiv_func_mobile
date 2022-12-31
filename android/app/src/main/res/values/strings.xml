@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="recommend_app_widget_description">从Pixiv推荐获取图片显示到桌面</string>
+    <string name="refresh_app_widget_description">刷新Pixiv推荐AppWidget</string>
+</resources>
