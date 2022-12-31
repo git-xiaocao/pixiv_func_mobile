@@ -116,7 +116,7 @@ class _MePageState extends State<MePage> with TickerProviderStateMixin {
                   if (null != backgroundImageUrl)
                     Container(
                       height: 200,
-                      color: Theme.of(Get.context!).colorScheme.surface,
+                      color: Get.theme.colorScheme.surface,
                       child: PixivImageWidget(
                         backgroundImageUrl,
                         fit: BoxFit.contain,
@@ -125,7 +125,7 @@ class _MePageState extends State<MePage> with TickerProviderStateMixin {
                   else
                     Container(
                       height: 200,
-                      color: Theme.of(Get.context!).colorScheme.surface,
+                      color: Get.theme.colorScheme.surface,
                     ),
                   Positioned(
                     top: 150,
@@ -172,7 +172,7 @@ class _MePageState extends State<MePage> with TickerProviderStateMixin {
             const SizedBox(height: 10),
             Container(
               decoration: BoxDecoration(
-                color: Theme.of(Get.context!).colorScheme.surface,
+                color: Get.theme.colorScheme.surface,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Padding(

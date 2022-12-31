@@ -110,6 +110,20 @@ class SettingsService extends GetxService {
     save();
   }
 
+  String? get savePath => _settings.savePath;
+
+  set savePath(String? value) {
+    _settings.savePath = value;
+    save();
+  }
+
+  String? get saveFolder => _settings.saveFolder;
+
+  set saveFolder(String? value) {
+    _settings.saveFolder = value;
+    save();
+  }
+
   String toCurrentImageSource(String url, [String host = 'i.pximg.net']) {
     return url.replaceFirst(host, imageSource);
   }

@@ -108,7 +108,9 @@ class Downloader extends GetxController implements GetxService {
     ).then((result) async {
       --currentRunningCount;
       //每完成一个任务 释放一次锁
-      downloadMutex.release();
+      if (downloadMutex.isLocked) {
+        downloadMutex.release();
+      }
       if (result is _DownloadComplete) {
         final saveResult = await PlatformApi.saveImage(result.imageBytes, filename);
 

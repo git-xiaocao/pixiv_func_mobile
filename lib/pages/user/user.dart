@@ -68,18 +68,18 @@ class _UserPageState extends State<UserPage> with TickerProviderStateMixin {
                   if (null != backgroundImageUrl)
                     Container(
                       height: Get.height * 0.3,
-                      color: Theme.of(Get.context!).colorScheme.surface,
+                      color: Get.theme.colorScheme.surface,
                       child: PixivImageWidget(
                         backgroundImageUrl,
                         height: Get.height * 0.3,
                         width: double.infinity,
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
                       ),
                     )
                   else
                     Container(
                       height: Get.height * 0.3,
-                      color: Theme.of(Get.context!).colorScheme.surface,
+                      color: Get.theme.colorScheme.surface,
                     ),
                   Positioned(
                     top: Get.height * 0.3 - 50,

@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
@@ -18,7 +19,6 @@ class DownloadSettingsPage extends StatelessWidget {
             (data) {
               void updater(double value) {
                 data.value = value.toInt();
-
                 Get.find<SettingsService>().maxDownloadCount = value.toInt();
               }
 
@@ -36,6 +36,15 @@ class DownloadSettingsPage extends StatelessWidget {
               );
             },
             Get.find<SettingsService>().maxDownloadCount.obs,
+          ),
+          ListTile(
+            title: TextWidget('保存目录: ${Get.find<SettingsService>()}'),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              final path = FilePicker.platform.getDirectoryPath(dialogTitle: '选择图片保存目录');
+            },
+            child: TextWidget('保存目录'),
           ),
         ],
       ),

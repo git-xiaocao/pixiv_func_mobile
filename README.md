@@ -1,6 +1,8 @@
 # Pixiv Func
 
-# 全新设计UI
+> 个人项目 开源免费 仅用于学习使用
+
+![](./gh-proj-1.jpg)
 
 ## README_i18n
 [:jp:](./README_ja.md) :us: :ru:
@@ -12,21 +14,8 @@
 ![total stars](https://img.shields.io/github/stars/git-xiaocao/pixiv_func_mobile?label=total%20stars)
 ![total forks](https://img.shields.io/github/forks/git-xiaocao/pixiv_func_mobile?label=total%20forks)
 
----
-
-- Pixiv第三方移动客户端
-- 使用了`GetX`状态管理框架
-- 代码严格按照`flutter_lints`的规范编写
-- 适合新手学习Flutter
-- 这是我的个人玩具,与其他现有同类项目无关,如果你想拿我的项目跟其他项目比较,那么请你离开,我并不欢迎你 
-- 该项目用于我个人学习Flutter,开源且免费
-- 有哪里出现问题或者需要新功能,欢迎打开[Issue](https://github.com/git-xiaocao/pixiv_func_mobile/issues/new)
-
----
 
 [获取帮助以及预览](https://pixiv.xiaocao.moe/#/pixiv-func/mobile)
-
-<!-- [QQ群755467833](https://jq.qq.com/?_wv=1027&k=HHuqfLxy) -->
 
 ---
 
@@ -69,6 +58,7 @@
 | 深度链接启动APP  | 插画 用户 浏览器登录                                                                                             | 已完成     |
 | 查看评论       | 查看作品的评论                                                                                                 | 已完成     |
 | 发布评论       | 发布评论 回复评论 可删除自己的                                                                                        | 已完成     |
+| 翻译评论       | 使用默认使用Google翻译 可以PR                                                                                     | 已完成     |
 | 修改个人资料     |                                                                                                         | 已完成     |
 | 观看直播       | 免代理观看直播([pixiv_live_proxy_server_dart](https://github.com/git-xiaocao/pixiv_live_proxy_server_dart)) 弹幕 | 待完善(弹幕) |
 | 发弹幕        |                                                                                                         | 未完成     |
