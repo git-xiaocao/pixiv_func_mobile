@@ -1,8 +1,9 @@
 # Pixiv Func
 
-> 个人项目 开源免费 仅用于学习使用
-
+> ### 个人项目 开源免费 仅用于学习使用
+>
 > ![](https://cdn.jsdelivr.net/gh/git-xiaocao/pixiv_func_mobile/gh-proj-1.jpg)
+>
 > 插画作者：[今天想点啥](https://www.pixiv.net/users/17098347)
 ## README_i18n
 [:cn:](./README.md) [:jp:](./README_ja.md) :us: :ru:
