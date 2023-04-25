@@ -1,7 +1,7 @@
 import 'dart:isolate';
 
-import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:mutex/mutex.dart';
@@ -33,13 +33,13 @@ class Downloader extends GetxController implements GetxService {
       BaseOptions(
         headers: const {'Referer': 'https://app-api.pixiv.net/'},
         responseType: ResponseType.bytes,
-        sendTimeout: 6000,
+        sendTimeout: const Duration(seconds: 6),
         //60秒
-        receiveTimeout: 60000,
-        connectTimeout: 6000,
+        receiveTimeout: const Duration(seconds: 60),
+        connectTimeout: const Duration(seconds: 6),
       ),
     );
-    (httpClient.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+    (httpClient.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
         (client) => client..badCertificateCallback = (cert, host, port) => true;
 
     final task = props.task;

@@ -4,11 +4,14 @@ import 'package:get/get.dart';
 import 'package:pixiv_dart_api/model/illust.dart';
 import 'package:pixiv_dart_api/model/novel.dart';
 import 'package:pixiv_dart_api/model/tag.dart';
+import 'package:pixiv_func_mobile/app/services/settings_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BlockTagService extends GetxService {
   static const _dataKeyName = "block_tags";
   late final SharedPreferences _sharedPreferences;
+
+  final SettingsService settingsService = Get.find();
 
   final List<Tag> blockTags = [];
 
@@ -59,9 +62,19 @@ class BlockTagService extends GetxService {
       return list;
     }
     if (T == Illust) {
-      return list.where((item) => (item as Illust).tags.every((tag) => !isBlocked(tag))).toList(); //排除被屏蔽的标签
+      return list
+          .where(
+            (item) => (item as Illust).tags.every((tag) =>
+                !isBlocked(tag) && !(settingsService.enableLocalBlockR18 && item.isR18) && !(settingsService.enableLocalBlockAI && item.isAI)),
+          )
+          .toList(); //排除被屏蔽的标签
     } else if (T == Novel) {
-      return list.where((item) => (item as Novel).tags.every((tag) => !isBlocked(tag))).toList(); //排除被屏蔽的标签
+      return list
+          .where(
+            (item) => (item as Illust).tags.every((tag) =>
+            !isBlocked(tag) && !(settingsService.enableLocalBlockR18 && item.isR18) && !(settingsService.enableLocalBlockAI && item.isAI)),
+          )
+          .toList(); //排除被屏蔽的标签
     } else {
       return list;
     }

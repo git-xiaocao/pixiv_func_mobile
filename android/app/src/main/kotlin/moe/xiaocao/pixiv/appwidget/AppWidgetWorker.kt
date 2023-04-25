@@ -39,7 +39,7 @@ class AppWidgetWorker(val context: Context, workerParams: WorkerParameters) : Wo
                     }.build()
                 )
                 .setInitialDelay(10, TimeUnit.MINUTES)
-                .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, OneTimeWorkRequest.MIN_BACKOFF_MILLIS, TimeUnit.MILLISECONDS)
+                .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, WorkRequest.MIN_BACKOFF_MILLIS, TimeUnit.MILLISECONDS)
                 .build()
 
 

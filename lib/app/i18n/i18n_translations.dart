@@ -13,6 +13,7 @@ class I18nTranslations extends Translations {
 
   final Map<String, Map<String, String>> _keys = {
     'zh_CN': {
+      I18n.doubleClickToExitHint: '再按一次退出',
       I18n.aboutPageTitle: '关于',
       I18n.accountPageTitle: '账号管理',
       I18n.blockTagPageTitle: '屏蔽标签管理',
@@ -32,6 +33,8 @@ class I18nTranslations extends Translations {
       I18n.previewQuality: '预览质量',
       I18n.scaleQuality: '缩放质量',
       I18n.enablePixivHistory: '启用Pixiv历史记录',
+      I18n.enableLocalBlockR18: '本地屏蔽R18作品',
+      I18n.enableLocalBlockAI: '本地屏蔽AI作品',
       I18n.copiedToClipboardHint: '已复制到剪贴板',
       I18n.cancel: '取消',
       I18n.confirm: '确定',
@@ -235,6 +238,7 @@ class I18nTranslations extends Translations {
       I18n.searchImageStatus429Hint: '当前IP超过了saucenao未注册用户每日50次上限',
     },
     'en_US': {
+      I18n.doubleClickToExitHint: 'Press it again to exit',
       I18n.aboutPageTitle: 'About',
       I18n.accountPageTitle: 'Account Management',
       I18n.blockTagPageTitle: 'Block tag Management',
@@ -254,6 +258,8 @@ class I18nTranslations extends Translations {
       I18n.previewQuality: 'Preview Quality',
       I18n.scaleQuality: 'Sacle Quality',
       I18n.enablePixivHistory: 'Enable Pixiv History',
+      I18n.enableLocalBlockR18: 'Local block R18 works',
+      I18n.enableLocalBlockAI: 'Local block AI works',
       I18n.copiedToClipboardHint: 'Copied to Clipboard',
       I18n.cancel: 'Cancel',
       I18n.confirm: 'Confirm',
@@ -458,6 +464,7 @@ class I18nTranslations extends Translations {
       I18n.searchImageStatus429Hint: 'The current IP exceeds the daily limit of 50 times for unregistered users of saucenao',
     },
     'ja_JP': {
+      I18n.doubleClickToExitHint: 'もう一度押すと終了します',
       I18n.aboutPageTitle: 'Pixiv Funcについて',
       I18n.accountPageTitle: 'アカウント管理',
       I18n.blockTagPageTitle: 'ブロックタグ管理',
@@ -477,6 +484,8 @@ class I18nTranslations extends Translations {
       I18n.previewQuality: '詳細ページの画質',
       I18n.scaleQuality: '全画面の画質',
       I18n.enablePixivHistory: 'Pixivの閲覧履歴を保存する',
+      I18n.enableLocalBlockR18: 'Local block R18 works',
+      I18n.enableLocalBlockAI: 'Local block AI works',
       I18n.copiedToClipboardHint: 'クリップボードにコピーしました',
       I18n.cancel: 'キャンセル',
       I18n.confirm: 'OK',
@@ -680,6 +689,7 @@ class I18nTranslations extends Translations {
       I18n.searchImageStatus429Hint: '現在のIPはsaucenaoの未登録ユーザーの1日の上限である50回を超えています',
     },
     'ru_RU': {
+      I18n.doubleClickToExitHint: 'Нажмите еще раз, чтобы выйти',
       I18n.aboutPageTitle: 'О программе',
       I18n.accountPageTitle: 'Управление акаунтами',
       I18n.blockTagPageTitle: 'Блокировка тегов',
@@ -699,6 +709,8 @@ class I18nTranslations extends Translations {
       I18n.previewQuality: 'Качество предпросмотра',
       I18n.scaleQuality: 'Качество маштаба',
       I18n.enablePixivHistory: 'Включить историю Pixiv',
+      I18n.enableLocalBlockR18: 'Местный щит R18 работает',
+      I18n.enableLocalBlockAI: 'Блочный ИИ работает локально',
       I18n.copiedToClipboardHint: 'Скопировано в буфер обмена',
       I18n.cancel: 'Отмена',
       I18n.confirm: 'Ок',

@@ -7,6 +7,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pixiv_func_mobile/app/http.dart';
+import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n_translations.dart';
 import 'package:pixiv_func_mobile/app/inject.dart';
 import 'package:pixiv_func_mobile/app/notification.dart';
@@ -39,7 +40,8 @@ Future<void> main() async {
     }
     final file = File(join(savePath, fileName));
     await file.writeAsString(e.toString());
-    PlatformApi.toast('初始化异常,请查看日志文件${Platform.isAndroid ? savePath : fileName}');
+    PlatformApi.toast(
+        '初始化异常,请查看日志文件${Platform.isAndroid ? savePath : fileName}');
     return;
   }
 
@@ -89,9 +91,11 @@ class App extends StatelessWidget {
       title: 'Pixiv Func',
       home: WillPopScope(
         onWillPop: () async {
-          if (null == _lastPopTime || DateTime.now().difference(_lastPopTime!) > const Duration(seconds: 1)) {
+          if (null == _lastPopTime ||
+              DateTime.now().difference(_lastPopTime!) >
+                  const Duration(seconds: 1)) {
             _lastPopTime = DateTime.now();
-            PlatformApi.toast('再按一次返回');
+            PlatformApi.toast(I18n.doubleClickToExitHint.tr);
             return false;
           } else {
             return true;

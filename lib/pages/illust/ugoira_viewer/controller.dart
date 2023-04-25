@@ -25,10 +25,10 @@ class UgoiraViewerController extends GetxController {
     BaseOptions(
       headers: {'Referer': 'https://app-api.pixiv.net/'},
       responseType: ResponseType.bytes,
-      sendTimeout: 6000,
+      sendTimeout: const Duration(seconds: 6),
       //60秒
-      receiveTimeout: 60000,
-      connectTimeout: 6000,
+      receiveTimeout: const Duration(seconds: 60),
+      connectTimeout: const Duration(seconds: 6),
     ),
   );
 
@@ -68,7 +68,7 @@ class UgoiraViewerController extends GetxController {
       try {
         state.gifZipResponse = await _httpClient.get<Uint8List>(
           Get.find<SettingsService>().toCurrentImageSource(state.ugoiraMetadata!.ugoiraMetadata.zipUrls.medium),
-          options: Options(receiveTimeout: 60 * 1000),
+          options: Options(receiveTimeout: const Duration(seconds: 60)),
         );
       } catch (e) {
         Log.e('下载动图压缩包失败', e);

@@ -134,7 +134,6 @@ class BrowseSettingsPage extends StatelessWidget {
                     settingsService.enablePixivHistory = value;
                   }
                 }
-
                 return CupertinoSwitchListTile(
                   contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 24),
                   onTap: () => updater(!(true == data.value)),
@@ -143,6 +142,42 @@ class BrowseSettingsPage extends StatelessWidget {
                 );
               },
               settingsService.enablePixivHistory.obs,
+            ),
+            const Divider(),
+            ObxValue(
+                  (Rx<bool> data) {
+                void updater(bool? value) {
+                  if (null != value) {
+                    data.value = value;
+                    settingsService.enableLocalBlockR18 = value;
+                  }
+                }
+                return CupertinoSwitchListTile(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 24),
+                  onTap: () => updater(!(true == data.value)),
+                  title: TextWidget(I18n.enableLocalBlockR18.tr, fontSize: 18, isBold: true),
+                  value: data.value,
+                );
+              },
+              settingsService.enableLocalBlockR18.obs,
+            ),
+            const Divider(),
+            ObxValue(
+                  (Rx<bool> data) {
+                void updater(bool? value) {
+                  if (null != value) {
+                    data.value = value;
+                    settingsService.enableLocalBlockAI = value;
+                  }
+                }
+                return CupertinoSwitchListTile(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 24),
+                  onTap: () => updater(!(true == data.value)),
+                  title: TextWidget(I18n.enableLocalBlockAI.tr, fontSize: 18, isBold: true),
+                  value: data.value,
+                );
+              },
+              settingsService.enableLocalBlockAI.obs,
             ),
           ],
         ),

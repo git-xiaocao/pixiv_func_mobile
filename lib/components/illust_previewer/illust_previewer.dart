@@ -94,7 +94,7 @@ class IllustPreviewer extends StatelessWidget {
                   ),
                 ),
               ),
-            if (illust.isAi)
+            if (illust.isAI)
               //右下
               Positioned(
                 right: 7,

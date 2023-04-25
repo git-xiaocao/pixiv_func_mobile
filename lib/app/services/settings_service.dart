@@ -82,6 +82,20 @@ class SettingsService extends GetxService {
     save();
   }
 
+  bool get enableLocalBlockR18 => _settings.enableLocalBlockR18;
+
+  set enableLocalBlockR18(bool value) {
+    _settings.enableLocalBlockR18 = value;
+    save();
+  }
+
+  bool get enableLocalBlockAI => _settings.enableLocalBlockAI;
+
+  set enableLocalBlockAI(bool value) {
+    _settings.enableLocalBlockAI = value;
+    save();
+  }
+
   String get language => _settings.language;
 
   set language(String value) {

@@ -1,6 +1,9 @@
 class I18n {
   I18n._();
 
+  ///再按一次退出
+  static const String doubleClickToExitHint = 'doubleClickToExitHint';
+
   ///关于
   static const String aboutPageTitle = 'aboutPageTitle';
 
@@ -59,8 +62,14 @@ class I18n {
   ///缩放质量
   static const String scaleQuality = 'scaleQualitySettingsPageTitle';
 
-  /// 启用Pixiv历史记录
+  ///启用Pixiv历史记录
   static const String enablePixivHistory = 'enablePixivHistory';
+
+  ///本地屏蔽R18
+  static const String enableLocalBlockR18 = 'enableLocalBlockR18';
+
+  ///本地屏蔽AI
+  static const String enableLocalBlockAI = 'enableLocalBlockAI';
 
   /***********************************************************************************************/
   //Common

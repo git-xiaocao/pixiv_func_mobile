@@ -15,6 +15,10 @@ class Settings {
 
   bool enablePixivHistory;
 
+  bool enableLocalBlockR18;
+
+  bool enableLocalBlockAI;
+
   String language;
 
   int translateIndex;
@@ -37,6 +41,8 @@ class Settings {
     required this.scaleQuality,
     required this.enableHistory,
     required this.enablePixivHistory,
+    required this.enableLocalBlockR18,
+    required this.enableLocalBlockAI,
     required this.language,
     required this.translateIndex,
     required this.translateAuthData,
@@ -55,6 +61,8 @@ class Settings {
       scaleQuality: json['scaleQuality'] as bool,
       enablePixivHistory: json['enablePixivHistory'] as bool,
       enableHistory: json['enableHistory'] as bool,
+      enableLocalBlockR18: json['enableLocalBlockR18'] as bool? ?? false,
+      enableLocalBlockAI: json['enableLocalBlockAI'] as bool? ?? false,
       language: json['language'] as String,
       translateIndex: json['translateIndex'] as int,
       translateAuthData: (json['translateAuthData'] as Map<String, dynamic>).map((key, value) => MapEntry(key, value as String)),
@@ -74,6 +82,8 @@ class Settings {
       'scaleQuality': scaleQuality,
       'enableHistory': enableHistory,
       'enablePixivHistory': enablePixivHistory,
+      'enableLocalBlockR18': enableLocalBlockR18,
+      'enableLocalBlockAI': enableLocalBlockAI,
       'language': language,
       'translateIndex': translateIndex,
       'translateAuthData': translateAuthData,
@@ -92,6 +102,8 @@ class Settings {
         scaleQuality: true,
         enableHistory: true,
         enablePixivHistory: true,
+        enableLocalBlockR18: false,
+        enableLocalBlockAI: false,
         language: window.locale.toLanguageTag(),
         translateIndex: 0,
         translateAuthData: {},

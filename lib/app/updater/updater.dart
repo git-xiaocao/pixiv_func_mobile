@@ -81,8 +81,8 @@ class Updater {
     props.hostSendPort.send(_DownloadProgress(0));
     Dio(
       BaseOptions(
-        receiveTimeout: 1200000,
-        connectTimeout: 1200000,
+        receiveTimeout: const Duration(seconds: 10),
+        connectTimeout: const Duration(seconds: 10),
       ),
     ).download(props.url, props.savePath, onReceiveProgress: (int count, int total) {
       props.hostSendPort.send(_DownloadProgress(((count / total) * 100).toInt()));

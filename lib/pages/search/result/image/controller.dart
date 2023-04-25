@@ -25,7 +25,7 @@ class SearchImageResultController extends GetxController {
   final list = <SearchImageItem>[];
 
   final httpClient = Dio(BaseOptions(
-    sendTimeout: 60000,
+    sendTimeout: const Duration(seconds: 60),
   ));
 
   final CancelToken cancelToken = CancelToken();

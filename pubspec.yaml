@@ -2,10 +2,10 @@ name: pixiv_func_mobile
 description: Pixiv 第三方客户端
 
 publish_to: 'none'
-version: 1.0.0-beta53+59
+version: 1.0.0-beta54+60
 
 environment:
-  sdk: ">=2.18.4 <3.0.0"
+  sdk: ">=2.18.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -15,49 +15,50 @@ dependencies:
   cupertino_icons: ^1.0.5
   json_annotation: ^4.5.0
   get: ^4.6.5
-  dio: ^4.0.6
+  dio: ^5.1.1
   crypto: ^3.0.2
   intl: ^0.17.0
   mutex: ^3.0.1
-  shared_preferences: ^2.0.15
-  sqflite: ^2.0.3
-  extended_image: ^6.2.1
-  extended_nested_scroll_view: ^5.1.3
+  shared_preferences: ^2.1.0
+  sqflite: ^2.2.7
+  extended_image: ^7.0.2
+  extended_nested_scroll_view: ^6.0.0
   extended_sliver:
     git: https://github.com/git-xiaocao/extended_sliver.git
   waterfall_flow: ^3.0.2
-  pull_to_refresh_notification: ^2.3.0
-  loading_more_list: ^5.0.2
-  html: ^0.15.0
-  permission_handler: ^10.0.0
-  image_picker: ^0.8.5+3
+  pull_to_refresh_notification: ^3.0.0
+  loading_more_list: ^5.0.3
+  html: ^0.15.2
+  permission_handler: ^10.2.0
+  image_picker: ^0.8.7+4
   file_picker: ^5.2.4
   encrypt: ^5.0.1
-  device_info_plus: ^4.1.2
-  connectivity_plus: ^2.3.5
+  device_info_plus: ^8.2.0
+  connectivity_plus: ^3.0.4
   expandable: ^5.0.1
   visibility_detector: ^0.3.3
   path: ^1.8.2
   uni_links2: ^0.6.0+2
-  share_plus: ^4.1.0
-  path_provider: ^2.0.11
+  share_plus: ^6.3.2
+  path_provider: ^2.0.14
   app_installer: ^1.1.0
-  flutter_local_notifications: ^9.9.0
-  pixiv_live_proxy_server: ^0.0.2
-  extended_text: ^9.1.1
-  extended_text_field: ^10.1.1
-  video_player: ^2.4.7
+  flutter_local_notifications: ^13.0.0
+  pixiv_live_proxy_server:
+    path: ../pixiv_live_proxy_server
+  extended_text: ^10.0.1
+  extended_text_field: ^11.0.1
+  video_player: ^2.6.1
   #  唤醒锁
   wakelock: ^0.6.2
   #  设备方向
   orientation: ^1.3.0
-  image_editor: ^1.1.0
+  image_editor: ^1.3.0
   pixiv_dart_api:
-    git: https://github.com/git-xiaocao/pixiv_dart_api.git
-#    path: ../pixiv_dart_api
-  quick_actions: ^1.0.0
+#    git: https://github.com/git-xiaocao/pixiv_dart_api.git
+    path: ../pixiv_dart_api
+  quick_actions: ^1.0.2
   share_handler: ^0.0.16
-  synchronized: ^3.0.0+3
+  synchronized: ^3.1.0
   # 增大点击范围
   extra_hittest_area: ^0.1.0
 dev_dependencies:

@@ -37,15 +37,15 @@ class DownloadSettingsPage extends StatelessWidget {
             },
             Get.find<SettingsService>().maxDownloadCount.obs,
           ),
-          ListTile(
-            title: TextWidget('保存目录: ${Get.find<SettingsService>()}'),
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              final path = FilePicker.platform.getDirectoryPath(dialogTitle: '选择图片保存目录');
-            },
-            child: TextWidget('保存目录'),
-          ),
+          // ListTile(
+          //   title: TextWidget('保存目录: ${Get.find<SettingsService>().saveFolder}'),
+          // ),
+          // ElevatedButton(
+          //   onPressed: () async {
+          //     final path = FilePicker.platform.getDirectoryPath(dialogTitle: '选择图片保存目录');
+          //   },
+          //   child: TextWidget('保存目录'),
+          // ),
         ],
       ),
     );

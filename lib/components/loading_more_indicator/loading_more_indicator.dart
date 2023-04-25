@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loading_more_list/loading_more_list.dart';
+import 'package:pixiv_func_mobile/components/loading_more_indicator/status/error.dart';
 
 class LoadingMoreIndicator extends StatelessWidget {
   final IndicatorStatus status;
@@ -55,24 +56,25 @@ class LoadingMoreIndicator extends StatelessWidget {
         );
         break;
       case IndicatorStatus.fullScreenError:
-        widget = SizedBox.expand(
-          child: fullScreenErrorCanRetry
-              ? InkWell(
-                  onTap: () => errorRefresh(),
-                  child: Center(
-                    child: Text(
-                      '加载失败${fullScreenErrorCanRetry ? ', 点击重试' : ''}',
-                      style: textStyle,
-                    ),
-                  ),
-                )
-              : const Center(
-                  child: Text(
-                    '加载失败',
-                    style: textStyle,
-                  ),
-                ),
-        );
+        widget = const StatusErrorWidget(isFullScreen: true);
+        // widget = SizedBox.expand(
+        //   child: fullScreenErrorCanRetry
+        //       ? InkWell(
+        //           onTap: () => errorRefresh(),
+        //           child: Center(
+        //             child: Text(
+        //               '加载失败${fullScreenErrorCanRetry ? ', 点击重试' : ''}',
+        //               style: textStyle,
+        //             ),
+        //           ),
+        //         )
+        //       : const Center(
+        //           child: Text(
+        //             '加载失败',
+        //             style: textStyle,
+        //           ),
+        //         ),
+        // );
 
         if (isSliver) {
           widget = SliverFillRemaining(child: widget);

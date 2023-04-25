@@ -4,7 +4,7 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterL
 
 Future<void> initFlutterLocalNotificationsPlugin() {
   const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('ic_launcher_foreground');
-  const IOSInitializationSettings initializationSettingsIOS = IOSInitializationSettings();
+  const DarwinInitializationSettings initializationSettingsIOS = DarwinInitializationSettings();
   return flutterLocalNotificationsPlugin.initialize(
     const InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOS),
   );

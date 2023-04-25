@@ -13,7 +13,7 @@ class PullToRefreshHeader extends StatelessWidget {
     final mode = info?.mode;
 
     final Widget child;
-    if (mode == RefreshIndicatorMode.error) {
+    if (mode == PullToRefreshIndicatorMode.error) {
       child = GestureDetector(
         onTap: () {
           info?.pullToRefreshNotificationState.show();
@@ -37,25 +37,25 @@ class PullToRefreshHeader extends StatelessWidget {
       final String text;
       if (null != mode) {
         switch (mode) {
-          case RefreshIndicatorMode.drag:
+          case PullToRefreshIndicatorMode.drag:
             text = '继续下拉以刷新';
             break;
-          case RefreshIndicatorMode.armed:
+          case PullToRefreshIndicatorMode.armed:
             text = '松手刷新';
             break;
-          case RefreshIndicatorMode.snap:
+          case PullToRefreshIndicatorMode.snap:
             text = '准备刷新';
             break;
-          case RefreshIndicatorMode.refresh:
+          case PullToRefreshIndicatorMode.refresh:
             text = '正在刷新...';
             break;
-          case RefreshIndicatorMode.done:
+          case PullToRefreshIndicatorMode.done:
             text = '';
             break;
-          case RefreshIndicatorMode.canceled:
+          case PullToRefreshIndicatorMode.canceled:
             text = '已取消';
             break;
-          case RefreshIndicatorMode.error:
+          case PullToRefreshIndicatorMode.error:
             text = '';
             break;
         }
