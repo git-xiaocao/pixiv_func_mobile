@@ -9,11 +9,11 @@ import 'result/illust/search_illust_result.dart';
 import 'result/novel/search_novel_result.dart';
 import 'result/user/search_user_result.dart';
 
-class SearchController extends GetxController {
+class SearchInputController extends GetxController {
   final TabController tabController;
   final TextEditingController searchContentInput;
 
-  SearchController(TickerProvider vsync, String? initValue)
+  SearchInputController(TickerProvider vsync, String? initValue)
       : tabController = TabController(length: 3, vsync: vsync),
         searchContentInput = TextEditingController(text: initValue);
 

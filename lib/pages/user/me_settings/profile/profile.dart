@@ -439,6 +439,7 @@ class MeProfileSettingsPage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 10),
                   Padding(
                     padding: EdgeInsets.only(left: Get.width * 0.05, right: Get.width * 0.05, bottom: 35),
                     child: MaterialButton(

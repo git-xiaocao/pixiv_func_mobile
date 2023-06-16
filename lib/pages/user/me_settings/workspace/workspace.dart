@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pixiv_dart_api/vo/user_detail_result.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
 import 'package:pixiv_func_mobile/pages/user/me_settings/workspace/controller.dart';
+import 'package:pixiv_func_mobile/widgets/no_scroll_behavior/no_scroll_behavior.dart';
 import 'package:pixiv_func_mobile/widgets/scaffold/scaffold.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
 
@@ -48,21 +49,23 @@ class MeWorkspaceSettingsPage extends StatelessWidget {
           child: Column(
             children: [
               Flexible(
-                child: ListView(
-                  children: [
-                    buildItem(name: I18n.workspacePc.tr, controller: controller.pcInput),
-                    buildItem(name: I18n.workspaceMonitor.tr, controller: controller.monitorInput),
-                    buildItem(name: I18n.workspaceTool.tr, controller: controller.toolInput),
-                    buildItem(name: I18n.workspaceScanner.tr, controller: controller.scannerInput),
-                    buildItem(name: I18n.workspaceTablet.tr, controller: controller.tabletInput),
-                    buildItem(name: I18n.workspaceMouse.tr, controller: controller.mouseInput),
-                    buildItem(name: I18n.workspacePrinter.tr, controller: controller.printerInput),
-                    buildItem(name: I18n.workspaceDesktop.tr, controller: controller.desktopInput),
-                    buildItem(name: I18n.workspaceMusic.tr, controller: controller.musicInput),
-                    buildItem(name: I18n.workspaceDesk.tr, controller: controller.deskInput),
-                    buildItem(name: I18n.workspaceChair.tr, controller: controller.chairInput),
-                    buildItem(name: I18n.workspaceOther.tr, controller: controller.commentInput),
-                  ],
+                child: NoScrollBehaviorWidget(
+                  child: ListView(
+                    children: [
+                      buildItem(name: I18n.workspacePc.tr, controller: controller.pcInput),
+                      buildItem(name: I18n.workspaceMonitor.tr, controller: controller.monitorInput),
+                      buildItem(name: I18n.workspaceTool.tr, controller: controller.toolInput),
+                      buildItem(name: I18n.workspaceScanner.tr, controller: controller.scannerInput),
+                      buildItem(name: I18n.workspaceTablet.tr, controller: controller.tabletInput),
+                      buildItem(name: I18n.workspaceMouse.tr, controller: controller.mouseInput),
+                      buildItem(name: I18n.workspacePrinter.tr, controller: controller.printerInput),
+                      buildItem(name: I18n.workspaceDesktop.tr, controller: controller.desktopInput),
+                      buildItem(name: I18n.workspaceMusic.tr, controller: controller.musicInput),
+                      buildItem(name: I18n.workspaceDesk.tr, controller: controller.deskInput),
+                      buildItem(name: I18n.workspaceChair.tr, controller: controller.chairInput),
+                      buildItem(name: I18n.workspaceOther.tr, controller: controller.commentInput),
+                    ],
+                  ),
                 ),
               ),
               Padding(

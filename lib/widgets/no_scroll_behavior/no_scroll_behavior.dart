@@ -13,14 +13,14 @@ class NoScrollBehaviorWidget extends StatelessWidget {
 
 class _NoScrollBehavior extends ScrollBehavior {
   @override
-  Widget buildViewportChrome(BuildContext context, Widget child, AxisDirection axisDirection) {
+  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
     switch (getPlatform(context)) {
       case TargetPlatform.iOS:
         return child;
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
         return GlowingOverscrollIndicator(
-          axisDirection: axisDirection,
+          axisDirection: details.direction,
           color: Theme.of(context).colorScheme.primary,
           showTrailing: false,
           showLeading: false,

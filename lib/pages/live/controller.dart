@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:orientation/orientation.dart';
+import 'package:auto_orientation/auto_orientation.dart';
 import 'package:pixiv_dart_api/vo/live_detail_result.dart';
 import 'package:pixiv_func_mobile/app/api/api_client.dart';
 import 'package:pixiv_func_mobile/app/platform/api/platform_api.dart';
@@ -97,14 +97,10 @@ class LiveController extends GetxController {
   void toggleFullScreen() async {
     _isFullScreen = !_isFullScreen;
     if (_isFullScreen) {
-      await OrientationPlugin.setPreferredOrientations([
-        DeviceOrientation.landscapeLeft,
-      ]);
+      await AutoOrientation.landscapeLeftMode();
       await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     } else {
-      await OrientationPlugin.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-      ]);
+      await AutoOrientation.portraitUpMode();
       await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     }
     update();
@@ -130,7 +126,7 @@ class LiveController extends GetxController {
       await initPlayer(result.data.owner.hlsMovie.url);
       state = PageState.complete;
     }).catchError((e) {
-      if (e is DioError && e.response?.statusCode == HttpStatus.notFound) {
+      if (e is DioException && e.response?.statusCode == HttpStatus.notFound) {
         state = PageState.notFound;
       } else {
         state = PageState.error;

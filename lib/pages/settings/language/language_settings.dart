@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pixiv_func_mobile/app/i18n/i18n.dart';
+import 'package:pixiv_func_mobile/widgets/no_scroll_behavior/no_scroll_behavior.dart';
 import 'package:pixiv_func_mobile/widgets/scaffold/scaffold.dart';
 import 'package:pixiv_func_mobile/widgets/text/text.dart';
 
@@ -24,28 +25,30 @@ class LanguageSettingsPage extends StatelessWidget {
     return GetBuilder<LanguageController>(
       builder: (controller) => ScaffoldWidget(
         title: I18n.languageSettingsPageTitle.tr,
-        child: ListView(
-          children: [
-            for (final item in items)
+        child: NoScrollBehaviorWidget(
+          child: ListView(
+            children: [
+              for (final item in items)
+                ListTile(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 24),
+                  onTap: () => controller.languageOnChange(item.value),
+                  title: TextWidget(item.key, fontSize: 18, isBold: true, locale: defaultLocale),
+                  trailing: controller.language == item.value
+                      ? Icon(
+                          Icons.check,
+                          size: 25,
+                          color: Get.theme.colorScheme.primary,
+                        )
+                      : null,
+                ),
+              const Divider(),
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 24),
-                onTap: () => controller.languageOnChange(item.value),
-                title: TextWidget(item.key, fontSize: 18, isBold: true, locale: defaultLocale),
-                trailing: controller.language == item.value
-                    ? Icon(
-                        Icons.check,
-                        size: 25,
-                        color: Get.theme.colorScheme.primary,
-                      )
-                    : null,
-              ),
-            const Divider(),
-            ListTile(
-              contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 24),
-              onTap: () => Get.to(const LanguageExpansionPage()),
-              title: TextWidget(I18n.languageExpansion.tr, fontSize: 18, isBold: true, locale: defaultLocale),
-            )
-          ],
+                onTap: () => Get.to(const LanguageExpansionPage()),
+                title: TextWidget(I18n.languageExpansion.tr, fontSize: 18, isBold: true, locale: defaultLocale),
+              )
+            ],
+          ),
         ),
       ),
     );

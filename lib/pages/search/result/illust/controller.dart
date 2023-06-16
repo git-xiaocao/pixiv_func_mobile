@@ -20,7 +20,7 @@ class SearchIllustResultController extends GetxController {
   bool get expandedFilter => _expandedFilter;
 
   void back({bool edit = false}) {
-    if (!edit || Get.isRegistered<SearchController>()) {
+    if (!edit || Get.isRegistered<SearchInputController>()) {
       Get.back();
     } else {
       Get.off(SearchPage(initValue: keyword));

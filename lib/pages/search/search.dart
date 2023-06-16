@@ -24,8 +24,8 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    Get.put(SearchController(this, widget.initValue));
-    return GetBuilder<SearchController>(
+    Get.put(SearchInputController(this, widget.initValue));
+    return GetBuilder<SearchInputController>(
       builder: (controller) => VisibilityDetector(
         key: Key(runtimeType.toString()),
         onVisibilityChanged: (VisibilityInfo info) {

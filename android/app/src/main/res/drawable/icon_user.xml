@@ -1,6 +1,1 @@
-<vector android:height="200dp" android:viewportHeight="24"
-    android:viewportWidth="24" android:width="200dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="#FF6289" android:fillType="nonZero"
-        android:pathData="M12,0C7.581,0 4,3.581 4,8C4,12.419 7.581,16 12,16C16.419,16 20,12.419 20,8C20,3.581 16.419,0 12,0ZM12,13.6C8.907,13.6 6.4,11.093 6.4,8C6.4,4.907 8.907,2.4 12,2.4C15.093,2.4 17.6,4.907 17.6,8C17.6,11.093 15.093,13.6 12,13.6ZM20.4,16.8L3.6,16.8C1.621,16.8 0,18.419 0,20.4C0,22.379 1.621,24 3.6,24L20.4,24C22.379,24 24,22.379 24,20.4C24,18.419 22.379,16.8 20.4,16.8ZM20.4,21.6L3.6,21.6C2.939,21.6 2.4,21.061 2.4,20.4C2.4,19.739 2.939,19.2 3.6,19.2L20.4,19.2C21.061,19.2 21.6,19.739 21.6,20.4C21.6,21.061 21.061,21.6 20.4,21.6Z"
-        android:strokeColor="#00000000" android:strokeWidth="1"/>
-</vector>
+<!-- drawable/icon_user.xml --><vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="24dp" android:width="24dp" android:viewportWidth="24" android:viewportHeight="24"><path android:fillColor="#FF6289" android:pathData="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M12,13C14.67,13 20,14.33 20,17V20H4V17C4,14.33 9.33,13 12,13M12,14.9C9.03,14.9 5.9,16.36 5.9,17V18.1H18.1V17C18.1,16.36 14.97,14.9 12,14.9Z" /></vector>

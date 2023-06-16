@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 final darkTheme = ThemeData.dark().copyWith(
   primaryColor: const Color(0xFFFF6289),
   scaffoldBackgroundColor: const Color(0xFF181818),
-  bottomAppBarColor: const Color(0xff181818),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     backgroundColor: Color(0xff181818),
     selectedItemColor: Color(0xFFFF6289),
@@ -41,12 +40,12 @@ final darkTheme = ThemeData.dark().copyWith(
     onError: Colors.white,
     brightness: Brightness.dark,
   ),
+  bottomAppBarTheme: const BottomAppBarTheme(color: Color(0xff181818)),
 );
 
 final lightTheme = ThemeData.light().copyWith(
   primaryColor: const Color(0xFFFF6289),
   scaffoldBackgroundColor: const Color(0xFFFFFFFF),
-  bottomAppBarColor: const Color(0xFFFFFFFF),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     backgroundColor: Color(0xFFFFFFFF),
     selectedItemColor: Color(0xFFFF6289),
@@ -83,6 +82,7 @@ final lightTheme = ThemeData.light().copyWith(
     onError: Colors.white,
     brightness: Brightness.dark,
   ),
+  bottomAppBarTheme: const BottomAppBarTheme(color: Color(0xFFFFFFFF)),
 );
 
 TextTheme _textTheme(Color color) => TextTheme(
