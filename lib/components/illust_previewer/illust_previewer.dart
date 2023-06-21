@@ -134,11 +134,21 @@ class IllustPreviewer extends StatelessWidget {
     if (square) {
       return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          return buildImage(
-            url: illust.imageUrls.squareMedium,
-            width: constraints.maxWidth,
-            height: constraints.maxWidth,
-            borderRadius: borderRadius,
+          return Column(
+            children: [
+              buildImage(
+                url: illust.imageUrls.squareMedium,
+                width: constraints.maxWidth,
+                height: constraints.maxWidth,
+                borderRadius: borderRadius,
+              ),
+              BookmarkSwitchButton(
+                id: illust.id,
+                title: illust.title,
+                initValue: illust.isBookmarked,
+                isPlaceholder: true,
+              ),
+            ],
           );
         },
       );

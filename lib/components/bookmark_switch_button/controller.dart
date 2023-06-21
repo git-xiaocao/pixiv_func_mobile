@@ -24,12 +24,12 @@ class BookmarkSwitchButtonController extends GetxController {
 
   Restrict restrict = Restrict.public;
 
-  void changeBookmarkState({bool isChange = false, Restrict restrict = Restrict.public}) {
+  Future<void> changeBookmarkState({bool isChange = false, Restrict restrict = Restrict.public}) {
     _requesting = true;
     update();
 
     if (isChange || !_isBookmarked) {
-      Get.find<ApiClient>().postBookmarkAdd(id, isNovel: isNovel, restrict: restrict).then((result) {
+      return Get.find<ApiClient>().postBookmarkAdd(id, isNovel: isNovel, restrict: restrict).then((result) {
         _isBookmarked = true;
       }).catchError((e) {
         Log.e('添加书签失败', e);
@@ -38,7 +38,7 @@ class BookmarkSwitchButtonController extends GetxController {
         update();
       });
     } else {
-      Get.find<ApiClient>().postBookmarkDelete(id, isNovel: isNovel).then((result) {
+      return Get.find<ApiClient>().postBookmarkDelete(id, isNovel: isNovel).then((result) {
         _isBookmarked = false;
         update();
       }).catchError((e) {

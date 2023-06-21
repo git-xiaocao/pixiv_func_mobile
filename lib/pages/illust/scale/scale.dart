@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pixiv_dart_api/model/illust.dart';
 import 'package:pixiv_func_mobile/app/services/settings_service.dart';
+import 'package:pixiv_func_mobile/widgets/no_scroll_behavior/no_scroll_behavior.dart';
 import 'package:pixiv_func_mobile/widgets/scaffold/scaffold.dart';
 
 class ImageScalePage extends StatelessWidget {
@@ -30,31 +31,33 @@ class ImageScalePage extends StatelessWidget {
       (data) {
         return ScaffoldWidget(
           title: '${data.value + 1}/${urls.length}',
-          child: ExtendedImageGesturePageView(
-            controller: ExtendedPageController(initialPage: initialPage),
-            onPageChanged: (int page) => data.value = page,
-            children: [
-              for (int i = 0; i < urls.length; ++i)
-                ExtendedImage.network(
-                  Get.find<SettingsService>().toCurrentImageSource(urls[i]),
-                  headers: const {'Referer': 'https://app-api.pixiv.net'},
-                  gaplessPlayback: true,
-                  mode: ExtendedImageMode.gesture,
-                  loadStateChanged: (ExtendedImageState state) {
-                    if (state.extendedImageLoadState == LoadState.loading) {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                    return null;
-                  },
-                  initGestureConfigHandler: (ExtendedImageState state) => GestureConfig(
-                    minScale: 0.9,
-                    maxScale: 6.0,
-                    speed: 1.0,
-                    initialScale: 0.95,
-                    inPageView: true,
+          child: NoScrollBehaviorWidget(
+            child: ExtendedImageGesturePageView(
+              controller: ExtendedPageController(initialPage: initialPage),
+              onPageChanged: (int page) => data.value = page,
+              children: [
+                for (int i = 0; i < urls.length; ++i)
+                  ExtendedImage.network(
+                    Get.find<SettingsService>().toCurrentImageSource(urls[i]),
+                    headers: const {'Referer': 'https://app-api.pixiv.net'},
+                    gaplessPlayback: true,
+                    mode: ExtendedImageMode.gesture,
+                    loadStateChanged: (ExtendedImageState state) {
+                      if (state.extendedImageLoadState == LoadState.loading) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                      return null;
+                    },
+                    initGestureConfigHandler: (ExtendedImageState state) => GestureConfig(
+                      minScale: 0.9,
+                      maxScale: 6.0,
+                      speed: 1.0,
+                      initialScale: 0.95,
+                      inPageView: true,
+                    ),
                   ),
-                ),
-            ],
+              ],
+            ),
           ),
         );
       },

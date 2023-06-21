@@ -14,6 +14,7 @@ class BookmarkSwitchButton extends StatelessWidget {
   final bool initValue;
   final bool isNovel;
   final bool isButton;
+  final bool isPlaceholder;
 
   const BookmarkSwitchButton({
     Key? key,
@@ -22,6 +23,7 @@ class BookmarkSwitchButton extends StatelessWidget {
     required this.initValue,
     this.isNovel = false,
     this.isButton = true,
+    this.isPlaceholder = false,
   }) : super(key: key);
 
   String get tag => '$id';
@@ -111,7 +113,7 @@ class BookmarkSwitchButton extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 20),
                           child: TextWidget(I18n.confirm.tr, fontSize: 18, color: Colors.white, isBold: true),
                         ),
-                        onPressed: () async {
+                        onPressed: () {
                           controller.changeBookmarkState(isChange: true, restrict: controller.restrict);
                           Get.back();
                         },
@@ -137,12 +139,16 @@ class BookmarkSwitchButton extends StatelessWidget {
 
     return GetBuilder<BookmarkSwitchButtonController>(
       tag: tag,
+      autoRemove: false,
       dispose: (state) {
         if (isRootController) {
           Get.delete<BookmarkSwitchButtonController>(tag: tag);
         }
       },
       builder: (controller) {
+        //占位
+        if(isPlaceholder) return const SizedBox();
+
         if (controller.requesting) {
           return Padding(
             padding: EdgeInsets.all(isButton ? 12 : 8),

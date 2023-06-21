@@ -500,12 +500,15 @@ class IllustPage extends StatelessWidget {
                       SliverList(
                         delegate: SliverChildListDelegate(
                           [
-                            for (var index = 0; index < illust.metaPages.length; ++index)
-                              buildImageItem(
-                                id: illust.id,
-                                title: illust.title,
-                                previewUrl: Get.find<SettingsService>().getPreviewUrl(illust.metaPages[index].imageUrls),
-                                index: index,
+                            for (int index = 0; index < illust.metaPages.length; ++index)
+                              Padding(
+                                padding: EdgeInsets.only(bottom: index == illust.metaPages.length - 1 ? 0 : 10),
+                                child: buildImageItem(
+                                  id: illust.id,
+                                  title: illust.title,
+                                  previewUrl: Get.find<SettingsService>().getPreviewUrl(illust.metaPages[index].imageUrls),
+                                  index: index,
+                                ),
                               ),
                           ],
                         ),
